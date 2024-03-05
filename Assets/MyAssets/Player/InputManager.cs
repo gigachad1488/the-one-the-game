@@ -13,8 +13,9 @@ public class InputManager : MonoBehaviour
     private InputActionMap defaultMap;
 
     private InputAction moveAction;
-    private InputAction jumpAction;
+    public InputAction jumpAction;
     private InputAction dashAction;
+    private InputAction downAction;
 
     #endregion
 
@@ -23,6 +24,7 @@ public class InputManager : MonoBehaviour
     public Vector2 move;
     public bool jump;
     public bool dash;
+    public bool down;
 
     private void OnEnable()
     {
@@ -37,14 +39,22 @@ public class InputManager : MonoBehaviour
         moveAction = defaultMap.FindAction("Move");
         jumpAction = defaultMap.FindAction("Jump");
         dashAction = defaultMap.FindAction("Dash");
+        downAction = defaultMap.FindAction("Down");
 
         moveAction.performed += MoveAction_performed;
         jumpAction.performed += JumpAction_performed;
         dashAction.performed += DashAction_performed;
+        downAction.performed += DownAction_performed;
 
         moveAction.canceled += MoveAction_performed;
         jumpAction.canceled += JumpAction_performed;
         dashAction.canceled += DashAction_performed;
+        downAction.canceled += DownAction_performed;
+    }
+
+    private void DownAction_performed(InputAction.CallbackContext obj)
+    {
+        down = obj.ReadValueAsButton();
     }
 
     private void DashAction_performed(InputAction.CallbackContext obj)

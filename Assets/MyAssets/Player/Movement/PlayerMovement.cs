@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D groundCollider;
     [SerializeField]
     private LayerMask groundLayers;
+
+    private Vector2 groundColliderSize;
 
     private bool isGrounded;
 
@@ -47,19 +50,31 @@ public class PlayerMovement : MonoBehaviour
     public float dashCD = 1;
     private float dashCDTimer;
 
+    
+
+    private Health playerHealth;
+
     private void Start()
     {
         inputManager = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<Health>();
+
+        groundColliderSize = groundCollider.bounds.size;
+
+        inputManager.jumpAction.performed += delegate { Jump(); };
     }
 
     private void FixedUpdate()
     {
         GroundCheck();
         Move();
-        Jump();        
+        Flying();
+        Down();
         VelocityLimit();
         Dash();
+        
+        jumpCDTimer -= Time.fixedDeltaTime;
     }
 
     public void GroundCheck()
@@ -73,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForceX(inputManager.move.x * moveSpeed, ForceMode2D.Force);
 
-            if (inputManager.move.x > 0) 
+            if (inputManager.move.x > 0)
             {
                 sprite.transform.localScale = new Vector3(1, 1, 1);
             }
@@ -83,36 +98,34 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
     private void Jump()
+    {
+        if (isGrounded && jumpCDTimer < 0)
+        {
+            rb.AddForceY(jumpForce, ForceMode2D.Impulse);
+            flyingTimer = flyingTime;
+            jumpCDTimer = jumpCD;
+        }       
+    }
+
+    public void Flying()
     {
         if (inputManager.jump)
         {
-            if (isGrounded && jumpCDTimer < 0)
+            if (flyingTimer > 0)
             {
-                rb.AddForceY(jumpForce, ForceMode2D.Impulse);
-                flyingTimer = flyingTime;
-                jumpCDTimer = jumpCD;
+                rb.AddForceY(flyingForce, ForceMode2D.Force);
+                flyingTimer -= Time.fixedDeltaTime;
             }
             else
             {
-                if (flyingTimer > 0)
+                if (rb.velocity.y < -glideSpeed)
                 {
-                    rb.AddForceY(flyingForce, ForceMode2D.Force);
-                    flyingTimer -= Time.fixedDeltaTime;
-                }
-                else
-                {
-                    if (rb.velocity.y < -glideSpeed)
-                    {
-                        float brake = rb.velocity.y + glideSpeed;
-                        rb.AddForceY(-brake, ForceMode2D.Force);
-                    }
+                    float brake = rb.velocity.y + glideSpeed;
+                    rb.AddForceY(-brake, ForceMode2D.Force);
                 }
             }
         }
-
-        jumpCDTimer -= Time.fixedDeltaTime;
     }
 
     public void Dash()
@@ -121,9 +134,34 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForceX(dashForce * sprite.transform.localScale.x, ForceMode2D.Impulse);
             dashCDTimer = dashCD;
+            playerHealth.ResetIFrame();
         }
 
         dashCDTimer -= Time.fixedDeltaTime;
+    }
+
+    public void Down()
+    {
+        if (inputManager.down)
+        {
+            Collider2D[] hits = Physics2D.OverlapBoxAll(groundCollider.transform.position, groundColliderSize, 0);
+            Debug.Log("DOWN COLDS = " + hits.Length);
+
+            for (int i = 0; i < hits.Length; i++) 
+            {
+                if (hits[i].transform.CompareTag("Platform"))
+                {
+                    hits[i].enabled = false;
+                    StartCoroutine(EnablePlatform(hits[i]));
+                }
+            }
+        }
+    }
+
+    public IEnumerator EnablePlatform(Collider2D collider)
+    {
+        yield return new WaitForSeconds(0.25f);
+        collider.enabled = true;
     }
 
     private void VelocityLimit()
@@ -145,5 +183,11 @@ public class PlayerMovement : MonoBehaviour
             float brakeVelocity = brakeYSpeed;
             rb.AddForceY(-brakeVelocity * 5, ForceMode2D.Force);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(groundCollider.transform.position, groundColliderSize);
     }
 }
