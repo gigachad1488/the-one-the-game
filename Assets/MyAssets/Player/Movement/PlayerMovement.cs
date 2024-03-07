@@ -44,13 +44,20 @@ public class PlayerMovement : MonoBehaviour
     public float flyingTime = 3f;
     private float flyingTimer;
 
+    [SerializeField]
+    private ParticleSystem flyingParticles;
+    private ParticleSystem.MainModule flyingParticlesMainModule;
+
     [Space(5)]
     [Header("Dash")]
     public float dashForce = 10f;
     public float dashCD = 1;
     private float dashCDTimer;
 
-    
+    [SerializeField]
+    private ParticleSystem dashParticles;
+
+
 
     private Health playerHealth;
 
@@ -61,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
         playerHealth = GetComponent<Health>();
 
         groundColliderSize = groundCollider.bounds.size;
+        flyingParticlesMainModule = flyingParticles.main;
+
+        dashParticles.Stop();
 
         inputManager.jumpAction.performed += delegate { Jump(); };
     }
@@ -73,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         Down();
         VelocityLimit();
         Dash();
-        
+
         jumpCDTimer -= Time.fixedDeltaTime;
     }
 
@@ -105,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForceY(jumpForce, ForceMode2D.Impulse);
             flyingTimer = flyingTime;
             jumpCDTimer = jumpCD;
-        }       
+        }
     }
 
     public void Flying()
@@ -116,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForceY(flyingForce, ForceMode2D.Force);
                 flyingTimer -= Time.fixedDeltaTime;
+
+                flyingParticlesMainModule.simulationSpeed = 2;
+                flyingParticles.Emit(3);
             }
             else
             {
@@ -123,6 +136,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     float brake = rb.velocity.y + glideSpeed;
                     rb.AddForceY(-brake, ForceMode2D.Force);
+
+                    flyingParticlesMainModule.simulationSpeed = 1;
+                    flyingParticles.Emit(2);
+                    return;
                 }
             }
         }
@@ -135,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForceX(dashForce * sprite.transform.localScale.x, ForceMode2D.Impulse);
             dashCDTimer = dashCD;
             playerHealth.ResetIFrame();
+            dashParticles.Emit(8);
         }
 
         dashCDTimer -= Time.fixedDeltaTime;
@@ -147,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapBoxAll(groundCollider.transform.position, groundColliderSize, 0);
             Debug.Log("DOWN COLDS = " + hits.Length);
 
-            for (int i = 0; i < hits.Length; i++) 
+            for (int i = 0; i < hits.Length; i++)
             {
                 if (hits[i].transform.CompareTag("Platform"))
                 {
