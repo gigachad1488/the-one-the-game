@@ -1,0 +1,42 @@
+using PrimeTween;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent (typeof(Health))]
+public class Player : MonoBehaviour
+{
+    [Space(5)]
+    [Header("Sprite")]
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    private Color defaultColor;
+    private Color damagedColor;
+
+    public PlayerMovement playerMovement;
+    public Health health;
+
+    private void Awake()
+    {
+        defaultColor = spriteRenderer.color;
+        damagedColor = new Color(damagedColor.r, defaultColor.g, defaultColor.b, 0.5f);
+
+        health = GetComponent<Health>();
+        playerMovement = GetComponent<PlayerMovement>();
+
+        health.OnDamage += OnDamage;
+    }
+
+    private void OnDamage()
+    {
+        Debug.Log("ONDAMAGE");
+        spriteRenderer.color = defaultColor;
+        Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind);
+    }
+
+    private void ReturnColor()
+    {
+        spriteRenderer.color = defaultColor;
+    }
+}

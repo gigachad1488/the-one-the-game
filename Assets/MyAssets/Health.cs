@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [Header("Health")]
     [SerializeField]
     private int maxHealth = 2000;
+    [SerializeField]
     private int currenthealth;
     private int currentHealth
     {
@@ -25,20 +26,23 @@ public class Health : MonoBehaviour
             {
                 currenthealth = maxHealth;
             }
+            else
+            {
+                currenthealth = value;
+            }
         }
     }
 
     public delegate void DeathDelegate();
-    public event DeathDelegate OnDeath;
+    public event DeathDelegate? OnDeath;
 
     [Space(5)]
-    [Header("Damage")]
-    [SerializeField]
-    private float iFrameTime = 0.2f;
+    [Header("Damage")]   
+    public float iFrameTime = 0.2f;
     private float iFrameTimer;
 
     public delegate void DamageDelegate();
-    public event DamageDelegate OnDamage;
+    public event DamageDelegate? OnDamage;
 
 
     [Space(5)]
@@ -54,7 +58,10 @@ public class Health : MonoBehaviour
     private float regenTime = 5f;
     private float regenTimer;
 
-    private void Start()
+    public delegate void HealDelegate();
+    public event HealDelegate? OnHeal;
+
+    private void Awake()
     {
         currentHealth = maxHealth;
         iFrameTimer = iFrameTime;
@@ -75,18 +82,18 @@ public class Health : MonoBehaviour
 
     public void Damage(int damage)
     {
-        if (iFrameTimer > 0)
+        if (iFrameTimer < 0)
         {
             ResetIFrame();
             currentHealth -= Mathf.RoundToInt(damage * (1 - resistance));
 
             if (currentHealth <= 0)
             {
-                OnDeath.Invoke();
+                OnDeath?.Invoke();
                 return;
             }
 
-            OnDamage.Invoke();
+            OnDamage?.Invoke();
         }
     }
 
@@ -95,12 +102,18 @@ public class Health : MonoBehaviour
         if (heal > 0 && currentHealth < maxHealth && currentHealth > 0)
         {
             currentHealth += heal;
+            OnHeal?.Invoke();
         }
     }
 
     public void ResetIFrame()
     {
         iFrameTimer = iFrameTime;
+    }
+
+    public void ResetIFrame(float time)
+    {
+        iFrameTimer = time;
     }
 
 }

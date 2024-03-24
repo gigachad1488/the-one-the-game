@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(InputManager))]
 public class PlayerMovement : MonoBehaviour
 {
-    private InputManager inputManager;
+    public InputManager inputManager;
 
     private Rigidbody2D rb;
 
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Health playerHealth;
 
-    private void Start()
+    private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody2D>();
@@ -85,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
         Dash();
 
         jumpCDTimer -= Time.fixedDeltaTime;
+
+        if (!inputManager.jump && isGrounded)
+        {
+            flyingTimer = flyingTime;
+        }
     }
 
     public void GroundCheck()
@@ -151,8 +156,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForceX(dashForce * sprite.transform.localScale.x, ForceMode2D.Impulse);
             dashCDTimer = dashCD;
-            playerHealth.ResetIFrame();
-            dashParticles.Emit(8);
+            playerHealth.ResetIFrame(0.1f);
+            dashParticles.Emit(1);
         }
 
         dashCDTimer -= Time.fixedDeltaTime;
@@ -163,7 +168,6 @@ public class PlayerMovement : MonoBehaviour
         if (inputManager.down)
         {
             Collider2D[] hits = Physics2D.OverlapBoxAll(groundCollider.transform.position, groundColliderSize, 0);
-            Debug.Log("DOWN COLDS = " + hits.Length);
 
             for (int i = 0; i < hits.Length; i++)
             {

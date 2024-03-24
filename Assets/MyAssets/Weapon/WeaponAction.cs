@@ -2,25 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAction : MonoBehaviour
+public abstract class WeaponAction : MonoBehaviour, IModule<Weapon>
 {
+    [HideInInspector]
     public Weapon weapon;
-    public List<Module> modules = new List<Module>();
+    public List<ActionModule> modules = new List<ActionModule>();
 
-    public abstract class Module : IModule<WeaponAction>
+    public GameObject weaponModel;
+
+    public delegate void WeaponActionDelegate(Vector2 directionOffset);
+    public event WeaponActionDelegate? OnWeaponAction;
+    public abstract void Action();
+
+    public void Set(Weapon t)
     {
-        [SerializeField]
-        private WeaponAction action;
-        public void Set(WeaponAction t)
+        weapon = t;
+
+        ActionModule[] mods = GetComponentsInChildren<ActionModule>();
+
+        foreach (ActionModule m in mods) 
         {
-            action = t;
+            modules.Add(m);
+            m.Set(this);
         }
+
+        AfterSet();
     }
 
-    public void OnAction()
+    public abstract void AfterSet();
+
+    public void InvokeAction(Vector2 directionOffset)
     {
-
+        OnWeaponAction?.Invoke(directionOffset);
     }
+}
+
+public abstract class ActionModule : MonoBehaviour, IModule<WeaponAction>
+{
+    [HideInInspector]
+    public WeaponAction action;
+    public void Set(WeaponAction t)
+    {
+        action = t;
+        action.OnWeaponAction += OnAction;
+        AfterSet();
+    }
+
+    public abstract void AfterSet();
+
+    public void Dispose()
+    {
+        action.OnWeaponAction -= OnAction;
+    }
+
+    public abstract void OnAction(Vector2 direction);
 }
 
 
