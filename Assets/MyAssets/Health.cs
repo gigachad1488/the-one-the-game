@@ -6,11 +6,10 @@ public class Health : MonoBehaviour
 {
     [Space(5)]
     [Header("Health")]
-    [SerializeField]
-    private int maxHealth = 2000;
+    public int maxHealth = 2000;
     [SerializeField]
     private int currenthealth;
-    private int currentHealth
+    public int currentHealth
     {
         get
         {
@@ -41,7 +40,7 @@ public class Health : MonoBehaviour
     public float iFrameTime = 0.2f;
     private float iFrameTimer;
 
-    public delegate void DamageDelegate();
+    public delegate void DamageDelegate(float amount);
     public event DamageDelegate? OnDamage;
 
 
@@ -58,7 +57,7 @@ public class Health : MonoBehaviour
     private float regenTime = 5f;
     private float regenTimer;
 
-    public delegate void HealDelegate();
+    public delegate void HealDelegate(float amount);
     public event HealDelegate? OnHeal;
 
     private void Awake()
@@ -90,10 +89,9 @@ public class Health : MonoBehaviour
             if (currentHealth <= 0)
             {
                 OnDeath?.Invoke();
-                return;
             }
 
-            OnDamage?.Invoke();
+            OnDamage?.Invoke(damage);
         }
     }
 
@@ -102,7 +100,7 @@ public class Health : MonoBehaviour
         if (heal > 0 && currentHealth < maxHealth && currentHealth > 0)
         {
             currentHealth += heal;
-            OnHeal?.Invoke();
+            OnHeal?.Invoke(heal);
         }
     }
 

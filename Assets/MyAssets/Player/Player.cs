@@ -1,7 +1,9 @@
 using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent (typeof(Health))]
@@ -17,6 +19,12 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Health health;
 
+    [Space(5)]
+    [Header("Heath Canvas")]
+    public Canvas healthCanvas;
+    public Image healthBarFilling;
+    public TextMeshProUGUI healthText;
+
     private void Awake()
     {
         defaultColor = spriteRenderer.color;
@@ -26,13 +34,28 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
 
         health.OnDamage += OnDamage;
+        health.OnDamage += UpdateHealthBar;
+        health.OnHeal += UpdateHealthBar;
+
+        
     }
 
-    private void OnDamage()
+    private void Start()
     {
-        Debug.Log("ONDAMAGE");
+        UpdateHealthBar(0);
+    }
+
+    private void OnDamage(float amount)
+    {
         spriteRenderer.color = defaultColor;
         Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind);
+    }
+
+    private void UpdateHealthBar(float amount)
+    {
+        float hpPercent = (float)health.currentHealth / health.maxHealth;
+        healthBarFilling.fillAmount = hpPercent;
+        healthText.text = health.currentHealth.ToString();
     }
 
     private void ReturnColor()

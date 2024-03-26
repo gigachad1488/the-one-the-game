@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash")]
     public float dashForce = 10f;
     public float dashCD = 1;
+    public float dashIFrame = 0.1f;
     private float dashCDTimer;
 
     [SerializeField]
@@ -156,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForceX(dashForce * sprite.transform.localScale.x, ForceMode2D.Impulse);
             dashCDTimer = dashCD;
-            playerHealth.ResetIFrame(0.1f);
+            playerHealth.ResetIFrame(dashIFrame);
             dashParticles.Emit(1);
         }
 
