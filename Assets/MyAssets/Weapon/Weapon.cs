@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
     public delegate void LeftActionDelegate();
     public event LeftActionDelegate? OnLeftAction;
 
+    public delegate void UnequipDelegate();
+    public event UnequipDelegate? OnUnequip;
+
     [Space(5)]
     [Header("Parts")]
     public WeaponAction weaponAction;
@@ -38,5 +41,22 @@ public class Weapon : MonoBehaviour
     public void LeftAction()
     {
         weaponAction.Action();
+    }
+
+    public void Equip()
+    {
+        weaponAction.enabled = false;
+        weaponShoot.enabled = false;
+    }
+
+    public void Unequip()
+    {
+        OnUnequip?.Invoke();
+        if (weaponAction.weaponModel != null)
+        {          
+            weaponAction.weaponModel.SetActive(false);
+            weaponAction.enabled = false;
+            weaponShoot.enabled = false;
+        }
     }
 }

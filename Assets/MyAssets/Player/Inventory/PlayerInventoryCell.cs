@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerInventoryCell : MonoBehaviour
 {
     [SerializeField]
+    private Image weaponSprite;
+    [SerializeField]
     private Image cellBorder;
 
     [SerializeField]
@@ -21,7 +23,7 @@ public class PlayerInventoryCell : MonoBehaviour
 
     public void SetWeapon(Weapon weapon)
     {
-        GameObject weaponModel = Instantiate(weapon.weaponModelPrefab, transform);
+        weaponSprite.sprite = weapon.weaponModelPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
     }
 
     public int SelectCell()

@@ -14,7 +14,7 @@ public class SwordAction : WeaponAction
     {
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePos - (Vector2)transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //weaponModel.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         weapon.weaponShoot.Shoot(direction);

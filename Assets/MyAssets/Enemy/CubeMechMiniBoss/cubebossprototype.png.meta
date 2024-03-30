@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: e6ca3b546edea8d4a8286260acaf42a7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8430343486740776344
+    second: cubebossprototype_0
+  - first:
+      213: -3709689290802956088
+    second: cubebossprototype_1
+  - first:
+      213: -8587738629018654845
+    second: cubebossprototype_2
+  - first:
+      213: -6523240840947060850
+    second: cubebossprototype_3
+  - first:
+      213: 5701145680879278302
+    second: cubebossprototype_4
+  - first:
+      213: -5518350014591537851
+    second: cubebossprototype_5
+  - first:
+      213: 5267207375615487837
+    second: cubebossprototype_6
+  - first:
+      213: 7067056419116106536
+    second: cubebossprototype_7
+  - first:
+      213: -4855123745405340310
+    second: cubebossprototype_8
+  - first:
+      213: -4971785680675732303
+    second: cubebossprototype_9
+  - first:
+      213: 485309680840667339
+    second: cubebossprototype_10
+  - first:
+      213: 1867363580604029826
+    second: cubebossprototype_11
+  - first:
+      213: -625865990223382366
+    second: cubebossprototype_12
+  - first:
+      213: -6473369637619921509
+    second: cubebossprototype_13
+  - first:
+      213: -2437361336177900822
+    second: cubebossprototype_14
+  - first:
+      213: 834810160836119401
+    second: cubebossprototype_15
+  - first:
+      213: -8963826257166563725
+    second: cubebossprototype_16
+  - first:
+      213: 4520270688562968340
+    second: cubebossprototype_17
+  - first:
+      213: -6741582482420965048
+    second: cubebossprototype_18
+  - first:
+      213: 7587145136225907263
+    second: cubebossprototype_19
+  - first:
+      213: -6271965500503163752
+    second: cubebossprototype_20
+  - first:
+      213: -7045404683277281834
+    second: cubebossprototype_21
+  - first:
+      213: 6551992246211160545
+    second: cubebossprototype_22
+  - first:
+      213: 1066035248277408785
+    second: cubebossprototype_23
+  - first:
+      213: -8732959346486611036
+    second: cubebossprototype_24
+  - first:
+      213: -7814153315195776391
+    second: cubebossprototype_25
+  - first:
+      213: -7464405547946355478
+    second: cubebossprototype_26
+  - first:
+      213: -2112729277877818256
+    second: cubebossprototype_27
+  - first:
+      213: -9025117131439877589
+    second: cubebossprototype_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 94, y: 107, z: 94, w: 107}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cubebossprototype_0
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 820
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ab942c347610b80800000000000000
+      internalID: -8430343486740776344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 833
+        width: 85
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c87e9aae39848cc0800000000000000
+      internalID: -3709689290802956088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 746
+        width: 166
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3876179773932d880800000000000000
+      internalID: -8587738629018654845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_3
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 745
+        width: 166
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8fa70b440bc875a0800000000000000
+      internalID: -6523240840947060850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_4
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 832
+        width: 85
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed8df817ac98e1f40800000000000000
+      internalID: 5701145680879278302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_5
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 819
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54deff136e1ea63b0800000000000000
+      internalID: -5518350014591537851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_6
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 588
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fe0e58331e81940800000000000000
+      internalID: 5267207375615487837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_7
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 667
+        width: 167
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8234f0dce5a331260800000000000000
+      internalID: 7067056419116106536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_8
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 279
+        width: 486
+        height: 464
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a65fc865da22f9cb0800000000000000
+      internalID: -4855123745405340310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_9
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 666
+        width: 167
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b403fbd34ba00bb0800000000000000
+      internalID: -4971785680675732303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_10
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 587
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0f09c559a2cb600800000000000000
+      internalID: 485309680840667339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_11
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 429
+        width: 84
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b976868453ae910800000000000000
+      internalID: 1867363580604029826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_12
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 582
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8bcb7a23a7057f0800000000000000
+      internalID: -625865990223382366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_13
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 430
+        width: 84
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d8dd9ac98f926a0800000000000000
+      internalID: -6473369637619921509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_14
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 429
+        width: 84
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae248d747c0cc2ed0800000000000000
+      internalID: -2437361336177900822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_15
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 581
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b06831b67d59b00800000000000000
+      internalID: 834810160836119401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_16
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 428
+        width: 84
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3768441f2871a9380800000000000000
+      internalID: -8963826257166563725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_17
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 351
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417f768ed3a3bbe30800000000000000
+      internalID: 4520270688562968340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_18
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 357
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8416d4f53761172a0800000000000000
+      internalID: -6741582482420965048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_19
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 356
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32f3109d44fa4960800000000000000
+      internalID: 7587145136225907263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_20
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 350
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89cf00b8b9085f8a0800000000000000
+      internalID: -6271965500503163752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_21
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 119
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5526ac4c1b93e90800000000000000
+      internalID: -7045404683277281834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_22
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 191
+        width: 167
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e9a786eb3a5dea50800000000000000
+      internalID: 6551992246211160545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_23
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 112
+        width: 166
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11cce9309615bce00800000000000000
+      internalID: 1066035248277408785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_24
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 111
+        width: 166
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a3fcba5ebb4ec680800000000000000
+      internalID: -8732959346486611036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_25
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 190
+        width: 167
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972905306fc8e8390800000000000000
+      internalID: -7814153315195776391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_26
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 118
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae4d337c3ba196890800000000000000
+      internalID: -7464405547946355478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 106
+        width: 85
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c668d5ae31ea2e0800000000000000
+      internalID: -2112729277877818256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cubebossprototype_28
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 105
+        width: 85
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22db3c39c750c280800000000000000
+      internalID: -9025117131439877589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 0, y: 512}
+      - {x: -443.40503, y: 255.99998}
+      - {x: -443.405, y: -256.00003}
+      - {x: 0.00004476046, y: -512}
+      - {x: 443.40503, y: -255.99995}
+      - {x: 443.40503, y: 255.99995}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      cubebossprototype_0: -8430343486740776344
+      cubebossprototype_1: -3709689290802956088
+      cubebossprototype_10: 485309680840667339
+      cubebossprototype_11: 1867363580604029826
+      cubebossprototype_12: -625865990223382366
+      cubebossprototype_13: -6473369637619921509
+      cubebossprototype_14: -2437361336177900822
+      cubebossprototype_15: 834810160836119401
+      cubebossprototype_16: -8963826257166563725
+      cubebossprototype_17: 4520270688562968340
+      cubebossprototype_18: -6741582482420965048
+      cubebossprototype_19: 7587145136225907263
+      cubebossprototype_2: -8587738629018654845
+      cubebossprototype_20: -6271965500503163752
+      cubebossprototype_21: -7045404683277281834
+      cubebossprototype_22: 6551992246211160545
+      cubebossprototype_23: 1066035248277408785
+      cubebossprototype_24: -8732959346486611036
+      cubebossprototype_25: -7814153315195776391
+      cubebossprototype_26: -7464405547946355478
+      cubebossprototype_27: -2112729277877818256
+      cubebossprototype_28: -9025117131439877589
+      cubebossprototype_3: -6523240840947060850
+      cubebossprototype_4: 5701145680879278302
+      cubebossprototype_5: -5518350014591537851
+      cubebossprototype_6: 5267207375615487837
+      cubebossprototype_7: 7067056419116106536
+      cubebossprototype_8: -4855123745405340310
+      cubebossprototype_9: -4971785680675732303
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

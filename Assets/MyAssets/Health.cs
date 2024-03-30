@@ -43,12 +43,6 @@ public class Health : MonoBehaviour
     public delegate void DamageDelegate(float amount);
     public event DamageDelegate? OnDamage;
 
-
-    [Space(5)]
-    [Header("Resistance")]
-    [SerializeField]
-    private float resistance = 0.1f;
-
     [Space(5)]
     [Header("Regen")]
     [SerializeField]
@@ -84,7 +78,7 @@ public class Health : MonoBehaviour
         if (iFrameTimer < 0)
         {
             ResetIFrame();
-            currentHealth -= Mathf.RoundToInt(damage * (1 - resistance));
+            currentHealth -= Mathf.RoundToInt(damage);
 
             if (currentHealth <= 0)
             {
