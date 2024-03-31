@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
     public float iFrameTime = 0.2f;
     private float iFrameTimer;
 
-    public delegate void DamageDelegate(float amount);
+    public delegate void DamageDelegate(float amount, float mult, Vector3 position);
     public event DamageDelegate? OnDamage;
 
     [Space(5)]
@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        iFrameTimer = iFrameTime;
+        iFrameTimer = 0;
         regenTimer = regenTime;
     }
 
@@ -73,9 +73,9 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, float mult, Vector3 position)
     {
-        if (iFrameTimer < 0)
+        if (iFrameTimer <= 0)
         {
             ResetIFrame();
             currentHealth -= Mathf.RoundToInt(damage);
@@ -85,7 +85,7 @@ public class Health : MonoBehaviour
                 OnDeath?.Invoke();
             }
 
-            OnDamage?.Invoke(damage);
+            OnDamage?.Invoke(damage, mult, position);
         }
     }
 

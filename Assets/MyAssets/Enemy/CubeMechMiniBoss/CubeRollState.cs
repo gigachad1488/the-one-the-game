@@ -9,6 +9,8 @@ public class CubeRollState : BaseState
 
     public float rollCd = 4f;
 
+    private float rolls = 0;
+
     private float rollTimer;
     public CubeRollState(StateMachine stateMachine, CubeBoss cubeBoss) : base(stateMachine)
     {
@@ -18,9 +20,12 @@ public class CubeRollState : BaseState
     public override void OnEnter()
     {
         rollTimer = rollCd / cubeBoss.mult;
+
+        rolls = 0;
+
         foreach (var item in cubeBoss.borderColliders)
         {
-            item.gameObject.SetActive(true);
+            item.canCollisionAttack = true;
         }
     }
 
@@ -28,16 +33,24 @@ public class CubeRollState : BaseState
     {
         foreach (var item in cubeBoss.borderColliders)
         {
-            item.gameObject.SetActive(false);
+            item.canCollisionAttack = false;
         }
     }
     
     public override void OnUpdate()
     {
-        Debug.Log("SHET");
         if (rollTimer <= 0 && Mathf.Abs(cubeBoss.rb.angularVelocity) <= 3)
         {
+            if (Random.Range(0, 20 * rolls) > 50 * rolls * 0.2f) 
+            {
+                cubeBoss.ChangeRandomAttackState();
+                return;
+            }
+
+            rolls++;
+
             rollTimer = rollCd / cubeBoss.mult;
+
             Vector3 dir = (Vector3)cubeBoss.rb.position - cubeBoss.aggroedPlayer.transform.position;
             float side = Vector3.Dot(cubeBoss.transform.right, dir);
             if (side > 0)
@@ -49,7 +62,7 @@ public class CubeRollState : BaseState
                 Roll(1);
             }
         }
-
+                                
         rollTimer -= Time.deltaTime;
     }
 

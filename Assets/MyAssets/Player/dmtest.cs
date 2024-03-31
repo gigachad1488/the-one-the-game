@@ -8,7 +8,7 @@ public class dmtest : MonoBehaviour
     {              
         if (collision.TryGetComponent<Health>(out Health health))
         {
-            health.Damage(100);
+            health.Damage(100, 1, transform.position);
         }
     }
 }

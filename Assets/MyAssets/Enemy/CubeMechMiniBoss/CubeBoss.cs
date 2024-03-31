@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeBoss : Health
+public class CubeBoss : MonoBehaviour
 {
     public StateMachine stateMachine;
 
     [HideInInspector]
-    public List<BaseState> states = new List<BaseState>();
+    public List<BaseState> attackStates = new List<BaseState>();
 
     public Rigidbody2D rb;
 
@@ -25,16 +25,22 @@ public class CubeBoss : Health
     {
         foreach (var item in borderColliders)
         {
-            item.gameObject.SetActive(false);
+            item.canCollisionAttack = false;
         }
 
         yield return new WaitForSeconds(1);
-        states.Add(new CubeRollState(stateMachine, this));
-        stateMachine.SetState(states[0]);
+        attackStates.Add(new CubeRollState(stateMachine, this));
+        attackStates.Add(new CubeJumpState(stateMachine, this));
+        stateMachine.SetState(attackStates[0]);
     }
 
     private void Update()
     {
         stateMachine.currentState?.OnUpdate();
+    }
+
+    public void ChangeRandomAttackState()
+    {
+        stateMachine.SetState(attackStates[Random.Range(0, attackStates.Count)]);
     }
 }

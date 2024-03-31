@@ -8,9 +8,8 @@ public class HitBox : MonoBehaviour
 
     public float resistance;
 
-    public void Damage(int damage)
+    public void Damage(int damage, float mult, Vector3 position)
     {
-
-        health.Damage(Mathf.RoundToInt(damage * (1 - resistance)));
+        health.Damage(Mathf.RoundToInt(damage * (1 - resistance)), mult, position);
     }    
 }

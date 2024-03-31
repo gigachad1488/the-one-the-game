@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
 
         health.OnDamage += OnDamage;
-        health.OnDamage += UpdateHealthBar;
         health.OnHeal += UpdateHealthBar;
 
         
@@ -45,10 +44,11 @@ public class Player : MonoBehaviour
         UpdateHealthBar(0);
     }
 
-    private void OnDamage(float amount)
+    private void OnDamage(float amount, float mult, Vector3 position)
     {
         spriteRenderer.color = defaultColor;
         Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind);
+        UpdateHealthBar(amount);
     }
 
     private void UpdateHealthBar(float amount)

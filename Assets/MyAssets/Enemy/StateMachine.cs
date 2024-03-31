@@ -8,6 +8,7 @@ public class StateMachine : MonoBehaviour
 
     public void SetState(BaseState state)
     {
+        currentState?.OnExit();
         currentState = state;
         currentState?.OnEnter();
     }

@@ -13,4 +13,14 @@ public class SphereProjectile : Projectile
     {
 
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        if (collision.TryGetComponent<HitBox>(out HitBox health)) 
+        {
+            Debug.Log(":GET");
+            health.Damage(20, 1, transform.position);
+        }
+    }
 }
