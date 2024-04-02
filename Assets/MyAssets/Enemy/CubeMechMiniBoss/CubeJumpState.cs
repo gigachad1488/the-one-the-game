@@ -6,11 +6,14 @@ public class CubeJumpState : BaseState
 {
     public CubeBoss cubeBoss;
 
-    public float jumpDelay = 1.5f;
+    public float jumpDelay = 1f;
     private float jumpDelayTimer;
 
     public float inAirTime = 3f;
     private float inAirTimer;
+
+    public float launchDelay = 0.3f;
+    private float launchDelayTimer;
 
     private bool launched = false;
     public float launchForce = 200000f;
@@ -24,6 +27,7 @@ public class CubeJumpState : BaseState
     {
         jumpDelayTimer = jumpDelay / cubeBoss.mult;
         inAirTimer = inAirTime / cubeBoss.mult;
+        launchDelayTimer= launchDelay / cubeBoss.mult;
         cubeBoss.rb.freezeRotation = true;
         launched = false;
     }
@@ -39,12 +43,14 @@ public class CubeJumpState : BaseState
 
         if (inAirTimer <= 0)
         {
+            launchDelayTimer -= Time.deltaTime;
+
             if (cubeBoss.rb.gravityScale < 1)
             {
                 cubeBoss.rb.gravityScale = 1;
             }
 
-            if (!launched)
+            if (!launched && launchDelayTimer <= 0)
             {
                 cubeBoss.rb.AddForceY(-launchForce, ForceMode2D.Impulse);
                 launched = true;
@@ -79,7 +85,7 @@ public class CubeJumpState : BaseState
                 cubeBoss.rb.gravityScale = 0;
             }
             inAirTimer -= Time.deltaTime;
-            Vector3 dir = Vector3.Lerp(cubeBoss.rb.transform.position, cubeBoss.aggroedPlayer.transform.position + new Vector3(0, 15, 0), Time.deltaTime * 4 * (inAirTime / inAirTimer));
+            Vector3 dir = Vector3.Lerp(cubeBoss.rb.transform.position, cubeBoss.aggroedPlayer.transform.position + new Vector3(0, 15, 0), Time.deltaTime * 4 * (inAirTime / cubeBoss.mult / inAirTimer));
             cubeBoss.rb.MovePosition(dir);
         }
     }

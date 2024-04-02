@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cd5e6cd0f8b744695d80b4da0b6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileModel: {fileID: 7052893482449992082, guid: b38774894979f0a42b6a264bf1987251, type: 3}
-  projectileSpeed: 10
+  projectileModel: {fileID: 1203573815596244527, guid: abc654e2f9b87eb48bcbea236d44d266, type: 3}
+  projectileSpeed: 55
 --- !u!1 &6477224103608268939
 GameObject:
   m_ObjectHideFlags: 0

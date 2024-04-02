@@ -19,7 +19,9 @@ public class CubeRollState : BaseState
 
     public override void OnEnter()
     {
-        rollTimer = rollCd / cubeBoss.mult;
+        rollTimer = 0;
+
+        rollTimer = rollCd / cubeBoss.mult * 0.2f;
 
         rolls = 0;
 
@@ -52,8 +54,8 @@ public class CubeRollState : BaseState
             rollTimer = rollCd / cubeBoss.mult;
 
             Vector3 dir = (Vector3)cubeBoss.rb.position - cubeBoss.aggroedPlayer.transform.position;
-            float side = Vector3.Dot(cubeBoss.transform.right, dir);
-            if (side > 0)
+            //float side = Vector3.Dot(cubeBoss.rb.position, dir);
+            if (dir.x >= 0)
             {
                 Roll(-1);
             }

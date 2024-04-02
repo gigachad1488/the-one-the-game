@@ -29,7 +29,7 @@ public class SwingSwordShoot : WeaponShoot
 
             if (fromUp)
             {
-                currentProjectile.transform.localScale = Vector3.one;
+                currentProjectile.transform.localScale = new Vector3(currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
                 Tween.LocalEulerAngles(currentProjectile.transform, up, down, attackSpeed, swingEase).OnComplete(this, x =>
                 {
                     canSwing = true;
@@ -39,7 +39,7 @@ public class SwingSwordShoot : WeaponShoot
             }
             else
             {
-                currentProjectile.transform.localScale = new Vector3(-1, 1, 1);
+                currentProjectile.transform.localScale = new Vector3(-currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
                 Tween.LocalEulerAngles(currentProjectile.transform, down, up, attackSpeed, swingEase).OnComplete(this, x =>
                 {
                     canSwing = true;
