@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5392495839149513968}
   - component: {fileID: 318913075758069640}
+  - component: {fileID: 656217662344567584}
   - component: {fileID: 5793178379142370064}
   - component: {fileID: 82822015771688641}
   - component: {fileID: 5083781052168456800}
   - component: {fileID: 873822492353598021}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Shock Wave Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +55,23 @@ MonoBehaviour:
   speed: 55
   endSpeedMult: 0.25
   duration: 2
+  damage: {fileID: 656217662344567584}
+--- !u!114 &656217662344567584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269542171929015626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c0f527ccfb9a439a3e8a026a4c1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 0}
+  damageCd: 0.5
+  mult: 1
+  force: 5
 --- !u!198 &5793178379142370064
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4858,9 +4876,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &5083781052168456800
 BoxCollider2D:
@@ -4906,7 +4924,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.55, y: 1.2}
+  m_Size: {x: 0.65, y: 1.2}
   m_EdgeRadius: 0
 --- !u!199 &873822492353598021
 ParticleSystemRenderer:
@@ -4951,7 +4969,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4995,7 +5013,7 @@ GameObject:
   - component: {fileID: 2265773071583742512}
   - component: {fileID: 3365418624973691700}
   - component: {fileID: 886480266446554664}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Shock Wave After Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5092,7 +5110,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -9792,7 +9810,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

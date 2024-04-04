@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
     [Space(5)]
     [Header("Damage")]   
     public float iFrameTime = 0.2f;
-    private float iFrameTimer;
+    public float iFrameTimer;
 
     public delegate void DamageDelegate(float amount, float mult, Vector3 position);
     public event DamageDelegate? OnDamage;

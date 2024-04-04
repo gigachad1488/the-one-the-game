@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeBoss : MonoBehaviour
+public class CubeBoss : MonoBehaviour, IBossDamage
 {
     public StateMachine stateMachine;
 
@@ -18,6 +18,7 @@ public class CubeBoss : MonoBehaviour
     public float mult = 1.2f;
 
     public CubeBordersFallAttack[] borderColliders;
+    public Thruster[] thrusters;
 
     public AudioSource musicSource;
 
@@ -26,9 +27,10 @@ public class CubeBoss : MonoBehaviour
     public float thirdPhaseMult = 2.2f;
 
     public LayerMask groundLayer;
+    public int baseDamage { get; set; } = 50;
 
     [Space(5)]
-    [Header("Attacks")]
+    [Header("Attacks")]  
     public ShockWaveAttack shockWaveAttackPrefab;
 
     private void Awake()
@@ -75,7 +77,7 @@ public class CubeBoss : MonoBehaviour
 
     private void Phases(float amount, float mult, Vector3 position)
     {
-        if (this.mult < secondPhaseMult && health.currentHealth <= health.maxHealth * 0.5f)
+        if (this.mult < secondPhaseMult && health.currentHealth <= health.maxHealth * 0.6f)
         {
             this.mult = secondPhaseMult;
         }

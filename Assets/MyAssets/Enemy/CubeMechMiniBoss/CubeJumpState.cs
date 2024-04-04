@@ -12,11 +12,14 @@ public class CubeJumpState : BaseState
     public float inAirTime = 3f;
     private float inAirTimer;
 
-    public float launchDelay = 0.3f;
+    public float launchDelay = 0.2f;
     private float launchDelayTimer;
 
     private bool launched = false;
     public float launchForce = 200000f;
+
+    private List<Thruster> downThrusters;
+    private bool thrustersEnabled;
 
     public CubeJumpState(StateMachine stateMachine, CubeBoss cubeBoss) : base(stateMachine)
     {
@@ -30,6 +33,17 @@ public class CubeJumpState : BaseState
         launchDelayTimer= launchDelay / cubeBoss.mult;
         cubeBoss.rb.freezeRotation = true;
         launched = false;
+        thrustersEnabled = false;
+
+        downThrusters = new List<Thruster>();
+
+        foreach (var item in cubeBoss.thrusters)
+        {
+            if (cubeBoss.transform.position.y - item.transform.position.y > 0)
+            {
+                downThrusters.Add(item);
+            }
+        }
     }
 
     public override void OnExit()
@@ -52,6 +66,15 @@ public class CubeJumpState : BaseState
 
             if (!launched && launchDelayTimer <= 0)
             {
+                if (thrustersEnabled)
+                {
+                    foreach (var item in downThrusters)
+                    {
+                        item.DisableParticles();
+                        thrustersEnabled = false;
+                    }
+                }
+
                 cubeBoss.rb.AddForceY(-launchForce, ForceMode2D.Impulse);
                 launched = true;
             }
@@ -80,6 +103,15 @@ public class CubeJumpState : BaseState
 
         if (jumpDelayTimer <= 0)
         {
+            if (!thrustersEnabled) 
+            {
+                foreach (var item in downThrusters)
+                {
+                    item.EnableParticles(6f);
+                    thrustersEnabled = true;
+                }
+            }
+
             if (cubeBoss.rb.gravityScale > 0)
             {
                 cubeBoss.rb.gravityScale = 0;

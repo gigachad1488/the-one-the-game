@@ -19,6 +19,9 @@ public class CubeDashState : BaseState
     private float dashSide = 1;
     private float dashDestination = 0;
 
+    private List<Thruster> sideThrusters;
+    private bool thrustersAccelerated = false;
+
     public CubeDashState(StateMachine stateMachine, CubeBoss cubeBoss) : base(stateMachine)
     {
         this.cubeBoss = cubeBoss;
@@ -26,7 +29,7 @@ public class CubeDashState : BaseState
 
     public override void OnEnter()
     {
-        dashDelayTimer = dashDelay / cubeBoss.mult;
+        dashDelayTimer = dashDelay / (cubeBoss.mult * 0.5f);
         dashOver = false;
         dashStart = false;
         inDash = false;
@@ -34,11 +37,19 @@ public class CubeDashState : BaseState
         dashDestination = 0;
 
         cubeBoss.rb.freezeRotation = true;
-        cubeBoss.rb.isKinematic = true;
+        cubeBoss.rb.isKinematic = true; 
+        
+        sideThrusters = new List<Thruster>();
+        thrustersAccelerated = false;
     }
 
     public override void OnExit()
     {
+        foreach (var item in sideThrusters)
+        {
+            item.DisableParticles();
+        }
+
         cubeBoss.rb.freezeRotation = false;
         cubeBoss.rb.isKinematic = false;
     }
@@ -47,11 +58,8 @@ public class CubeDashState : BaseState
     {
         dashDelayTimer -= Time.deltaTime;
 
-
-        if (dashDelayTimer <= 0 && !dashStart)
+        if (dashDelayTimer > 0 && sideThrusters.Count <= 0)
         {
-            dashStart = true;
-
             Vector3 dir = (Vector3)cubeBoss.rb.position - cubeBoss.aggroedPlayer.transform.position;
 
             if (dir.x >= 0)
@@ -62,9 +70,32 @@ public class CubeDashState : BaseState
             {
                 dashSide = 1;
             }
+
+            foreach (var item in cubeBoss.thrusters)
+            {
+                if ((cubeBoss.transform.position.x - item.transform.position.x) * dashSide > 0)
+                {
+                    sideThrusters.Add(item);
+                    item.EnableParticles(0.5f);
+                }
+            }
+        }
+
+
+        if (dashDelayTimer <= 0 && !dashStart)
+        {
+            dashStart = true; 
         }
         else if (dashStart && !inDash)
         {
+            if (!thrustersAccelerated)
+            {
+                foreach (var item in sideThrusters)
+                {
+                    item.EnableParticles(4.5f);
+                    thrustersAccelerated = true;
+                }
+            }
             inDash = true;
             dashDestination = cubeBoss.aggroedPlayer.transform.position.x + (30 * dashSide);
             float curPosX = cubeBoss.rb.position.x;

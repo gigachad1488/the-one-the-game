@@ -18,8 +18,8 @@ TagManager:
   - EnemyGround
   - PlayerDamage
   - EnemyHitbox
-  - 
-  - 
+  - EnemyDamage
+  - PlayerHitbox
   - 
   - 
   - 

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     public PlayerMovement playerMovement;
     public Health health;
+    public Collider2D hitboxCollider;
 
     private void Awake()
     {
@@ -33,11 +34,13 @@ public class Player : MonoBehaviour
     private void OnDamage(float amount, float mult, Vector3 position)
     {
         spriteRenderer.color = defaultColor;
-        Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind);
+        hitboxCollider.enabled = false;
+        Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind).OnComplete(this, x => hitboxCollider.enabled = true);     
     }
 
     private void ReturnColor()
     {
         spriteRenderer.color = defaultColor;
-    }
+        hitboxCollider.enabled = true;
+    }   
 }

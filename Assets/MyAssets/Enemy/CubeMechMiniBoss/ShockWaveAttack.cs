@@ -12,11 +12,15 @@ public class ShockWaveAttack : MonoBehaviour
     public float endSpeedMult = 0.25f;
     public float duration = 2f;
 
+    public ContactDamage damage;
+
     private Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        damage.boss = cubeBoss.gameObject;
 
         if (side > 0)
         {

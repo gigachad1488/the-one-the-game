@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public InputManager inputManager;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     [Space(5)]
     [Header("Player Sprite")]
@@ -57,8 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem dashParticles;
-
-
 
     private Health playerHealth;
 
