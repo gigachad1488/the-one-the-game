@@ -6,6 +6,8 @@ public class DefaultProjectile : Projectile
 {
     public float hitCd = 0.2f;
 
+    public float mult = 0.6f;
+
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
 
     public override void AfterSet()
@@ -26,7 +28,7 @@ public class DefaultProjectile : Projectile
                 if (can)
                 {
                     Hit();
-                    health.Damage(20, 1, collision.ClosestPoint(transform.position));
+                    health.Damage(weaponShoot.weaponAction.weapon.baseDamage * mult, 1, collision.ClosestPoint(transform.position));
                     hitBoxes[health] = false;
                     StartCoroutine(ResetHit(health));
                 }
@@ -34,7 +36,7 @@ public class DefaultProjectile : Projectile
             else
             {
                 Hit();
-                health.Damage(20, 1, collision.ClosestPoint(transform.position));
+                health.Damage(weaponShoot.weaponAction.weapon.baseDamage * mult, 1, collision.ClosestPoint(transform.position));
                 hitBoxes.Add(health, false);
                 StartCoroutine(ResetHit(health));
             }

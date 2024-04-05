@@ -6,6 +6,8 @@ public class OnHitExplosionModule : ProjectileModule
 {
     public ParticleSystem explosionParticles;
 
+    public float mult = 0.5f;
+
     public float explosionCd = 0.5f;
     private bool canExplode;
 
@@ -36,7 +38,7 @@ public class OnHitExplosionModule : ProjectileModule
             {
                 if (hit.TryGetComponent<HitBox>(out HitBox enemy))
                 {
-                    enemy.Damage(10, 1, hit.ClosestPoint(transform.position));
+                    enemy.Damage(projectile.weaponShoot.weaponAction.weapon.baseDamage * mult, 1, hit.ClosestPoint(transform.position));
                 }
             }
         }

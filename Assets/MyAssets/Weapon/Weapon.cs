@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
     public delegate void UnequipDelegate();
     public event UnequipDelegate? OnUnequip;
 
+    public float baseDamage = 1;
+
     [Space(5)]
     [Header("Parts")]
     public WeaponAction weaponAction;

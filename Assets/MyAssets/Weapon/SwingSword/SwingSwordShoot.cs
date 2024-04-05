@@ -48,6 +48,8 @@ public class SwingSwordShoot : WeaponShoot
                 fromUp = true;
             }
 
+            projectile.Set(this);
+
             InvokeAction(directionOffset);
         }
     }

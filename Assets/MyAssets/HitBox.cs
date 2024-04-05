@@ -16,7 +16,7 @@ public class HitBox : MonoBehaviour
         hitSource = GetComponent<AudioSource>();
     }
 
-    public void Damage(int damage, float mult, Vector3 position)
+    public void Damage(float damage, float mult, Vector3 position)
     {
         health.Damage(Mathf.RoundToInt(damage * (1 - resistance)), mult, position);
         hitSource.PlayDelayed(Random.Range(0, 0.05f));

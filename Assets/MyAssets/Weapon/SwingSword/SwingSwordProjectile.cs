@@ -21,13 +21,13 @@ public class SwingSwordProjectile : Projectile
             {
                 if (can)
                 {
-                    health.Damage(20, 1, collision.ClosestPoint(transform.position));
+                    health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
                     hitBoxes[health] = false;
                 }
             }
             else
             {
-                health.Damage(20, 1, collision.ClosestPoint(transform.position));
+                health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
                 hitBoxes.Add(health, false);
             }
         }
