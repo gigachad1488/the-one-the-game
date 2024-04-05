@@ -87,11 +87,11 @@ public class CubeJumpState : BaseState
                         Vector3 dir = item.gameObject.transform.position - cubeBoss.rb.gameObject.transform.position;
                         if (dir.x < 0)
                         {
-                            item.CreateShockWave(-1);
+                            item.CreateShockWave(-1, cubeBoss.mult * 0.8f);
                         }
                         else
                         {
-                            item.CreateShockWave(1);
+                            item.CreateShockWave(1, cubeBoss.mult * 0.8f);
                         }
                     }
                 }

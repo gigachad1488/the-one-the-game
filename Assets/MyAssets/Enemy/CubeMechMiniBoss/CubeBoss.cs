@@ -33,11 +33,22 @@ public class CubeBoss : MonoBehaviour, IBossDamage
     [Header("Attacks")]  
     public ShockWaveAttack shockWaveAttackPrefab;
 
+    [Space(5)]
+    [Header("Death")]
+    public GameObject deathParticles;
+
     private void Awake()
     {
         health = GetComponent<Health>();
 
         health.OnDamage += Phases;
+        health.OnDeath += Health_OnDeath;
+    }
+
+    private void Health_OnDeath()
+    {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private IEnumerator Start()

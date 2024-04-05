@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49a9eb98707a68649810f1d9d560bb2d
+timeCreated: 1478812671
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 68301
+  packageName: 2D Day Night + Shadows
+  packageVersion: 1.6
+  assetPath: Assets/HighwalkerStudios/2DDN/Prefab/Handlers/DayNightHandler.prefab
+  uploadId: 163819

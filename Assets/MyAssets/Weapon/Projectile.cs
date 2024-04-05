@@ -28,6 +28,11 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
     public abstract void AfterSet();
 
     public abstract void Hit();
+
+    public void InvokeAction()
+    {
+        OnProjectileHit.Invoke();
+    }
 }
 
 public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>

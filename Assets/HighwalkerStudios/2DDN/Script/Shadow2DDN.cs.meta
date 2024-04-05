@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3403a0067e889b343a7516bcd4f37310
+timeCreated: 1487634462
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 68301
+  packageName: 2D Day Night + Shadows
+  packageVersion: 1.6
+  assetPath: Assets/HighwalkerStudios/2DDN/Script/Shadow2DDN.cs
+  uploadId: 163819

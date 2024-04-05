@@ -52,7 +52,7 @@ public class CubeRollState : BaseState
 
     public override void OnUpdate()
     {
-        if (Mathf.Abs(cubeBoss.rb.angularVelocity) <= 2)
+        if (Mathf.Abs(cubeBoss.rb.angularVelocity) <= 1)
         {
             thrusterDisableCd -= Time.deltaTime;
 

@@ -14,7 +14,7 @@ public class DefaultProjectile : Projectile
 
     public override void Hit()
     {
-
+        InvokeAction();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -25,6 +25,7 @@ public class DefaultProjectile : Projectile
             {
                 if (can)
                 {
+                    Hit();
                     health.Damage(20, 1, collision.ClosestPoint(transform.position));
                     hitBoxes[health] = false;
                     StartCoroutine(ResetHit(health));
@@ -32,6 +33,7 @@ public class DefaultProjectile : Projectile
             }
             else
             {
+                Hit();
                 health.Damage(20, 1, collision.ClosestPoint(transform.position));
                 hitBoxes.Add(health, false);
                 StartCoroutine(ResetHit(health));
