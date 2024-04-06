@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -29,6 +30,12 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
 
         health.OnDamage += OnDamage;
+        health.OnDeath += Health_OnDeath;
+    }
+
+    private void Health_OnDeath()
+    {
+        SceneManager.LoadScene("end");
     }
 
     private void OnDamage(float amount, float mult, Vector3 position)

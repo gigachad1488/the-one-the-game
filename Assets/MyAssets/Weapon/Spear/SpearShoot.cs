@@ -30,6 +30,8 @@ public class SpearShoot : WeaponShoot
                 currentProjectile = null;
             });
 
+            currentProjectile.Set(this);
+
             InvokeAction(directionOffset);
         }
     }

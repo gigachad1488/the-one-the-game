@@ -96,7 +96,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DayNightSlider: 0
+    - _DayNightSlider: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -133,11 +133,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0, g: 1.0608749, b: 2.9960785, a: 0}
-    - _HorizonColor: {r: 0, g: 0.18171836, b: 0.3018868, a: 1}
-    - _NightGroundColor: {r: 0, g: 0.3755169, b: 1, a: 0}
+    - _GroundColor: {r: 0, g: 1.0069792, b: 2.828427, a: 0}
+    - _HorizonColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+    - _NightGroundColor: {r: 0, g: 0.13496116, b: 0.3584906, a: 0}
     - _NightSkyColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColor: {r: 0, g: 2.7446353, b: 7.142277, a: 0}
+    - _SkyColor: {r: 0, g: 0.501147, b: 1.3041188, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SunColor: {r: 48.502926, g: 42.78146, b: 0, a: 0}
     - _SunPos: {r: 1, g: 1, b: 0, a: 0}
