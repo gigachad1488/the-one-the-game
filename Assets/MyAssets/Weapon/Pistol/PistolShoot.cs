@@ -27,12 +27,12 @@ public class PistolShoot : WeaponShoot
         {
             attackTimer = attackSpeed;
             StartCoroutine(AttackCd());
-            Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);
-            pr.Set(this);
+            Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);           
             Rigidbody2D rb = pr.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0;
             rb.mass = 0;
             rb.velocity = pr.transform.right * projectileSpeed;
+            pr.Set(this);
         }
     }
 

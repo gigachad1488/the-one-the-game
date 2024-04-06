@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   weaponModelPrefab: {fileID: 1074251815109079137, guid: 5f6cae8ac32bb064ca45cfe010c64fc0, type: 3}
+  baseDamage: 15
   weaponAction: {fileID: 1847922661908269348}
   weaponShoot: {fileID: 330923841574256204}
 --- !u!1 &944470530481728372
@@ -190,7 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponAction: {fileID: 0}
-  projectile: {fileID: 6102192896029351588, guid: dfe86465143928941801afdad42977c9, type: 3}
+  projectile: {fileID: 4240692743224649850, guid: 9690ea82ce819b24996d78bc13fa2734, type: 3}
+  modules: []
   projectileSpeed: 50
   attackSpeed: 0.5
 --- !u!1 &5192707971596341165
