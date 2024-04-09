@@ -26,14 +26,14 @@ public class DayNightCycling : MonoBehaviour
         moon.localPosition = startPos.localPosition;
 
         sequence = Sequence.Create(-1);
-        sequence.Group(Tween.Custom(1, 0, cycleTime * 0.1f, x => skyboxMaterial.SetFloat("_DayNightSlider", x), Ease.Linear))
+        sequence.Group(Tween.Custom(1, 0, cycleTime * 0.1f, x => skyboxMaterial.SetFloat("_DayNightSlider", x)))
         .Group(Tween.Custom(0.2f, 0.6f, cycleTime * 0.1f, x => globalLight.intensity = x, Ease.Linear))
         .Group(Tween.LocalPosition(sun, startPos.localPosition, endPos.localPosition, cycleTime).OnComplete(this, x =>
         {
             sun.gameObject.SetActive(false);
             moon.gameObject.SetActive(true);
         })
-        .Chain(Tween.Custom(0, 1, cycleTime * 0.1f, x => skyboxMaterial.SetFloat("_DayNightSlider", x), Ease.Linear))
+        .Chain(Tween.Custom(0, 1, cycleTime * 0.1f, x => skyboxMaterial.SetFloat("_DayNightSlider", x)))
         .Group(Tween.Custom(0.6f, 0.2f, cycleTime * 0.1f, x => globalLight.intensity = x, Ease.Linear))
         .Group(Tween.LocalPosition(moon, startPos.localPosition, endPos.localPosition, cycleTime).OnComplete(this, x =>
         {

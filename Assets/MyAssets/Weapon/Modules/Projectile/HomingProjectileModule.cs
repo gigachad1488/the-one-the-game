@@ -26,7 +26,6 @@ public class HomingProjectileModule : ProjectileModule
 
             if (enemy != null && enemy.TryGetComponent<HitBox>(out HitBox hitbox))
             {
-                Debug.Log("HOME");
                 StartCoroutine(Home(hitbox.transform));
                 yield return null;
             }
