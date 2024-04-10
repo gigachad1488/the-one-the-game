@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    
+
     [Space(5)]
     [Header("Main")]
     [SerializeField]
@@ -15,6 +17,7 @@ public class MainMenuManager : MonoBehaviour
 
     [Space(5)]
     [Header("Inventory")]
+    public InventoryManager inventoryManager;
     [SerializeField]
     private Button inventoryButton;
     [SerializeField]
@@ -60,6 +63,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        inventoryManager.SaveSelectedWeapons();
         SceneManager.LoadScene("SampleScene");
     }
 

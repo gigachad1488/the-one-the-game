@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public SelectedWeaponsSO selectedWeaponsSO;
+
     [SerializeField]
     private PlayerInventoryCell[] cells;
 
-    [SerializeField]
     private Weapon[] weapons;
 
     private int currentCellId = 2;
@@ -19,11 +20,15 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
+        weapons = new Weapon[selectedWeaponsSO.selectedWeapons.Count];
+
         inputManager = GetComponent<InputManager>();
         inputManager.slotsAction.started += SlotsAction_started;
 
-        for (int i = 0; i < weapons.Length; i++) 
+        for (int i = 0; i < selectedWeaponsSO.selectedWeapons.Count; i++) 
         {
+            Weapon weapon = Instantiate(selectedWeaponsSO.selectedWeapons[i], transform);
+            weapons[i] = weapon;
             cells[i].SetWeapon(weapons[i]);
             weapons[i].Unequip();
             weapons[i].enabled = false;
