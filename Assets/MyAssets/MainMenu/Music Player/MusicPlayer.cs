@@ -22,8 +22,18 @@ public class MusicPlayer : MonoBehaviour
 
     private Coroutine soundTick;
 
+    private bool hidden = false;
+
     [Space(5)]
     [Header("UI")]
+    [SerializeField]
+    private Canvas musicPlayerCanvas;
+    [SerializeField]
+    private Button hidePanelButton;
+    [SerializeField]
+    private Button outsideHideButton;
+    [SerializeField]
+    private Button showPanelButton;
     [SerializeField]
     private Slider soundSlider;
     [SerializeField]
@@ -36,6 +46,36 @@ public class MusicPlayer : MonoBehaviour
     private Button nextButton;
     [SerializeField]
     private Button prevButton;
+    [SerializeField]
+    private Button playButton;
+    private Image playButtonImage;
+    [SerializeField]
+    private Sprite playSprite;
+    [SerializeField]
+    private Sprite stopSprite;
+    [SerializeField]
+    private Button shuffleButton;
+    private Image shuffleButtonImage;
+    [SerializeField]
+    private Button repeatButton;
+    private Image repeatButtonImage;
+    [SerializeField]
+    private Slider volumeSlider;
+    [SerializeField]
+    private Image volumeIcon;
+    [SerializeField]
+    private Color enabledColor = Color.white;
+    [SerializeField]
+    private Color disabledColor = new Color(255, 255, 255, 0.3f);
+
+    private void Awake()
+    {
+        shuffleButtonImage = shuffleButton.GetComponent<Image>();
+        repeatButtonImage = repeatButton.GetComponent<Image>();
+        playButtonImage = playButton.GetComponent<Image>();
+
+        musicPlayerCanvas.gameObject.SetActive(true);
+    }
 
     private void Start()
     {
@@ -50,13 +90,50 @@ public class MusicPlayer : MonoBehaviour
 
         nextButton.onClick.AddListener(NextSound);
         prevButton.onClick.AddListener(PrevSound);
+        playButton.onClick.AddListener(OnPlayButtonPress);
+
+        shuffleButton.onClick.AddListener(ShuffleSwitch);
+        repeatButton.onClick.AddListener(RepeatSwitch);
+
+        volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChange);
+        volumeSlider.value = 1;
+
+        hidePanelButton.onClick.AddListener(delegate { PanelVisibility(false); });
+        outsideHideButton.onClick.AddListener(delegate { PanelVisibility(false); });
+        showPanelButton.onClick.AddListener(PanelVisibility);
+
+        OnPlayButtonPress(false);
+
+        ShuffleSwitch(false);
+        RepeatSwitch(false);
+
+        PanelVisibility(false);
+    }
+
+    public void PanelVisibility()
+    {
+        musicPlayerCanvas.enabled = !musicPlayerCanvas.enabled;
+    }
+
+    public void PanelVisibility(bool value)
+    {
+        musicPlayerCanvas.enabled = value;
     }
 
     public void NextSound()
     {       
         if (shuffle) 
         {
-            int randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+            int randomId;
+            while (true)
+            {
+                randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+                if (randomId != currentSoundId)
+                {
+                    break;
+                }
+            }
+
             StartCoroutine(StartSound(randomId));
             return;
         }
@@ -64,6 +141,7 @@ public class MusicPlayer : MonoBehaviour
         if (currentSoundId + 1 >= currentPlayList.sounds.Count)
         {
             StartCoroutine(StartSound(0));
+            return;
         }
 
         StartCoroutine(StartSound(currentSoundId + 1));
@@ -73,7 +151,16 @@ public class MusicPlayer : MonoBehaviour
     {
         if (shuffle)
         {
-            int randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+            int randomId;
+            while (true)
+            {
+                randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+                if (randomId != currentSoundId)
+                {
+                    break;
+                }
+            }
+
             StartCoroutine(StartSound(randomId));
             return;
         }
@@ -96,7 +183,16 @@ public class MusicPlayer : MonoBehaviour
 
         if (shuffle)
         {
-            int randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+            int randomId;
+            while (true)
+            {
+                randomId = UnityEngine.Random.Range(0, currentPlayList.sounds.Count);
+                if (randomId != currentSoundId)
+                {
+                    break;
+                }
+            }
+
             StartCoroutine(StartSound(randomId));
             return;
         }
@@ -117,8 +213,7 @@ public class MusicPlayer : MonoBehaviour
         }
 
         if (currentSoundId != i)
-        {
-            
+        {         
             musicSource.clip = currentPlayList.sounds[i].clip;
             currentSoundId = i;
             double t = (double)musicSource.clip.samples / musicSource.clip.frequency;
@@ -127,31 +222,77 @@ public class MusicPlayer : MonoBehaviour
             durationText.text = TimeSpan.FromSeconds((float)musicSource.clip.length).ToString(@"mm\:ss");
             nameText.text = currentPlayList.sounds[i].name;
         }
-
+        timeText.text = "00:00";
         musicSource.time = 0;
-        musicSource.Play();     
+
+        if (!stoped)
+        {
+            musicSource.Play();
+        }
         
         soundTick = StartCoroutine(SoundTick());
         yield return null;
     }
 
-    public void StopSound()
+    public void OnPlayButtonPress()
     {
-        musicSource.Stop();
+        stoped = !stoped;
+
+        if (stoped)
+        {
+            PauseSound();
+            playButtonImage.sprite = stopSprite;
+        }
+        else
+        {
+            ResumeSound();
+            playButtonImage.sprite = playSprite;
+        }
+    }
+
+    public void OnPlayButtonPress(bool value)
+    {
+        stoped = value;
+
+        if (stoped)
+        {
+            PauseSound();
+            playButtonImage.sprite = stopSprite;
+        }
+        else
+        {
+            ResumeSound();
+            playButtonImage.sprite = playSprite;
+        }
+    }
+
+    public void PauseSound()
+    {
+        musicSource.Pause();
         stoped = true;
+    }
+
+    public void ResumeSound()
+    {
+        musicSource.Play();
+        stoped = false;
     }
 
     private IEnumerator SoundTick()
     {
-        double t = (double)musicSource.clip.samples / musicSource.clip.frequency;
+        //double t = (double)musicSource.clip.samples / musicSource.clip.frequency;
 
-        Debug.Log("T = " + t + " LENGG = " + musicSource.clip.length);
         TimeSpan time;
 
-        while (musicSource.isPlaying) 
+        while (true) 
         {
             if (!stoped)
             {
+                if (!musicSource.isPlaying)
+                {
+                    break;
+                }
+
                 time = TimeSpan.FromSeconds(musicSource.time);
                 soundSlider.value = (float)time.TotalSeconds;
                 timeText.text = time.ToString(@"mm\:ss");
@@ -163,7 +304,6 @@ public class MusicPlayer : MonoBehaviour
             }
         }
 
-        Debug.Log("HES HERE");
         AfterSound();
 
         yield return null;
@@ -181,7 +321,75 @@ public class MusicPlayer : MonoBehaviour
         }
 
         timeText.text = TimeSpan.FromSeconds(musicSource.time).ToString(@"mm\:ss");
+    }
 
-        Debug.Log("SLIDA VALU = " + soundSlider.value);
+    public void OnVolumeSliderValueChange(float value)
+    {
+        musicSource.volume = value;
+
+        if (value <= 0)
+        {
+            volumeIcon.color = disabledColor;
+        }
+        else
+        {
+            volumeIcon.color = enabledColor;
+        }
+    }
+
+    public void ShuffleSwitch()
+    {
+        shuffle = !shuffle;
+
+        if (shuffle) 
+        {
+            shuffleButtonImage.color = enabledColor;
+        }
+        else
+        {
+            shuffleButtonImage.color = disabledColor;
+        }
+    }
+
+    public void ShuffleSwitch(bool value)
+    {
+        shuffle = value;
+
+        if (shuffle)
+        {
+            shuffleButtonImage.color = enabledColor;
+        }
+        else
+        {
+            shuffleButtonImage.color = disabledColor;
+        }
+    }
+
+    public void RepeatSwitch()
+    {
+        repeat = !repeat;
+
+        if (repeat)
+        {
+            repeatButtonImage.color = enabledColor;
+        }
+        else
+        {
+            repeatButtonImage.color = disabledColor;
+        }
+    }
+
+    public void RepeatSwitch(bool value)
+    {
+        repeat = value;
+
+        if (repeat)
+        {
+            repeatButtonImage.color = enabledColor;
+        }
+        else
+        {
+            repeatButtonImage.color = disabledColor;
+        }
     }
 }

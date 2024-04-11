@@ -13,13 +13,68 @@ MonoBehaviour:
   m_Name: PlayList
   m_EditorClassIdentifier: 
   sounds:
-  - name: ;jgf
-    clip: {fileID: 8300000, guid: 21b38a1293cbb844ab0ccaa16cae16c3, type: 3}
-  - name: Return To Slime
-    clip: {fileID: 8300000, guid: 6066970bafa4d7e47a90a56eb1cfb350, type: 3}
   - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0411\u0440\u0430\u0442
       \u043A\u0430\u043A \u0432\u0440\u0430\u0433"
     clip: {fileID: 8300000, guid: c17d8dd5ab90108439d4d9603680505a, type: 3}
   - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430
       \u0444\u0440\u0438"
     clip: {fileID: 8300000, guid: b3c37b91f839951478130bfdb6fd1273, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u042F \u0432\u0437\u043E\u0440\u0432\u0443"
+    clip: {fileID: 8300000, guid: a58dfce3d2fa0bd41946d3b8deb22690, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0414\u0435\u043B\u0430\u0439
+      \u0441\u0442\u043E\u043F"
+    clip: {fileID: 8300000, guid: b59ea2bc3ed47a04a8ea13e9ffee4b1b, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041E\u0434\u0438\u043D"
+    clip: {fileID: 8300000, guid: 9993fae2aabd6a045b172c0b22c4789f, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041A\u0442\u043E
+      \u043B\u0443\u0447\u0448\u0438\u0439 \u0440\u0435\u043F\u0435\u0440"
+    clip: {fileID: 8300000, guid: e1148dacd26868549893727bcf752979, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041E\u0440\u0438\u0433\u0438\u043D\u0430\u043B"
+    clip: {fileID: 8300000, guid: ebb1c7219e5e1254ca9acd3590d157a8, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041F\u043E\u043A\u0435\u043C\u043E\u043D
+      \u0433\u043E\u0443"
+    clip: {fileID: 8300000, guid: 5b2c3936dad29414abd17049741751fc, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0421\u0438\u0433\u0430\u0440\u0435\u0442\u0430"
+    clip: {fileID: 8300000, guid: 2ad9124f1f7bfb24eb5920b016d78854, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0422\u0435\u043C\u043D\u0438\u0446\u0430"
+    clip: {fileID: 8300000, guid: 9455d51dd44189140a0e9095c7471562, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0422\u0438\u043A
+      \u0442\u0430\u043A"
+    clip: {fileID: 8300000, guid: ea456f614461e4d41a82458982b68329, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0414\u044B\u043C\u043E\u043C
+      \u0414\u044B\u0448\u0438\u043C"
+    clip: {fileID: 8300000, guid: f309f2ffdd3459245b7edfd2d21af854, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u042F \u0413\u0430\u043D\u0433\u0441\u0442\u0430"
+    clip: {fileID: 8300000, guid: e6d3e364233d3c14a9848ab42c7d2887, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041E\u0442\u0445\u043E\u0434\u043E\u0441"
+    clip: {fileID: 8300000, guid: d2dfd797c03154b45b6d0d24f032b792, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041F\u043E\u0434\u0430\u0440\u043E\u043A"
+    clip: {fileID: 8300000, guid: 9671a60769c8ebb4aa9b20bde60c2b3c, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0413\u043E\u043D\u0433"
+    clip: {fileID: 8300000, guid: 1742e2535873a9b49917335a69ae24bb, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - Low Rider"
+    clip: {fileID: 8300000, guid: 8cad8ac23dd0f98409aa0a61119fb446, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041F\u0440\u0438\u043E\u0440\u0430"
+    clip: {fileID: 8300000, guid: 90db16559627cbd4aaeb57197695527a, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041C\u043E\u0439
+      \u0410\u043D\u0434\u0435\u0433\u0440\u0430\u0443\u043D\u0434"
+    clip: {fileID: 8300000, guid: 5743abec32025ff45bfab273d5a26145, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - GTA San Andreas"
+    clip: {fileID: 8300000, guid: 9522d5acaa893bb4f836471509bf579f, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0427\u0430\u0439"
+    clip: {fileID: 8300000, guid: 4d603ddef5d29e948b1b6dfdd2845ede, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - Compton as Moscow"
+    clip: {fileID: 8300000, guid: a167df4eceb034c489167ca6cfd73d62, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0413\u043E\u0440\u043E\u0434
+      \u0411\u043E\u0433\u0430"
+    clip: {fileID: 8300000, guid: 269d7bf42f330b041a3502e3226584bd, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0421 \u043D\u043E\u0432\u044B\u043C
+      \u0433\u043E\u0434\u043E\u043C"
+    clip: {fileID: 8300000, guid: 14945eaffdfe8fb41b33fe25571bc680, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u042D\u0442\u043E
+      \u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441"
+    clip: {fileID: 8300000, guid: 321001034d24b6a4dba38f0a6f419316, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041A\u043E\u0444\u0435"
+    clip: {fileID: 8300000, guid: 90056f91e1778354dba29e7de8692cdf, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0421\u043A\u0435\u0439\u0442\u0431\u043E\u0440\u0434"
+    clip: {fileID: 8300000, guid: a5c01777e972d7e4c852c4ef82ec2464, type: 3}

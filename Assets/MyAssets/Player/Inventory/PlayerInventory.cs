@@ -25,13 +25,20 @@ public class PlayerInventory : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         inputManager.slotsAction.started += SlotsAction_started;
 
-        for (int i = 0; i < selectedWeaponsSO.selectedWeapons.Count; i++) 
+        for (int i = 0; i < cells.Length; i++) 
         {
-            Weapon weapon = Instantiate(selectedWeaponsSO.selectedWeapons[i], transform);
-            weapons[i] = weapon;
-            cells[i].SetWeapon(weapons[i]);
-            weapons[i].Unequip();
-            weapons[i].enabled = false;
+            if (selectedWeaponsSO.selectedWeapons.Count > i)
+            {
+                Weapon weapon = Instantiate(selectedWeaponsSO.selectedWeapons[i], transform);
+                weapons[i] = weapon;
+                cells[i].SetWeapon(weapons[i]);
+                weapons[i].Unequip();
+                weapons[i].enabled = false;
+            }
+            else
+            {
+                cells[i].gameObject.SetActive(false);
+            }
         }
 
         ChangeSlot(1);
@@ -42,9 +49,12 @@ public class PlayerInventory : MonoBehaviour
         if (canChange)
         {
             int slot = Convert.ToInt32(obj.ReadValue<float>());
-            ChangeSlot(slot);
-            canChange = false;
-            Invoke(nameof(ChangeCd), changeCd);
+            if (cells[slot - 1].gameObject.activeInHierarchy)
+            {
+                ChangeSlot(slot);
+                canChange = false;
+                Invoke(nameof(ChangeCd), changeCd);
+            }
         }
     }
 
@@ -56,17 +66,23 @@ public class PlayerInventory : MonoBehaviour
     public void ChangeSlot(int id)
     {
         if (currentCellId != id)
-        {           
-            cells[currentCellId - 1].UnselectCell();           
-            cells[id - 1].SelectCell();
+        {
+            if (cells[id - 1].gameObject.activeInHierarchy)
+            {
 
-            weapons[currentCellId - 1].Unequip();
-            weapons[currentCellId - 1].enabled = false;
+                if (cells[currentCellId - 1].gameObject.activeInHierarchy)
+                {
+                    cells[currentCellId - 1].UnselectCell();
+                    weapons[currentCellId - 1].Unequip();
+                    weapons[currentCellId - 1].enabled = false;
+                }
 
-            weapons[id - 1].enabled = true;
-            weapons[id - 1].Equip();
+                cells[id - 1].SelectCell();
+                weapons[id - 1].enabled = true;
+                weapons[id - 1].Equip();
 
-            currentCellId = id;
+                currentCellId = id;
+            }
         }
     }
 }
