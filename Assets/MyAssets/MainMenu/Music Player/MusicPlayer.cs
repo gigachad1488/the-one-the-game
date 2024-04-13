@@ -85,9 +85,7 @@ public class MusicPlayer : MonoBehaviour
         {
             currentPlayList = playLists[0]; 
         }
-
-        NextSound();
-
+       
         nextButton.onClick.AddListener(NextSound);
         prevButton.onClick.AddListener(PrevSound);
         playButton.onClick.AddListener(OnPlayButtonPress);
@@ -96,7 +94,7 @@ public class MusicPlayer : MonoBehaviour
         repeatButton.onClick.AddListener(RepeatSwitch);
 
         volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChange);
-        volumeSlider.value = 1;
+        volumeSlider.value = 0.6f;
 
         hidePanelButton.onClick.AddListener(delegate { PanelVisibility(false); });
         outsideHideButton.onClick.AddListener(delegate { PanelVisibility(false); });
@@ -108,6 +106,24 @@ public class MusicPlayer : MonoBehaviour
         RepeatSwitch(false);
 
         PanelVisibility(false);
+
+        StartCoroutine(StartSound(UnityEngine.Random.Range(0, currentPlayList.sounds.Count)));
+    }
+
+    private bool stopBuffer;
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            stopBuffer = stoped;
+            stoped = pause;
+        }
+        else
+        {
+            stoped = stopBuffer;
+        }
+
     }
 
     public void PanelVisibility()
@@ -241,12 +257,12 @@ public class MusicPlayer : MonoBehaviour
         if (stoped)
         {
             PauseSound();
-            playButtonImage.sprite = stopSprite;
+            playButtonImage.sprite = playSprite;
         }
         else
         {
             ResumeSound();
-            playButtonImage.sprite = playSprite;
+            playButtonImage.sprite = stopSprite;
         }
     }
 
@@ -257,12 +273,12 @@ public class MusicPlayer : MonoBehaviour
         if (stoped)
         {
             PauseSound();
-            playButtonImage.sprite = stopSprite;
+            playButtonImage.sprite = playSprite;
         }
         else
         {
             ResumeSound();
-            playButtonImage.sprite = playSprite;
+            playButtonImage.sprite = stopSprite;
         }
     }
 

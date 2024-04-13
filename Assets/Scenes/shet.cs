@@ -7,6 +7,6 @@ public class shet : MonoBehaviour
 {
     public void restart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainMenu");
     }
 }

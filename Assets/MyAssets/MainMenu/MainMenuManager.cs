@@ -47,6 +47,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         playButton.onClick.AddListener(StartGame);
 
         inventoryButton.onClick.AddListener(ShowInventory);

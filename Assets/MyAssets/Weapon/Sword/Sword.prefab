@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   weaponModelPrefab: {fileID: 6164927745532891711, guid: 3071a823e0b0e0b48983a4c836561a1b, type: 3}
-  baseDamage: 75
+  baseDamage: 90
   weaponAction: {fileID: 7687335379085674566}
   weaponShoot: {fileID: 7207910336409384143}
 --- !u!1 &6593867917778140537

@@ -78,3 +78,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 90056f91e1778354dba29e7de8692cdf, type: 3}
   - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0421\u043A\u0435\u0439\u0442\u0431\u043E\u0440\u0434"
     clip: {fileID: 8300000, guid: a5c01777e972d7e4c852c4ef82ec2464, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0411\u0443\u0434\u044C
+      \u0441\u043E \u043C\u043D\u043E\u0439"
+    clip: {fileID: 8300000, guid: 104c675993a941b4a9bd976f314a3395, type: 3}

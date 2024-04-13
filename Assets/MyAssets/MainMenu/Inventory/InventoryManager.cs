@@ -23,6 +23,8 @@ public class InventoryManager : MonoBehaviour
     {
         int inSelectedCount = 0;
 
+        selectedWeaponsSO.selectedWeapons.RemoveAll(x => x == null);
+
         foreach (Weapon weapon in weapons) 
         {          
             if (!selectedWeaponsSO.selectedWeapons.Contains(weapon))

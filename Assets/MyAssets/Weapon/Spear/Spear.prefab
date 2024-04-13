@@ -190,6 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   weaponModelPrefab: {fileID: 2944636757675101514, guid: 980ddb0f24165c445937148452e0a115, type: 3}
-  baseDamage: 25
+  baseDamage: 40
   weaponAction: {fileID: 729953798833150319}
   weaponShoot: {fileID: 8139623316951247912}

@@ -144,7 +144,7 @@ MonoBehaviour:
   weaponAction: {fileID: 0}
   projectile: {fileID: 4240692743224649850, guid: 9690ea82ce819b24996d78bc13fa2734, type: 3}
   modules: []
-  projectileSpeed: 70
+  projectileSpeed: 100
   attackSpeed: 0.8
 --- !u!1 &7659396858772394861
 GameObject:
