@@ -17,11 +17,25 @@ public class Weapon : MonoBehaviour
     public event UnequipDelegate? OnUnequip;
 
     public float baseDamage = 1;
+    public float baseAttackSpeed = 0.5f;
+    public float baseScale = 1;
 
     [Space(5)]
     [Header("Parts")]
     public WeaponAction weaponAction;
     public WeaponShoot weaponShoot;
+
+    [Space(5)]
+    [Header("Attributes")]
+    public float damageMult = 1;
+    public float damageFlat = 0;
+    private float currentDamage;
+    public float attackSpeedMult = 1;
+    public float attackSpeedFlat = 0;
+    private float currentAttackSpeed = 1;
+    public float scaleMult = 1;
+    public float scaleFlat = 0;
+    private float currentScale = 1;
 
     private void Start()
     {

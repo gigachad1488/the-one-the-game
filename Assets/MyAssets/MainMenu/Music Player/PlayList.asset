@@ -81,3 +81,26 @@ MonoBehaviour:
   - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0411\u0443\u0434\u044C
       \u0441\u043E \u043C\u043D\u043E\u0439"
     clip: {fileID: 8300000, guid: 104c675993a941b4a9bd976f314a3395, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041D\u0430\u0448\u0430
+      \u0416\u0438\u0437\u043D\u044C"
+    clip: {fileID: 8300000, guid: 09e0350ac0732864196acc34b530d8bb, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u041E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C"
+    clip: {fileID: 8300000, guid: 554600de317dd9e4c926c3e65de01d7a, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0412 \u041A\u0440\u043E\u0432\u0438"
+    clip: {fileID: 8300000, guid: a8e47306743944e4f9b5b253f67b662e, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0412\u043A\u043B\u044E\u0447\u0430\u0439
+      \u0422\u0440\u0435\u043A"
+    clip: {fileID: 8300000, guid: 7fff74c6a7083744d8a7e7bf2bb84f49, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 feat. Cino B - Russian
+      Mexican Gangsters"
+    clip: {fileID: 8300000, guid: 34379259a240f4f41881178e9ed24a42, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - Rap Dead"
+    clip: {fileID: 8300000, guid: 1d9b11b627f28c54ab8733620058d9b7, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u0416\u0438\u0437\u043D\u044C
+      \u043D\u0435 \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C"
+    clip: {fileID: 8300000, guid: 3985775d03ba0c44da186260c79ce326, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u042F \u0411\u0443\u0434\u0443
+      \u043A\u0443\u0440\u0438\u0442\u044C"
+    clip: {fileID: 8300000, guid: c6abd5dec191abf47b546fd3ec3eef19, type: 3}
+  - name: "\u0427\u0438\u043F\u0438\u043D\u043A\u043E\u0441 - \u042F \u0421\u0438\u0433\u0430\u0440\u0435\u0442\u0430"
+    clip: {fileID: 8300000, guid: e9b5620919cd62841893002bbea8d5c4, type: 3}
