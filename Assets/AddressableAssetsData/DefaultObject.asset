@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675cbb0242e77b64a94e4edad3b30171, type: 3}
-  m_Name: SelectedWeapons
+  m_Script: {fileID: 11500000, guid: 3a189bb168d8d90478a09ea08c2f3d72, type: 3}
+  m_Name: DefaultObject
   m_EditorClassIdentifier: 
-  selectedWeapons:
-  - {fileID: 2241588520507396650, guid: c7c7f5ddaad285b409d0f68d7c0c4e6f, type: 3}
+  m_AddressableAssetSettingsGuid: 603f0075bdc90774998090d34dc7c323

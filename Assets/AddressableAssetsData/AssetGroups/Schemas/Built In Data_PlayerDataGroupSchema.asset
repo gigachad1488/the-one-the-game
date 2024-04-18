@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675cbb0242e77b64a94e4edad3b30171, type: 3}
-  m_Name: SelectedWeapons
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  selectedWeapons:
-  - {fileID: 2241588520507396650, guid: c7c7f5ddaad285b409d0f68d7c0c4e6f, type: 3}
+  m_Group: {fileID: 11400000, guid: 5634e8eeecf89f143b0449fab3c69e9d, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1
