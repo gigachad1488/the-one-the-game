@@ -8,6 +8,8 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 
     public List<ProjectileModule> projectileModules = new List<ProjectileModule>();
 
+    public float mult = 1f;
+
     public delegate void ProjectileDelegate();
     public event ProjectileDelegate OnProjectileHit;
     public void Set(WeaponShoot t)
@@ -26,6 +28,18 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
     }
 
     public abstract void AfterSet();
+
+    public void SetLevel(int level)
+    {
+        foreach (ProjectileModule module in projectileModules)
+        {
+            module.SetLevel(level);
+        }
+
+        AfterLevelSet(level);
+    }
+
+    public abstract void AfterLevelSet(int level);  
 
     public abstract void Hit();
 
@@ -46,6 +60,8 @@ public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>
 
         AfterSet();
     }
+
+    public abstract void SetLevel(int level);
 
     public abstract void AfterSet();
 

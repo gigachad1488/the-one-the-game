@@ -48,7 +48,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        playButton.onClick.AddListener(StartGame);
+        playButton.onClick.AddListener(() => StartCoroutine(StartGame()));
 
         inventoryButton.onClick.AddListener(ShowInventory);
         inventoryBackButton.onClick.AddListener(ShowMain);
@@ -62,10 +62,11 @@ public class MainMenuManager : MonoBehaviour
         ShowMain();
     }
 
-    public void StartGame()
+    public IEnumerator StartGame()
     {
         inventoryManager.SaveSelectedWeapons();
-        SceneManager.LoadScene("SampleScene");
+        AsyncOperation scene = SceneManager.LoadSceneAsync("SampleScene");
+        yield return null;
     }
 
     public void ShowMain()

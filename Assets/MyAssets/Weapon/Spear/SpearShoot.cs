@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class SpearShoot : WeaponShoot
 {
-    public float attackSpeed = 0.7f;
     private bool canSwing = true;
+
+    private float lungeLength = 2f;
 
     private Projectile currentProjectile;
 
@@ -23,7 +24,7 @@ public class SpearShoot : WeaponShoot
             canSwing = false;
             float angle = Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg - 90;
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position, Quaternion.Euler(0, 0, angle), weaponAction.weapon.transform);
-            Tween.LocalPosition(currentProjectile.transform, dirNorm * 2, attackSpeed * 0.5f, Ease.Linear, 2, CycleMode.Rewind).OnComplete(this, x =>
+            Tween.LocalPosition(currentProjectile.transform, dirNorm * lungeLength, weaponAction.weapon.currentAttackSpeed * 0.5f, Ease.Linear, 2, CycleMode.Rewind).OnComplete(this, x =>
             {
                 canSwing = true;
                 Destroy(currentProjectile.gameObject);
@@ -48,5 +49,10 @@ public class SpearShoot : WeaponShoot
             currentProjectile = null;
             canSwing = true;
         }
+    }
+
+    public override void AfterLevelSet(int level)
+    {
+        lungeLength = lungeLength * (1 + level / 0.1f);
     }
 }

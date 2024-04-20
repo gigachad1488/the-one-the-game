@@ -5,17 +5,13 @@ using UnityEngine;
 public class PistolAction : WeaponAction
 {
     [HideInInspector]
-    public Camera cam;
-
-    private void Awake()
-    {
-        cam = Camera.main;
-    }
+    private Camera cam;
 
     public override void AfterSet()
     {
         weaponModel = Instantiate(weapon.weaponModelPrefab, weapon.transform);
         weaponModel.SetActive(false);
+        cam = weapon.player.camera;
     }
 
     public override void Action()

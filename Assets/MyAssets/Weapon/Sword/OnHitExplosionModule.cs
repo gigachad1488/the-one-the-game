@@ -54,4 +54,11 @@ public class OnHitExplosionModule : ProjectileModule
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, radius);
     }
+
+    public override void SetLevel(int level)
+    {
+        mult = mult * (1 + level * 0.1f);
+        radius = radius * (1 + level * 0.1f);
+        explosionCd = explosionCd * (1 + level * 0.1f);
+    }
 }

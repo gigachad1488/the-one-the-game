@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SwordShoot : WeaponShoot
 {
-    public float attackSpeed = 0.5f;
-
     private bool canSwing = true;
 
     private Projectile currentProjectile;
@@ -23,7 +21,7 @@ public class SwordShoot : WeaponShoot
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform);
             float playerRot = weaponAction.weapon.player.playerMovement.sprite.transform.localScale.x;
             currentProjectile.Set(this);
-            Tween.LocalEulerAngles(currentProjectile.transform, Vector3.zero, new Vector3(0, 0, -360 * playerRot), attackSpeed, Ease.Linear).OnComplete(this, x =>
+            Tween.LocalEulerAngles(currentProjectile.transform, Vector3.zero, new Vector3(0, 0, -360 * playerRot), weaponAction.weapon.currentAttackSpeed, Ease.Linear).OnComplete(this, x =>
             {
                 canSwing = true;
                 Destroy(currentProjectile.gameObject);
@@ -46,5 +44,9 @@ public class SwordShoot : WeaponShoot
             currentProjectile = null;
             canSwing = true;
         }
+    }
+
+    public override void AfterLevelSet(int level)
+    {
     }
 }

@@ -56,4 +56,10 @@ public class HomingProjectileModule : ProjectileModule
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, radius);
     }
+
+    public override void SetLevel(int level)
+    {
+        radius = radius * (1 + level * 0.1f);
+        snapPower = level * (1 + level * 0.05f);
+    }
 }

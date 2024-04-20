@@ -9,7 +9,6 @@ public class PistolShoot : WeaponShoot
     private Transform shootPoint;
 
     public float projectileSpeed = 50f;
-    public float attackSpeed = 0.5f;
     private float attackTimer;
 
     private float attackCdTickTime = 0.1f;
@@ -25,7 +24,7 @@ public class PistolShoot : WeaponShoot
     {
         if (attackTimer <= 0)
         {
-            attackTimer = attackSpeed;
+            attackTimer = weaponAction.weapon.currentAttackSpeed;
             StartCoroutine(AttackCd());
             Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);           
             Rigidbody2D rb = pr.AddComponent<Rigidbody2D>();
@@ -38,11 +37,15 @@ public class PistolShoot : WeaponShoot
 
     private IEnumerator AttackCd()
     {
-       yield return new WaitForSeconds(attackSpeed);
+       yield return new WaitForSeconds(weaponAction.weapon.currentAttackSpeed);
        attackTimer = 0;
     }
 
     public override void UnpackButton()
+    {
+    }
+
+    public override void AfterLevelSet(int level)
     {
     }
 }

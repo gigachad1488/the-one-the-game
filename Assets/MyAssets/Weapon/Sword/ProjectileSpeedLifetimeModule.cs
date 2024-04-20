@@ -38,4 +38,8 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
     public override void ProjectileHit()
     {
     }
+
+    public override void SetLevel(int level)
+    {
+    }
 }

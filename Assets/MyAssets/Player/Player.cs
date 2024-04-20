@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Health health;
     public Collider2D hitboxCollider;
+    public Camera camera;
 
     private void Awake()
     {

@@ -16,9 +16,17 @@ public class Weapon : MonoBehaviour
     public delegate void UnequipDelegate();
     public event UnequipDelegate? OnUnequip;
 
-    public float baseDamage = 1;
+    public int baseDamage = 1;
     public float baseAttackSpeed = 0.5f;
     public float baseScale = 1;
+
+    public int currentDamage;
+    public float currentAttackSpeed;
+    public float currentScale;
+
+    public float maxLevelMult = 10;
+
+    private int level = 1;
 
     [Space(5)]
     [Header("Parts")]
@@ -29,29 +37,37 @@ public class Weapon : MonoBehaviour
     [Header("Attributes")]
     public float damageMult = 1;
     public float damageFlat = 0;
-    private float currentDamage;
     public float attackSpeedMult = 1;
     public float attackSpeedFlat = 0;
-    private float currentAttackSpeed = 1;
     public float scaleMult = 1;
     public float scaleFlat = 0;
-    private float currentScale = 1;
 
-    private void Start()
-    {
-        player = GetComponentInParent<Player>();
-        inputManager = player.playerMovement.inputManager;
-
+    public void Init(Player player)
+    {     
+        this.player = player;
         weaponAction.Set(this);
         weaponShoot.Set(weaponAction);
+
+        inputManager = player.playerMovement.inputManager;
+
+        currentAttackSpeed = baseAttackSpeed;
+        currentDamage = baseDamage;
+        currentScale = baseScale;
+        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
     }
 
     private void Update()
     {
-        if (inputManager.leftMouse)
+        if (inputManager != null && inputManager.leftMouse)
         {
+            Debug.Log("LEFT ACTION");
             LeftAction();
         }
+    }
+
+    public void SetLevel(int level)
+    {
+        this.level = level;
     }
 
     public void LeftAction()

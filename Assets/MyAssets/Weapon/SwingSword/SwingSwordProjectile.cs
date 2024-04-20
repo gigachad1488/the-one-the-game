@@ -5,6 +5,12 @@ using UnityEngine;
 public class SwingSwordProjectile : Projectile
 {
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
+
+    public override void AfterLevelSet(int level)
+    {
+        mult = mult * (1 + level * 0.1f);
+    }
+
     public override void AfterSet()
     {
     }
@@ -21,13 +27,13 @@ public class SwingSwordProjectile : Projectile
             {
                 if (can)
                 {
-                    health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
+                    health.Damage(weaponShoot.weaponAction.weapon.baseDamage * mult, 1, collision.ClosestPoint(transform.position));
                     hitBoxes[health] = false;
                 }
             }
             else
             {
-                health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
+                health.Damage(weaponShoot.weaponAction.weapon.baseDamage * mult, 1, collision.ClosestPoint(transform.position));
                 hitBoxes.Add(health, false);
             }
         }

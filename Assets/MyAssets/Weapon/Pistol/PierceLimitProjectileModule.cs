@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PierceLimitProjectileModule : ProjectileModule
 {
-    public float pierceCount = 1f;
+    public int pierceCount = 1;
 
     public override void AfterSet()
     {
@@ -18,5 +18,10 @@ public class PierceLimitProjectileModule : ProjectileModule
         {
             Destroy(projectile.gameObject);
         }    
+    }
+
+    public override void SetLevel(int level)
+    {
+        pierceCount = Mathf.RoundToInt(pierceCount * (1 + level * 0.01f)); 
     }
 }

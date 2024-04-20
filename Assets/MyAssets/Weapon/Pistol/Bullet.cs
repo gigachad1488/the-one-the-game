@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Bullet : Projectile
 {
+    public override void AfterLevelSet(int level)
+    {
+
+    }
+
     public override void AfterSet()
     {
     }

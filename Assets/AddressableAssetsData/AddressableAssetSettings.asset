@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 2ec7888010928094b832735ddb78debb
   m_currentHash:
     serializedVersion: 2
-    Hash: 0c1b9b04d0ce6f275166668d924b7e49
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -89,12 +89,11 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - parts
-    - projectiles
-    - melee
-    - defaultmelee
-    - spear
-    - swing
-    - ranged
+    - rangedModels
+    - rangedProjectiles
+    - meleeDefaultProjectiles
+    - meleeSwingProjectiles
+    - meleeSpearProjectiles
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 53d60cbc768440a4d9bb27f9300f8ab4, type: 2}

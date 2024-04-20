@@ -18,4 +18,9 @@ public class ProjectileDisapearModule : ProjectileModule
     public override void ProjectileHit()
     {
     }
+
+    public override void SetLevel(int level)
+    {
+        time = time * (1 + level * 0.1f);
+    }
 }

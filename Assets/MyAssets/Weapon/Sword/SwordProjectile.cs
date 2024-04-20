@@ -7,6 +7,12 @@ public class SwordProjectile : Projectile
     public float hitCd = 0.3f;
 
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
+
+    public override void AfterLevelSet(int level)
+    {
+        hitCd = hitCd * (1 - level * 0.05f);
+    }
+
     public override void AfterSet()
     {
     }

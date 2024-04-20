@@ -6,9 +6,13 @@ public class DefaultProjectile : Projectile
 {
     public float hitCd = 0.2f;
 
-    public float mult = 0.6f;
-
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
+
+    public override void AfterLevelSet(int level)
+    {
+        hitCd = hitCd * (1 - level * 0.05f);
+        mult = mult * (1 + level * 0.1f);
+    }
 
     public override void AfterSet()
     {

@@ -31,6 +31,18 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
 
     public abstract void AfterSet();
 
+    public void SetLevel(int level)
+    {
+        foreach (ShootModule module in modules)
+        {
+            module.SetLevel(level);
+        }
+
+        AfterLevelSet(level);
+    }
+
+    public abstract void AfterLevelSet(int level);
+
     public abstract void UnpackButton();
 
     public abstract void Shoot(Vector2 directionOffset);
@@ -51,6 +63,8 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
 
         AfterSet();
     }
+
+    public abstract void SetLevel(int level);
 
     public abstract void AfterSet();
 

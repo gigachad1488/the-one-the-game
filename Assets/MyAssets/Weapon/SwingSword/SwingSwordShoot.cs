@@ -7,10 +7,11 @@ public class SwingSwordShoot : WeaponShoot
 {
     private bool canSwing = true;
     private bool fromUp = true;
-    public float attackSpeed = 0.6f;
     public Ease swingEase = Ease.OutExpo;
 
     private Projectile currentProjectile;
+
+    private float attackAngle = 20;
 
     public override void AfterSet()
     {
@@ -24,13 +25,13 @@ public class SwingSwordShoot : WeaponShoot
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position + (Vector3)directionOffset.normalized * 0.5f, Quaternion.identity, weaponAction.weapon.transform);
             canSwing = false;
             float angle = Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg;
-            Vector3 up = new Vector3(0, 0, angle + 30);
-            Vector3 down = new Vector3(0, 0, angle - 30 - 180);
+            Vector3 up = new Vector3(0, 0, angle + attackAngle);
+            Vector3 down = new Vector3(0, 0, angle - attackAngle - 180);
 
             if (fromUp)
             {
                 currentProjectile.transform.localScale = new Vector3(currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
-                Tween.LocalEulerAngles(currentProjectile.transform, up, down, attackSpeed, swingEase).OnComplete(this, x =>
+                Tween.LocalEulerAngles(currentProjectile.transform, up, down, weaponAction.weapon.currentAttackSpeed, swingEase).OnComplete(this, x =>
                 {
                     canSwing = true;
                     Destroy(currentProjectile.gameObject);
@@ -40,7 +41,7 @@ public class SwingSwordShoot : WeaponShoot
             else
             {
                 currentProjectile.transform.localScale = new Vector3(-currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
-                Tween.LocalEulerAngles(currentProjectile.transform, down, up, attackSpeed, swingEase).OnComplete(this, x =>
+                Tween.LocalEulerAngles(currentProjectile.transform, down, up, weaponAction.weapon.currentAttackSpeed, swingEase).OnComplete(this, x =>
                 {
                     canSwing = true;
                     Destroy(currentProjectile.gameObject);
@@ -66,5 +67,10 @@ public class SwingSwordShoot : WeaponShoot
             currentProjectile = null;
             canSwing = true;
         }
+    }
+
+    public override void AfterLevelSet(int level)
+    {
+        attackAngle = attackAngle * (1 + level * 0.15f);
     }
 }

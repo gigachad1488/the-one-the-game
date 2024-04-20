@@ -20,50 +20,55 @@ MonoBehaviour:
   - m_GUID: 9f68009488b529c4ca04528542b42b55
     m_Address: Assets/MyAssets/Weapon/Parts
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 49a0fa250b244ed4f9a52f7210de5127
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aaed333d7091b964bbe8a38b6ca95903
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a649e2feea7ee0146ac928b87b54d0db
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing
     m_ReadOnly: 0
     m_SerializedLabels:
-    - melee
-    - projectiles
+    - meleeSwingProjectiles
     - parts
-    - swing
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b94f33ed9fd445c41aec54fde419464f
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts
-    - projectiles
-    - melee
-    - spear
+    - meleeSpearProjectiles
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 597f153387eacf343b725b4463baab1c
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a41b0c7b500d9df41b2202fb414a7900
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 89e18fc3ccc47ca46a78a9f5265c8c5d
     m_Address: Assets/MyAssets/Weapon/Parts/Ranged
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - parts
+    - rangedModels
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}
