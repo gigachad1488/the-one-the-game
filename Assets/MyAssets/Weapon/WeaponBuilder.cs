@@ -9,6 +9,22 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class WeaponBuilder : MonoBehaviour
 {
+    [Header("Stats Range")]
+    [Header("Ranged")]
+    public int minRangedDamage = 1;
+    public int maxRangedDamage = 50;
+    [Space(3)]
+    public float minRangedAttackSpeed = 0.1f;
+    public float maxRangedAttackSpeed = 1f;
+
+    [Space(5)]
+    [Header("Melee")]
+    public int minMeleeDamage = 20;
+    public int maxMeleeDamage = 100;
+    [Space(3)]
+    public float minMeleeAttackSpeed = 0.5f;
+    public float maxMeleeAttackSpeed = 2f;
+
     [Space(5)]
     [Header("AddresableLabels")]
     [Header("Ranged")]
@@ -27,8 +43,14 @@ public class WeaponBuilder : MonoBehaviour
 
         if (type == WeaponType.Ranged)
         {
-            weapon.baseDamage = Random.Range(5, 30);
-            weapon.baseAttackSpeed = Random.Range(0.2f, 2f);
+            int damage = Random.Range(minRangedDamage, maxRangedDamage);
+            float percentDamageLuck = (float)damage / maxRangedDamage;
+
+            float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.5f), maxRangedAttackSpeed);
+
+            weapon.baseDamage = damage;
+            weapon.baseAttackSpeed = attackSpeed;
+            weapon.baseScale = 1;
 
             PistolAction action = new GameObject("Weapon Action").AddComponent<PistolAction>();
             weapon.weaponAction = action;
@@ -48,8 +70,14 @@ public class WeaponBuilder : MonoBehaviour
         }
         else
         {
-            weapon.baseDamage = Random.Range(30, 70);
-            weapon.baseAttackSpeed = Random.Range(0.5f, 3f);
+            int damage = Random.Range(minRangedDamage, maxRangedDamage);
+            float percentDamageLuck = (float)damage / maxRangedDamage;
+
+            float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.5f), maxRangedAttackSpeed);
+
+            weapon.baseDamage = damage;
+            weapon.baseAttackSpeed = attackSpeed;
+            weapon.baseScale = 1;
 
             SwordAction action = new GameObject("Weapon Action").AddComponent<SwordAction>();
             weapon.weaponAction = action;

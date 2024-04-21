@@ -33,14 +33,79 @@ public class Weapon : MonoBehaviour
     public WeaponAction weaponAction;
     public WeaponShoot weaponShoot;
 
-    [Space(5)]
     [Header("Attributes")]
-    public float damageMult = 1;
-    public float damageFlat = 0;
-    public float attackSpeedMult = 1;
-    public float attackSpeedFlat = 0;
-    public float scaleMult = 1;
-    public float scaleFlat = 0;
+    private float damageMult = 1;
+    public float DamageMult
+    {
+        get
+        {
+            return damageMult;
+        }
+        set
+        {
+            damageMult = value;
+            CalcDamage();
+        }
+    }
+
+    private float damageFlat = 0;
+    public float DamageFlat
+    {
+        get
+        {
+            return damageFlat;
+        }
+        set
+        {
+            damageFlat = value;
+            CalcDamage();
+        }
+    }
+
+    private float attackSpeedMult = 1;
+    public float AttackSpeedMult
+    {
+        get
+        {
+            return attackSpeedMult;
+        }
+        set
+        {
+            attackSpeedMult = value;
+            CalcAttackSpeed();
+        }
+    }
+
+    private float attackSpeedFlat = 0;
+    public float AttackSpeedFlat
+    {
+        get
+        {
+            return attackSpeedFlat;
+        }
+        set
+        {
+            attackSpeedFlat = value;
+            CalcAttackSpeed();
+        }
+    }
+
+    private float scaleMult = 1;
+    private float scaleFlat = 0;
+
+    public void CalcDamage()
+    {
+
+    }
+
+    public void CalcAttackSpeed()
+    {
+
+    }
+    public void CalcScale()
+    {
+
+    }
 
     public void Init(Player player)
     {     
