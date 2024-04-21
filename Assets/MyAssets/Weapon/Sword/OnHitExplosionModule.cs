@@ -38,7 +38,7 @@ public class OnHitExplosionModule : ProjectileModule
             {
                 if (hit.TryGetComponent<HitBox>(out HitBox enemy))
                 {
-                    enemy.Damage(projectile.weaponShoot.weaponAction.weapon.baseDamage * mult, 1, hit.ClosestPoint(transform.position));
+                    enemy.Damage(projectile.weaponShoot.weaponAction.weapon.currentDamage * mult, 1, hit.ClosestPoint(transform.position));
                 }
             }
         }

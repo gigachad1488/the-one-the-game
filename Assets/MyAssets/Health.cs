@@ -45,8 +45,7 @@ public class Health : MonoBehaviour
 
     [Space(5)]
     [Header("Regen")]
-    [SerializeField]
-    private int regenAmount = 10;
+    public int regenAmount = 10;
     [SerializeField]
     private float regenTime = 5f;
     private float regenTimer;

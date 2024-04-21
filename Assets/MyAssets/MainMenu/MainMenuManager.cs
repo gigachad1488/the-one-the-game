@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    
-
     [Space(5)]
     [Header("Main")]
     [SerializeField]
@@ -38,6 +36,8 @@ public class MainMenuManager : MonoBehaviour
 
     [Space(5)]
     [Header("Settings")]
+    [SerializeField]
+    private SettingsManager settingsManager;
     [SerializeField]
     private Button settingsButton;
     [SerializeField]
@@ -75,13 +75,15 @@ public class MainMenuManager : MonoBehaviour
         inventoryCanvas.gameObject.SetActive(false);
         shopCanvas.gameObject.SetActive(false);
         settingsCanvas.gameObject.SetActive(false);
-
     }
 
     public void ShowInventory()
     {
         mainCanvas.gameObject.SetActive(false);
         inventoryCanvas.gameObject.SetActive(true);
+
+        slotsScrollRect.horizontalNormalizedPosition = 0;
+        slotsScrollRect.verticalNormalizedPosition = 0;
     }
 
     public void ShowShop()
@@ -95,7 +97,6 @@ public class MainMenuManager : MonoBehaviour
         mainCanvas.gameObject.SetActive(false);
         settingsCanvas.gameObject.SetActive(true);
 
-        slotsScrollRect.horizontalNormalizedPosition = 0;
-        slotsScrollRect.verticalNormalizedPosition = 0;
+        settingsManager.ChangeTab(0);
     }
 }

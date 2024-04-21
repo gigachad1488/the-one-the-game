@@ -14235,6 +14235,18 @@ MonoBehaviour:
   health: {fileID: 0}
   hitboxCollider: {fileID: 2046590285}
   camera: {fileID: 519420031}
+  maxHealth: 100
+  healthLevelScale: 20
+  regenAmount: 10
+  regenAmountLevelScale: 2
+  moveSpeed: 30
+  moveSpeedLevelScale: 2
+  flyingForce: 15
+  flyingForceLevelScale: 1
+  flightTime: 1
+  flightTimeLevelScale: 0.2
+  dashForce: 30
+  dashForceLevelScale: 2
 --- !u!114 &1547157991
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class SwingSwordShoot : WeaponShoot
 {
     private bool canSwing = true;
     private bool fromUp = true;
-    public Ease swingEase = Ease.OutExpo;
+    public Ease swingEase = Ease.OutCubic;
 
     private Projectile currentProjectile;
 

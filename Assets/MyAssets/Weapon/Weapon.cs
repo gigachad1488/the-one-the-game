@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,9 @@ public class Weapon : MonoBehaviour
     public delegate void UnequipDelegate();
     public event UnequipDelegate? OnUnequip;
 
-    public int baseDamage = 1;
-    public float baseAttackSpeed = 0.5f;
-    public float baseScale = 1;
+    public int baseDamage { get; set; }
+    public float baseAttackSpeed { get; set; }
+    public float baseScale { get; set; }
 
     public int currentDamage;
     public float currentAttackSpeed;
@@ -34,7 +35,7 @@ public class Weapon : MonoBehaviour
     public WeaponShoot weaponShoot;
 
     [Header("Attributes")]
-    private float damageMult = 1;
+    private float damageMult = 0;
     public float DamageMult
     {
         get
@@ -62,7 +63,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private float attackSpeedMult = 1;
+    private float attackSpeedMult = 0;
     public float AttackSpeedMult
     {
         get
@@ -90,34 +91,63 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private float scaleMult = 1;
+    private float scaleMult = 3;
+    public float ScaleMult
+    {
+        get
+        {
+            return scaleMult;
+        }
+        set
+        {
+            scaleMult = value;
+            CalcScale();
+            transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        }
+    }
+
     private float scaleFlat = 0;
+    public float ScaleFlat
+    {
+        get 
+        {
+            return scaleFlat;
+        }
+        set
+        {
+            scaleFlat = value;
+            CalcScale();
+            transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        }
+    }
 
     public void CalcDamage()
     {
-
+        currentDamage = Convert.ToInt32((baseDamage * (1 + damageMult)) + damageFlat);
     }
 
     public void CalcAttackSpeed()
     {
-
+        currentAttackSpeed = (baseAttackSpeed * (1 - attackSpeedMult)) - attackSpeedFlat;
     }
     public void CalcScale()
     {
-
+        currentScale = (baseScale * (1 + scaleMult)) + scaleFlat;
     }
 
     public void Init(Player player)
     {     
         this.player = player;
+
         weaponAction.Set(this);
         weaponShoot.Set(weaponAction);
 
         inputManager = player.playerMovement.inputManager;
 
-        currentAttackSpeed = baseAttackSpeed;
-        currentDamage = baseDamage;
-        currentScale = baseScale;
+        CalcDamage();
+        CalcAttackSpeed();
+        CalcScale();
+
         transform.localScale = new Vector3(currentScale, currentScale, currentScale);
     }
 
@@ -125,7 +155,6 @@ public class Weapon : MonoBehaviour
     {
         if (inputManager != null && inputManager.leftMouse)
         {
-            Debug.Log("LEFT ACTION");
             LeftAction();
         }
     }

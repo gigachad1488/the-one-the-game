@@ -29,14 +29,14 @@ public class SwordProjectile : Projectile
             {
                 if (can)
                 {
-                    health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
+                    health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, collision.ClosestPoint(transform.position));
                     hitBoxes[health] = false;
                     StartCoroutine(ResetHit(health));
                 }
             }
             else
             {
-                health.Damage(weaponShoot.weaponAction.weapon.baseDamage, 1, collision.ClosestPoint(transform.position));
+                health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, collision.ClosestPoint(transform.position));
                 hitBoxes.Add(health, false);
                 StartCoroutine(ResetHit(health));
             }

@@ -110,9 +110,13 @@ public class WeaponBuilder : MonoBehaviour
                 weaponShoot = root.AddComponent<PistolShoot>();
                 break;
             case WeaponType.MeleeSwing:
+                weaponShoot = root.AddComponent<SwingSwordShoot>();
+                break;
             case WeaponType.MeleeDelault:
-            case WeaponType.MeleeSpear:
                 weaponShoot = root.AddComponent<SwordShoot>();
+                break;
+            case WeaponType.MeleeSpear:
+                weaponShoot = root.AddComponent<SpearShoot>();
                 break;
         }
 

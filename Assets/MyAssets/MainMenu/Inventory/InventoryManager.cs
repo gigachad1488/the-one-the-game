@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -50,22 +52,35 @@ public class InventoryManager : MonoBehaviour
             }
         }
         */
-
-        StartCoroutine(builder.BuildWeapon(WeaponType.Ranged, (weapon) =>
+        for (int i = 0; i < 50; i++)
         {
-            InventorySlot slot = Instantiate(slotPrefab, slotsGrid);
-            WeaponItem item = Instantiate(weaponItemPrefab, slot.transform);
-            item.weapon = weapon;
-            weapon.transform.SetParent(item.transform);
-        }, 1));
+            int r = UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length);
+            WeaponType type;
+            if (r == 0)
+            {
+                type = WeaponType.Ranged;
+            }
+            else if (r == 1)
+            {
+                type = WeaponType.MeleeDelault;
+            }
+            else if (r == 2)
+            {
+                type = WeaponType.MeleeSwing;
+            }
+            else
+            {
+                type = WeaponType.MeleeSpear;
+            }
 
-        StartCoroutine(builder.BuildWeapon(WeaponType.MeleeDelault, (weapon) =>
-        {
-            InventorySlot slot = Instantiate(slotPrefab, slotsGrid);
-            WeaponItem item = Instantiate(weaponItemPrefab, slot.transform);
-            item.weapon = weapon;
-            weapon.transform.SetParent(item.transform);
-        }, 1));
+            StartCoroutine(builder.BuildWeapon(type, (weapon) =>
+            {
+                InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+                WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                weaponItem.weapon = weapon;
+                weapon.transform.SetParent(weaponItem.transform);
+            }));
+        }
     }
 
     public void SaveSelectedWeapons()

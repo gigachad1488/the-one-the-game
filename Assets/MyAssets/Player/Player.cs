@@ -22,6 +22,26 @@ public class Player : MonoBehaviour
     public Collider2D hitboxCollider;
     public Camera camera;
 
+    [Space(5)]
+    [Header("Base Stats")]
+    public int maxHealth = 100;
+    public int healthLevelScale = 20;
+    [Space(3)]
+    public int regenAmount = 10;
+    public int regenAmountLevelScale = 2;
+    [Space(3)]
+    public float moveSpeed = 25f;
+    public float moveSpeedLevelScale = 2f;
+    [Space(3)]
+    public float flyingForce = 15f;
+    public float flyingForceLevelScale = 1f;
+    [Space(3)]
+    public float flightTime = 1f;
+    public float flightTimeLevelScale = 0.2f;
+    [Space(3)]
+    public float dashForce = 30f;
+    public float dashForceLevelScale = 2f;
+
     private void Awake()
     {
         defaultColor = spriteRenderer.color;
@@ -32,6 +52,38 @@ public class Player : MonoBehaviour
 
         health.OnDamage += OnDamage;
         health.OnDeath += Health_OnDeath;
+    }
+
+    public void SetHealthLevel(int level)
+    {
+        health.maxHealth = maxHealth + (healthLevelScale * level);
+        health.currentHealth = maxHealth;
+    }
+
+    public void SetRegenAmountLevel(int level)
+    {
+        health.regenAmount = regenAmount + (regenAmountLevelScale * level);
+    }    
+
+    public void SetMoveSpeedLevel(int level)
+    {
+        playerMovement.moveSpeed = moveSpeed + (moveSpeedLevelScale * level);
+        playerMovement.maxXSpeed = playerMovement.moveSpeed / 5;
+    }
+
+    public void SetFlightTimeLevel(int level)
+    {
+        playerMovement.flyingTime = flightTime + (flightTimeLevelScale * level);
+    }
+
+    public void SetFlightForceLevel(int level)
+    {
+        playerMovement.flyingForce = flyingForce + (flyingForceLevelScale * level);
+    }
+
+    public void SetDashForceLevel(int level)
+    {
+        playerMovement.dashForce = dashForce + (dashForceLevelScale * level);
     }
 
     private void Health_OnDeath()
