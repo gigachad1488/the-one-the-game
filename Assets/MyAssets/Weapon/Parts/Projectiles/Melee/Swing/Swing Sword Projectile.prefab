@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 315930141798558030}
-  - component: {fileID: 8980411009251532918}
+  - component: {fileID: 1538870362618957312}
   - component: {fileID: 6634652121194921170}
   m_Layer: 10
   m_Name: Swing Sword Projectile
@@ -120,7 +120,7 @@ Transform:
   - {fileID: 3230681320057508089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8980411009251532918
+--- !u!114 &1538870362618957312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,11 +129,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8839084132413742090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ddb9fd25637178498046570e3866b74, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c885a7891464284b90b9f2831db10e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
   projectileModules: []
+  mult: 1
+  hitCd: 0.3
 --- !u!61 &6634652121194921170
 BoxCollider2D:
   m_ObjectHideFlags: 0

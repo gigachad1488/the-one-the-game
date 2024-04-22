@@ -91,7 +91,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private float scaleMult = 3;
+    private float scaleMult = 0;
     public float ScaleMult
     {
         get

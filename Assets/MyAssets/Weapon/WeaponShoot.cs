@@ -8,6 +8,8 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
     public WeaponAction weaponAction;
     public Projectile projectile;
 
+    public int projectileLevel = 1;
+
     public delegate void WeaponShootDelegate(Vector2 directionOffset);
     public event WeaponShootDelegate? OnWeaponShoot;
 

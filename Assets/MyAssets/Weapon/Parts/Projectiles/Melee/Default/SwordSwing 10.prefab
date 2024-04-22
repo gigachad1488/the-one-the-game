@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
   projectileModules: []
+  mult: 1
   hitCd: 0.3
 --- !u!61 &1120951973306989212
 BoxCollider2D:

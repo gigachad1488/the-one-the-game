@@ -15,6 +15,12 @@ public class PistolShoot : WeaponShoot
     private WaitForSeconds attackCdTick;
     public override void AfterSet()
     {
+        projectile = Instantiate(projectile, transform);
+        Rigidbody2D rb = projectile.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        rb.mass = 0;
+        projectile.SetLevel(projectileLevel);
+        projectile.gameObject.SetActive(false);
         attackTimer = 0;
         attackCdTick = new WaitForSeconds(attackCdTickTime);
         shootPoint = weaponAction.weaponModel.GetComponentsInChildren<Transform>().Where(s => s.name == "ShootPoint").First();
@@ -26,12 +32,11 @@ public class PistolShoot : WeaponShoot
         {
             attackTimer = weaponAction.weapon.currentAttackSpeed;
             StartCoroutine(AttackCd());
-            Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);           
-            Rigidbody2D rb = pr.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
-            rb.mass = 0;
+            Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);
+            pr.gameObject.SetActive(true);
+            pr.Set(this); 
+            Rigidbody2D rb = pr.GetComponent<Rigidbody2D>();
             rb.velocity = pr.transform.right * projectileSpeed;
-            pr.Set(this);
         }
     }
 

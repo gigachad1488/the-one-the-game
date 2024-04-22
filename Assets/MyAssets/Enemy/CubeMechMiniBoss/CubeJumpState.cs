@@ -16,7 +16,7 @@ public class CubeJumpState : BaseState
     private float launchDelayTimer;
 
     private bool launched = false;
-    public float launchForce = 200000f;
+    public float launchForce = 80000f;
 
     private List<Thruster> downThrusters;
     private bool thrustersEnabled;

@@ -150,8 +150,6 @@ public class WeaponBuilder : MonoBehaviour
 
         projectile = objs.Result[Random.Range(0, objs.Result.Count)].GetComponent<Projectile>();
 
-        projectile.SetLevel(level);
-
         callback(projectile);
 
         yield return null;

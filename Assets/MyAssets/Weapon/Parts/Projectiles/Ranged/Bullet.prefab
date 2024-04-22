@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
   projectileModules: []
-  hitCd: 0.2
   mult: 1
+  hitCd: 0.5
 --- !u!212 &2444635691529092454
 SpriteRenderer:
   m_ObjectHideFlags: 0

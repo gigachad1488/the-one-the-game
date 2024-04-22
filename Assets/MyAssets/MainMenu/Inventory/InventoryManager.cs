@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
         */
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 1; i++)
         {
             int r = UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length);
             WeaponType type;
@@ -79,6 +79,10 @@ public class InventoryManager : MonoBehaviour
                 WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
                 weaponItem.weapon = weapon;
                 weapon.transform.SetParent(weaponItem.transform);
+                JsonDataService json = new JsonDataService();
+                json.SaveData<Weapon>("sigma", weapon, false);
+                Weapon wpn = json.LoadData<Weapon>("sigma", false);
+                Instantiate(wpn);
             }));
         }
     }
