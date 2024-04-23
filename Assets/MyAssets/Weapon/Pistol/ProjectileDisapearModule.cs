@@ -19,8 +19,22 @@ public class ProjectileDisapearModule : ProjectileModule
     {
     }
 
-    public override void SetLevel(int level)
+    public override void AfterLevelSet()
     {
         time = time * (1 + level * 0.1f);
+    }
+
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 }

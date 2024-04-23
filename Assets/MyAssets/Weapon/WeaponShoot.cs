@@ -8,12 +8,22 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
     public WeaponAction weaponAction;
     public Projectile projectile;
 
+    public string className;
+
     public int projectileLevel = 1;
 
     public delegate void WeaponShootDelegate(Vector2 directionOffset);
     public event WeaponShootDelegate? OnWeaponShoot;
 
     public List<ShootModule> modules = new List<ShootModule>();
+
+    public int level { get; set; }
+
+    private void Start()
+    {
+        className = this.GetType().Name;
+    }
+
     public void Set(WeaponAction t)
     {
         weaponAction = t;
@@ -35,15 +45,17 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
 
     public void SetLevel(int level)
     {
+        this.level = level;
+
         foreach (ShootModule module in modules)
         {
             module.SetLevel(level);
         }
 
-        AfterLevelSet(level);
+        AfterLevelSet();
     }
 
-    public abstract void AfterLevelSet(int level);
+    public abstract void AfterLevelSet();
 
     public abstract void UnpackButton();
 
@@ -53,11 +65,37 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
     {
         OnWeaponShoot?.Invoke(directionOffset);
     }
+
+    public abstract ModuleData GetData();
+
+    public ModuleData GetAllData()
+    {
+        ModuleData data = GetData();
+
+        foreach (var module in modules)
+        {
+            data.modules.Add(module.GetData());
+        }
+
+        return data;
+    }
+
+    public abstract void SetData(ModuleData data);
 }
 
 public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
 {
+    public string className;
+
     protected WeaponShoot shoot;
+
+    public int level { get; set; }
+
+    private void Start()
+    {
+        className = this.GetType().Name;
+    }
+
     public void Set(WeaponShoot t)
     {
         shoot = t;
@@ -66,7 +104,14 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
         AfterSet();
     }
 
-    public abstract void SetLevel(int level);
+    public void SetLevel(int level)
+    {
+        this.level = level;
+
+        AfterLevelSet();
+    }
+
+    public abstract void AfterLevelSet();
 
     public abstract void AfterSet();
 
@@ -75,5 +120,9 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
         shoot.OnWeaponShoot -= OnShoot;
     }
 
-    public abstract void OnShoot(Vector2 directionOffset);   
+    public abstract void OnShoot(Vector2 directionOffset);
+
+    public abstract ModuleData GetData();
+
+    public abstract void SetData(ModuleData data);
 }

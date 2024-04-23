@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     private InputManager inputManager;
 
     public GameObject weaponModelPrefab;
+    public string weaponModelAddressablesPath;
 
     public delegate void LeftActionDelegate();
     public event LeftActionDelegate? OnLeftAction;
@@ -184,5 +185,27 @@ public class Weapon : MonoBehaviour
             weaponAction.enabled = false;
             weaponShoot.enabled = false;
         }
+    }
+
+    public WeaponBaseData GetData()
+    {
+        WeaponBaseData data = new WeaponBaseData();
+
+        data.weaponModelAddressablesPath = weaponModelAddressablesPath;
+
+        data.scaleFlat = scaleFlat;
+        data.scaleMult = scaleMult;
+        data.attackSpeedMult = attackSpeedMult;
+        data.damageMult = damageMult;
+
+        data.baseDamage = baseDamage;
+        data.baseAttackSpeed = baseAttackSpeed;
+        data.baseScale = baseScale;
+
+        data.actionData = weaponAction.GetAllData();
+        data.shootData = weaponShoot.GetAllData();
+        data.projectileData = weaponShoot.projectile.GetAllData();
+
+        return data;
     }
 }

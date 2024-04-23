@@ -2,11 +2,12 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 
 public class JsonDataService : IDataService
 {
-    public bool SaveData<T>(string relativePath, T data, bool encrypted)
+    public bool SaveData<T>(string relativePath, T data, bool encrypted = false)
     {
         string path = Application.persistentDataPath + relativePath;
 
@@ -24,7 +25,7 @@ public class JsonDataService : IDataService
                 
             using FileStream stream = File.Create(path);
             stream.Close();
-            File.WriteAllText(path, JsonConvert.SerializeObject(data, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
+            File.WriteAllText(path, JsonConvert.SerializeObject(data, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore, TypeNameHandling = TypeNameHandling.All}));
             return true;
         }
         catch (System.Exception e)
@@ -34,7 +35,7 @@ public class JsonDataService : IDataService
         }
     }
 
-    public T LoadData<T>(string relativePath, bool encrypted)
+    public T LoadData<T>(string relativePath, bool encrypted = false)
     {
         string path = Application.persistentDataPath + relativePath;
 
@@ -56,5 +57,26 @@ public class JsonDataService : IDataService
         }
     }
 
+    public System.Object LoadData(string relativePath, bool encrypted = false)
+    {
+        string path = Application.persistentDataPath + relativePath;
+
+        if (!File.Exists(path))
+        {
+            Debug.LogError($"File doesnt exist at {path}");
+            throw new FileNotFoundException($"{path} doesnt exist");
+        }
+
+        try
+        {
+            System.Object data = JsonConvert.DeserializeObject(File.ReadAllText(path), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All});
+            return data;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to load data due to {e.Message} | {e.StackTrace}");
+            throw e;
+        }
+    }
 
 }

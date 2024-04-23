@@ -34,5 +34,19 @@ public class PistolAction : WeaponAction
         weapon.weaponShoot.Shoot(direction);
 
         InvokeAction(direction);       
-    }   
+    }
+
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level; 
+    }
 }

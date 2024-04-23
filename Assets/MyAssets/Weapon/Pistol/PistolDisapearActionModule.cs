@@ -15,9 +15,17 @@ public class PistolDisapearActionModule : ActionModule
         timerTick = new WaitForSeconds(timerTickTime);
     }
 
-    public override void OnAction(Vector2 direction)
+    public override ModuleData GetData()
     {
-        
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
+    public override void OnAction(Vector2 direction)
+    {     
         if (timer <= 0)
         {
             timer = time;
@@ -27,6 +35,11 @@ public class PistolDisapearActionModule : ActionModule
         {
             timer = time;
         }
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 
     private IEnumerator DisapearTimer()

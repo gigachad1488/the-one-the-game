@@ -8,10 +8,24 @@ public class ShootProjectileModule : ShootModule
     public Projectile projectileModel;
     public float projectileSpeed = 10f;
 
-    private int level = 1;
+    public override void AfterLevelSet()
+    {
+        projectileSpeed = projectileSpeed * (1 + level * 0.1f);
+        this.level = level;
+    }
+
     public override void AfterSet()
     {
         projectileSpeed = Random.Range(5, 30);
+    }
+
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
     }
 
     public override void OnShoot(Vector2 directionOffset)
@@ -25,9 +39,8 @@ public class ShootProjectileModule : ShootModule
         pr.Set(shoot);
     }
 
-    public override void SetLevel(int level)
+    public override void SetData(ModuleData data)
     {
-        projectileSpeed = projectileSpeed * (1 + level * 0.1f);
-        this.level = level;
+        level = data.level;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -66,7 +67,9 @@ public class WeaponBuilder : MonoBehaviour
 
             AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>(rangedModelsLabel, null);
             yield return new WaitUntil(() => handle.IsDone);
-            weapon.weaponModelPrefab = handle.Result[Random.Range(0, handle.Result.Count)];
+            GameObject res = handle.Result[Random.Range(0, handle.Result.Count)];
+            weapon.weaponModelPrefab = res;
+            weapon.weaponModelAddressablesPath = AssetDatabase.GetAssetPath(res);
         }
         else
         {
@@ -148,8 +151,9 @@ public class WeaponBuilder : MonoBehaviour
 
         yield return new WaitUntil(() => objs.IsDone);
 
-        projectile = objs.Result[Random.Range(0, objs.Result.Count)].GetComponent<Projectile>();
-
+        Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+        projectile = res.GetComponent<Projectile>();
+        projectile.projectileAddressablesPath = AssetDatabase.GetAssetPath(res);
         callback(projectile);
 
         yield return null;

@@ -8,7 +8,7 @@ public class SwordProjectile : Projectile
 
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
 
-    public override void AfterLevelSet(int level)
+    public override void AfterLevelSet()
     {
         hitCd = hitCd * (1 - level * 0.05f);
     }
@@ -17,8 +17,22 @@ public class SwordProjectile : Projectile
     {
     }
 
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+        
+        return data;
+    }
+
     public override void Hit()
     {
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

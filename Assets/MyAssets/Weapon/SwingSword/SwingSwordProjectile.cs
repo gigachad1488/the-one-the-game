@@ -6,7 +6,7 @@ public class SwingSwordProjectile : Projectile
 {
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
 
-    public override void AfterLevelSet(int level)
+    public override void AfterLevelSet()
     {
         mult = mult * (1 + level * 0.1f);
     }
@@ -15,8 +15,22 @@ public class SwingSwordProjectile : Projectile
     {
     }
 
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
     public override void Hit()
     {
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

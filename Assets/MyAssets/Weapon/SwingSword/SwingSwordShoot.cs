@@ -69,8 +69,22 @@ public class SwingSwordShoot : WeaponShoot
         }
     }
 
-    public override void AfterLevelSet(int level)
+    public override void AfterLevelSet()
     {
         attackAngle = attackAngle * (1 + level * 0.15f);
+    }
+
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 }

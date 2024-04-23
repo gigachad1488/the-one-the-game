@@ -57,9 +57,23 @@ public class HomingProjectileModule : ProjectileModule
         Gizmos.DrawSphere(transform.position, radius);
     }
 
-    public override void SetLevel(int level)
+    public override void AfterLevelSet()
     {
         radius = radius * (1 + level * 0.1f);
         snapPower = level * (1 + level * 0.05f);
+    }
+
+    public override ModuleData GetData()
+    {
+        ModuleData data = new ModuleData();
+        data.className = className;
+        data.level = level;
+
+        return data;
+    }
+
+    public override void SetData(ModuleData data)
+    {
+        level = data.level;
     }
 }
