@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class HomingProjectileModule : ProjectileModule
 {
+    public float baseRadius = 5;
+    public float baseSnapPower = 0.2f;
+
     public float radius;
     public float snapPower = 0.5f;
 
@@ -59,21 +62,38 @@ public class HomingProjectileModule : ProjectileModule
 
     public override void AfterLevelSet()
     {
-        radius = radius * (1 + level * 0.1f);
-        snapPower = level * (1 + level * 0.05f);
+        radius = baseRadius * (1 + level * 0.1f);
+        snapPower = baseSnapPower * (1 + level * 0.05f);
     }
 
     public override ModuleData GetData()
     {
-        ModuleData data = new ModuleData();
+        HomingProjecliteData data = new HomingProjecliteData();
         data.className = className;
         data.level = level;
+        data.radius = baseRadius;
+        data.snapPower = baseSnapPower;
 
         return data;
     }
 
     public override void SetData(ModuleData data)
     {
+        HomingProjecliteData pdata = data as HomingProjecliteData;
         level = data.level;
+        baseRadius = pdata.radius;
+        baseSnapPower = pdata.snapPower;
     }
+
+    public override void SetRandomBaseStats(float mult)
+    {
+        baseRadius = Random.Range(5, 15) * mult;
+        baseSnapPower = Random.Range(0.1f, 0.3f) * mult;
+    }
+}
+
+public class HomingProjecliteData : ModuleData
+{
+    public float radius;
+    public float snapPower;
 }

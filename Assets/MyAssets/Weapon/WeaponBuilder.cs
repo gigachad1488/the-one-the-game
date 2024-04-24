@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static UnityEditor.Recorder.OutputPath;
 
 
 public class WeaponBuilder : MonoBehaviour
@@ -27,7 +28,12 @@ public class WeaponBuilder : MonoBehaviour
     public float maxMeleeAttackSpeed = 2f;
 
     [Space(5)]
-    [Header("AddresableLabels")]
+    [Header("Module Chances")]
+    public float baseModuleChance = 0.2f;
+    public float nextModuleChanceDecrease = 0.5f;
+
+    [Space(5)]
+    [Header("PartsAddresableLabels")]
     [Header("Ranged")]
     public AssetLabelReference rangedProjectileLabel;
     public AssetLabelReference rangedModelsLabel;
@@ -37,6 +43,22 @@ public class WeaponBuilder : MonoBehaviour
     public AssetLabelReference meleeSwingProjectileLabel;
     [Header("MeleeSpear")]
     public AssetLabelReference meleeSpearProjectileLabel;
+
+    [Space(5)]
+    [Header("ModulesAddressablesLabels")]
+    [Space(3)]
+    [Header("Shoot")]
+    [Header("Ranged")]
+    public AssetLabelReference rangedShootModuleLabel;
+    [Header("Melee")]
+    public AssetLabelReference meleeShootModuleLabel;
+
+    [Space(1)]
+    [Header("Projectile")]
+    [Header("Ranged")]
+    public AssetLabelReference rangeProjectileModuleLabel;
+    [Header("Melee")]
+    public AssetLabelReference meleeProjectileModuleLabel;
 
     public IEnumerator BuildWeapon(WeaponType type, System.Action<Weapon> callback, int level = 1)
     {
@@ -60,10 +82,13 @@ public class WeaponBuilder : MonoBehaviour
             WeaponShoot shoot = BuildWeaponShoot(type, level);
             shoot.transform.SetParent(weapon.transform);
             weapon.weaponShoot = shoot;
-
+          
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
-            weapon.weaponShoot.projectile = projectile;
+            Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
+            pr.projectileAddressablesPath = projectile.projectileAddressablesPath;
+            weapon.weaponShoot.projectile = pr;
+            pr.gameObject.SetActive(false);
 
             AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>(rangedModelsLabel, null);
             yield return new WaitUntil(() => handle.IsDone);
@@ -92,8 +117,62 @@ public class WeaponBuilder : MonoBehaviour
 
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
-            weapon.weaponShoot.projectile = projectile;
-            weapon.weaponModelPrefab = projectile.gameObject;
+            Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
+            pr.projectileAddressablesPath = projectile.projectileAddressablesPath;
+            weapon.weaponShoot.projectile = pr;
+            weapon.weaponModelAddressablesPath = pr.projectileAddressablesPath;
+            weapon.weaponModelPrefab = pr.gameObject;
+            pr.gameObject.SetActive(false);
+        }
+
+        float shootChanceNumber = 100 * baseModuleChance * level;
+
+        while (true)
+        {
+            if (Random.Range(0, 100) <= shootChanceNumber)
+            {
+                yield return BuildShootModule(type, (mod) =>
+                {
+                    if (mod != null)
+                    {
+                        ShootModule module = Instantiate(mod, weapon.weaponShoot.transform);
+                        module.SetRandomBaseStats(1);
+                        module.SetLevel(mod.level);
+                        weapon.weaponShoot.modules.Add(module);
+                    }
+                });
+            }
+            else
+            {
+                break;
+            }
+
+            shootChanceNumber *= nextModuleChanceDecrease;
+        }
+
+        float projectileChanceNumber = 100 * baseModuleChance * level;
+
+        while (true)
+        {
+            if (Random.Range(0, 100) <= projectileChanceNumber)
+            {
+                yield return BuildProjectileModule(type, (mod) =>
+                {
+                    if (mod != null)
+                    {
+                        ProjectileModule module = Instantiate(mod, weapon.weaponShoot.projectile.transform);
+                        module.SetRandomBaseStats(1);
+                        module.SetLevel(mod.level);
+                        weapon.weaponShoot.projectile.projectileModules.Add(module);
+                    }
+                });
+            }
+            else
+            {
+                break;
+            }
+
+            projectileChanceNumber *= nextModuleChanceDecrease;
         }
 
         weapon.enabled = false;
@@ -155,6 +234,114 @@ public class WeaponBuilder : MonoBehaviour
         projectile = res.GetComponent<Projectile>();
         projectile.projectileAddressablesPath = AssetDatabase.GetAssetPath(res);
         callback(projectile);
+
+        yield return null;
+    }
+
+    public IEnumerator BuildShootModule(WeaponType type, System.Action<ShootModule> callback, int level = 1)
+    {
+        ShootModule module = null;
+        AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
+
+        if (type == WeaponType.Ranged)
+        {
+            objs = Addressables.LoadAssetsAsync<Object>(rangedShootModuleLabel, null);
+        }
+        else
+        {
+            objs = Addressables.LoadAssetsAsync<Object>(meleeShootModuleLabel, null);
+        }
+
+        yield return new WaitUntil(() => objs.IsDone);
+
+        if (objs.Result != null) 
+        {
+            Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+            module = res.GetComponent<ShootModule>();
+            module.SetLevel(level);
+        }
+
+        callback(module);
+
+        yield return null;
+    }
+
+    public IEnumerator BuildProjectileModule(WeaponType type, System.Action<ProjectileModule> callback, int level = 1)
+    {
+        ProjectileModule module = null;
+        AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
+
+        if (type == WeaponType.Ranged)
+        {
+            objs = Addressables.LoadAssetsAsync<Object>(rangeProjectileModuleLabel, null);
+        }
+        else
+        {
+            objs = Addressables.LoadAssetsAsync<Object>(meleeProjectileModuleLabel, null);
+        }
+
+        yield return new WaitUntil(() => objs.IsDone);
+
+        if (objs.Result != null)
+        {
+            Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+            module = res.GetComponent<ProjectileModule>();
+        }
+
+        callback(module);
+
+        yield return null;
+    }
+
+    public IEnumerator BuildWeaponFromJson(WeaponBaseData data, System.Action<Weapon> callback) 
+    {
+        Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
+        weapon.SetData(data);
+
+        WeaponAction action = Instantiate(new GameObject("Weapon Action"), weapon.transform).AddComponent(System.Type.GetType(data.actionData.className)) as WeaponAction;
+        action.SetData(data.actionData);
+        
+        foreach (ModuleData item in data.actionData.modules)
+        {
+            ActionModule module = Instantiate(new GameObject(item.className), action.transform).AddComponent(System.Type.GetType(item.className)) as ActionModule;
+            module.SetData(item);
+        }
+
+        WeaponShoot shoot = Instantiate(new GameObject("Weapon Shoot"), weapon.transform).AddComponent(System.Type.GetType(data.shootData.className)) as WeaponShoot;
+        shoot.SetData(data.shootData);
+
+        foreach (ModuleData item in data.shootData.modules)
+        {
+            ShootModule module = Instantiate(new GameObject(item.className), shoot.transform).AddComponent(System.Type.GetType(item.className)) as ShootModule;
+            module.SetData(item);
+        }
+
+        Projectile projectile = null;
+        var handle = Addressables.LoadAssetAsync<GameObject>(data.projectileData.projectileAddressablesPath);
+
+        yield return handle;
+
+        projectile = Instantiate(handle.Result, shoot.transform).GetComponent<Projectile>();
+        projectile.SetData(data.projectileData);
+        projectile.gameObject.SetActive(false);
+
+        foreach (ModuleData item in data.projectileData.modules)
+        {
+            ProjectileModule module = Instantiate(new GameObject(item.className), projectile.transform).AddComponent(System.Type.GetType(item.className)) as ProjectileModule;
+            module.SetData(item);
+        }
+
+        weapon.weaponAction = action;
+        weapon.weaponShoot = shoot;
+        weapon.weaponShoot.projectile = projectile;
+
+        var modelHandle = Addressables.LoadAssetAsync<GameObject>(data.weaponModelAddressablesPath);
+
+        yield return handle;
+
+        weapon.weaponModelPrefab = modelHandle.Result;
+
+        callback(weapon);
 
         yield return null;
     }

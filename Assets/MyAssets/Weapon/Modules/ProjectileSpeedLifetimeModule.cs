@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ProjectileSpeedLifetimeModule : ProjectileModule
 {
+    public float baseTime = 0.5f;
     public float time;
 
     public Ease ease = Ease.InSine;
@@ -26,6 +27,7 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
 
     public override void AfterLevelSet()
     {
+        time = baseTime * (1 + level * 0.1f);
     }
 
     public override ModuleData GetData()
@@ -33,7 +35,7 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
         ProjectileSpeedLifetimeModuleData data = new ProjectileSpeedLifetimeModuleData();
         data.className = className;
         data.level = level;
-        data.time = time;
+        data.time = baseTime;
         data.ease = ease;
 
         return data;
@@ -45,6 +47,13 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
         level = pdata.level;
         time = pdata.time;
         ease = pdata.ease;
+    }
+
+    public override void SetRandomBaseStats(float mult)
+    {
+        baseTime = Random.Range(0.5f, 1f) * mult;
+        int length = System.Enum.GetNames(typeof(Ease)).Length;
+        ease = (Ease)Random.Range(2, length - 3);
     }
 }
 

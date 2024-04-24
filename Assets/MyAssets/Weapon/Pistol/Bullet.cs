@@ -26,4 +26,8 @@ public class Bullet : Projectile
     {
 
     }
+
+    public override void SetRandomBaseStats(float mult)
+    {
+    }
 }

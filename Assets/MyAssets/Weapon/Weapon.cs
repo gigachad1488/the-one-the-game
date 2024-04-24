@@ -189,6 +189,17 @@ public class Weapon : MonoBehaviour
 
     public WeaponBaseData GetData()
     {
+        WeaponBaseData data = GetWeaponStats();
+
+        data.actionData = weaponAction.GetAllData();
+        data.shootData = weaponShoot.GetAllData();
+        data.projectileData = weaponShoot.projectile.GetAllData();
+
+        return data;
+    }
+
+    public WeaponBaseData GetWeaponStats()
+    {
         WeaponBaseData data = new WeaponBaseData();
 
         data.weaponModelAddressablesPath = weaponModelAddressablesPath;
@@ -202,10 +213,24 @@ public class Weapon : MonoBehaviour
         data.baseAttackSpeed = baseAttackSpeed;
         data.baseScale = baseScale;
 
-        data.actionData = weaponAction.GetAllData();
-        data.shootData = weaponShoot.GetAllData();
-        data.projectileData = weaponShoot.projectile.GetAllData();
-
         return data;
+    }
+
+    public void SetData(WeaponBaseData data)
+    {
+        weaponModelAddressablesPath = data.weaponModelAddressablesPath;
+
+        scaleFlat = data.scaleFlat;
+        scaleMult = data.scaleMult;
+
+        damageFlat = data.damageFlat;
+        damageMult = data.damageMult;
+
+        attackSpeedFlat = data.attackSpeedFlat;
+        attackSpeedMult = data.attackSpeedMult;
+
+        baseAttackSpeed = data.baseAttackSpeed;
+        baseScale = data.baseScale;
+        baseDamage = data.baseDamage;
     }
 }

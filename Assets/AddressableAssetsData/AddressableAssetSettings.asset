@@ -47,6 +47,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5634e8eeecf89f143b0449fab3c69e9d, type: 2}
   - {fileID: 11400000, guid: 6803b0dd527aebd48ad4c8a8f1e36c41, type: 2}
   - {fileID: 11400000, guid: 0c593623f0940664db2fc759bc5e1707, type: 2}
+  - {fileID: 11400000, guid: a051056dfb8f63b4e9b1d5da53f6e449, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -94,6 +95,10 @@ MonoBehaviour:
     - meleeDefaultProjectiles
     - meleeSwingProjectiles
     - meleeSpearProjectiles
+    - meleeShootModules
+    - rangedShootModules
+    - meleeProjectileModules
+    - rangedProjectileModules
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 53d60cbc768440a4d9bb27f9300f8ab4, type: 2}

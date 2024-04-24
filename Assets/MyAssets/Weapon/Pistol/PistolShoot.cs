@@ -14,13 +14,10 @@ public class PistolShoot : WeaponShoot
     private float attackCdTickTime = 0.1f;
     private WaitForSeconds attackCdTick;
     public override void AfterSet()
-    {
-        projectile = Instantiate(projectile, transform);
+    {     
         Rigidbody2D rb = projectile.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.mass = 0;
-        projectile.SetLevel(projectileLevel);
-        projectile.gameObject.SetActive(false);
         attackTimer = 0;
         attackCdTick = new WaitForSeconds(attackCdTickTime);
         shootPoint = weaponAction.weaponModel.GetComponentsInChildren<Transform>().Where(s => s.name == "ShootPoint").First();

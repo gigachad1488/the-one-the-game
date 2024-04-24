@@ -12,6 +12,7 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 
     public List<ProjectileModule> projectileModules = new List<ProjectileModule>();
 
+    public float baseMult = 1f;
     public float mult = 1f;
 
     public int level { get; set; }
@@ -23,6 +24,7 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
     {
         className = this.GetType().Name;
     }
+
 
     public void Set(WeaponShoot t)
     {
@@ -53,7 +55,9 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
         AfterLevelSet();
     }
 
-    public abstract void AfterLevelSet();  
+    public abstract void AfterLevelSet();
+
+    public abstract void SetRandomBaseStats(float mult);
 
     public abstract void Hit();
 
@@ -117,6 +121,8 @@ public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>
     public abstract void AfterLevelSet();
 
     public abstract void AfterSet();
+
+    public abstract void SetRandomBaseStats(float mult);
 
     public void Dispose()
     {

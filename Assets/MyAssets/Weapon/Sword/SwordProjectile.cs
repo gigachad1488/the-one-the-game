@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SwordProjectile : Projectile
 {
+    public float baseHitCd = 0.5f;
     public float hitCd = 0.3f;
 
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
 
     public override void AfterLevelSet()
     {
-        hitCd = hitCd * (1 - level * 0.05f);
+        hitCd = baseHitCd * (1 - level * 0.05f);
     }
 
     public override void AfterSet()
@@ -19,9 +20,10 @@ public class SwordProjectile : Projectile
 
     public override ModuleData GetData()
     {
-        ModuleData data = new ModuleData();
+        SwordProjectileData data = new SwordProjectileData();
         data.className = className;
         data.level = level;
+        data.hitCd = baseHitCd;
         
         return data;
     }
@@ -32,7 +34,14 @@ public class SwordProjectile : Projectile
 
     public override void SetData(ModuleData data)
     {
+        SwordProjectileData pdata = data as SwordProjectileData;
+        baseHitCd = pdata.hitCd;
         level = data.level;
+    }
+
+    public override void SetRandomBaseStats(float mult)
+    {
+        baseHitCd = Random.Range(0.3f, 0.6f) * mult;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -62,4 +71,9 @@ public class SwordProjectile : Projectile
         yield return new WaitForSeconds(hitCd);
         hitBoxes[health] = true;
     }
+}
+
+public class SwordProjectileData : ModuleData
+{
+    public float hitCd;
 }

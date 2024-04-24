@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
+  className: 
+  baseTime: 0.5
   time: 0.5
 --- !u!1 &7358831308153811848
 GameObject:
@@ -58,13 +60,14 @@ GameObject:
   - component: {fileID: 1203573815596244527}
   - component: {fileID: 6404061750799411418}
   - component: {fileID: 9190810267601013446}
+  - component: {fileID: -2017962831376806711}
   m_Layer: 10
   m_Name: Slash Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4465838884926003314
 Transform:
   m_ObjectHideFlags: 0
@@ -94,9 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
+  projectileAddressablesPath: 
+  className: 
   projectileModules: []
-  hitCd: 0.2
-  mult: 0.6
+  baseMult: 0.46271998
+  mult: 0.46271998
+  baseHitCd: 1.2332997
+  hitCd: 1.2332997
 --- !u!212 &6404061750799411418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -199,3 +206,30 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!50 &-2017962831376806711
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358831308153811848}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -21,9 +21,8 @@ public class SwordShoot : WeaponShoot
             canSwing = false;
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform);
             float playerRot = weaponAction.weapon.player.playerMovement.sprite.transform.localScale.x;
+            currentProjectile.gameObject.SetActive(true);
             currentProjectile.Set(this);
-            currentProjectile.SetLevel(projectileLevel);
-
             Tween.LocalEulerAngles(currentProjectile.transform, Vector3.zero, new Vector3(0, 0, -360 * playerRot), new TweenSettings(weaponAction.weapon.currentAttackSpeed, Ease.Linear, useFixedUpdate: true)).OnComplete(this, x =>
             {
                 canSwing = true;

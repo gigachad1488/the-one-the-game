@@ -35,10 +35,8 @@ public class PlayerInventory : MonoBehaviour
             if (selectedWeapons.selectedWeapons.Count > i)
             {
                 Weapon weapon = Instantiate(selectedWeapons.selectedWeapons[i], transform);
-                weapon.baseAttackSpeed = selectedWeapons.selectedWeapons[i].baseAttackSpeed;
-                weapon.baseDamage = selectedWeapons.selectedWeapons[i].baseDamage;
-                weapon.baseScale = selectedWeapons.selectedWeapons[i].baseScale;
-                weapon.transform.localPosition = Vector3.zero;
+                weapon.transform.localPosition = Vector3.zero;  
+                weapon.SetData(selectedWeapons.selectedWeapons[i].GetWeaponStats());
                 weapons[i] = weapon;
                 weapon.Init(player);
                 cells[i].SetWeapon(weapons[i]);

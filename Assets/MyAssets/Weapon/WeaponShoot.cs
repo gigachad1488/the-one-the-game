@@ -38,6 +38,8 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
 
         weaponAction.OnWeaponAction += Shoot;
 
+        projectile.SetLevel(projectileLevel);
+
         AfterSet();
     }
 
@@ -104,6 +106,8 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
         AfterSet();
     }
 
+    public abstract void SetRandomBaseStats(float mult);
+
     public void SetLevel(int level)
     {
         this.level = level;
@@ -114,6 +118,7 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
     public abstract void AfterLevelSet();
 
     public abstract void AfterSet();
+
 
     public void Dispose()
     {

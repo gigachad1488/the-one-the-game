@@ -6,11 +6,14 @@ public class OnHitExplosionModule : ProjectileModule
 {
     public ParticleSystem explosionParticles;
 
+    public float baseMult = 0.5f;
     public float mult = 0.5f;
 
+    public float baseExplosionCd = 1f;
     public float explosionCd = 0.5f;
     private bool canExplode;
 
+    public float baseRadius = 2f;
     public float radius = 2f;
 
     public LayerMask hitLayers;
@@ -57,22 +60,43 @@ public class OnHitExplosionModule : ProjectileModule
 
     public override void AfterLevelSet()
     {
-        mult = mult * (1 + level * 0.1f);
-        radius = radius * (1 + level * 0.1f);
-        explosionCd = explosionCd * (1 + level * 0.1f);
+        mult = baseMult * (1 + level * 0.1f);
+        radius = baseRadius * (1 + level * 0.1f);
+        explosionCd = baseExplosionCd * (1 + level * 0.1f);
     }
 
     public override ModuleData GetData()
     {
-        ModuleData data = new ModuleData();
+        OnHitExplosionModuleData data = new OnHitExplosionModuleData();
         data.className = className;
         data.level = level;
+        data.explosionCd = baseExplosionCd;
+        data.radius = baseRadius;
+        data.mult = baseMult;
 
         return data;
     }
 
     public override void SetData(ModuleData data)
     {
+        OnHitExplosionModuleData pdata = data as OnHitExplosionModuleData;
+        baseExplosionCd = pdata.explosionCd;
+        baseMult = pdata.mult;
+        baseRadius = pdata.radius;
         level = data.level;
     }
+
+    public override void SetRandomBaseStats(float mult)
+    {
+        baseMult = Random.Range(0.2f, 1) * mult;
+        baseRadius = Random.Range(2, 3) * mult;
+        explosionCd = Random.Range(0.4f, 1) / mult;
+    }
+}
+
+public class OnHitExplosionModuleData : ModuleData
+{
+    public float explosionCd;
+    public float radius;
+    public float mult;
 }

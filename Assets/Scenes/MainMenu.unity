@@ -8190,6 +8190,8 @@ MonoBehaviour:
   maxMeleeDamage: 150
   minMeleeAttackSpeed: 0.5
   maxMeleeAttackSpeed: 2
+  baseModuleChance: 0.2
+  nextModuleChanceDecrease: 0.5
   rangedProjectileLabel:
     m_LabelString: rangedProjectiles
   rangedModelsLabel:
@@ -8200,6 +8202,14 @@ MonoBehaviour:
     m_LabelString: meleeSwingProjectiles
   meleeSpearProjectileLabel:
     m_LabelString: meleeSpearProjectiles
+  rangedShootModuleLabel:
+    m_LabelString: rangedShootModules
+  meleeShootModuleLabel:
+    m_LabelString: meleeShootModules
+  rangeProjectileModuleLabel:
+    m_LabelString: rangedProjectileModules
+  meleeProjectileModuleLabel:
+    m_LabelString: meleeProjectileModules
 --- !u!4 &1350425121
 Transform:
   m_ObjectHideFlags: 0

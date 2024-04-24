@@ -23,8 +23,8 @@ public class SwingSwordShoot : WeaponShoot
         if (canSwing) 
         {           
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position + (Vector3)directionOffset.normalized * 0.5f, Quaternion.identity, weaponAction.weapon.transform);
-            currentProjectile.Set(this);
-            currentProjectile.SetLevel(projectileLevel);
+            currentProjectile.gameObject.SetActive(true);
+            currentProjectile.Set(this);           
             canSwing = false;
             float angle = Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg;
             Vector3 up = new Vector3(0, 0, angle + attackAngle);

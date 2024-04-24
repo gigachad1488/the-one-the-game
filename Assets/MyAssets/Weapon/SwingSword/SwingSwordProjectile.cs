@@ -33,6 +33,11 @@ public class SwingSwordProjectile : Projectile
         level = data.level;
     }
 
+    public override void SetRandomBaseStats(float mult)
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<HitBox>(out HitBox health))

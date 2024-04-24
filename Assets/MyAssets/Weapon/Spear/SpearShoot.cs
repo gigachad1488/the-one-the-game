@@ -24,14 +24,14 @@ public class SpearShoot : WeaponShoot
             canSwing = false;
             float angle = Mathf.Atan2(directionOffset.y, directionOffset.x) * Mathf.Rad2Deg - 90;
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position, Quaternion.Euler(0, 0, angle), weaponAction.weapon.transform);
+            currentProjectile.gameObject.SetActive(true);
+            currentProjectile.Set(this);
             Tween.LocalPosition(currentProjectile.transform, dirNorm * lungeLength, weaponAction.weapon.currentAttackSpeed * 0.5f, Ease.Linear, 2, CycleMode.Rewind).OnComplete(this, x =>
             {
                 canSwing = true;
                 Destroy(currentProjectile.gameObject);
                 currentProjectile = null;
             });
-
-            currentProjectile.Set(this);
 
             InvokeAction(directionOffset);
         }

@@ -56,49 +56,62 @@ public class InventoryManager : MonoBehaviour
         }
         */
 
-        for (int i = 0; i < 1; i++)
+
+
+
+        if (false)
         {
-            int r = UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length);
-            WeaponType type;
-            if (r == 0)
+            for (int i = 0; i < 1; i++)
             {
-                type = WeaponType.Ranged;
-            }
-            else if (r == 1)
-            {
-                type = WeaponType.MeleeDelault;
-            }
-            else if (r == 2)
-            {
-                type = WeaponType.MeleeSwing;
-            }
-            else
-            {
-                type = WeaponType.MeleeSpear;
-            }
+                int r = UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length);
+                WeaponType type;
+                if (r == 0)
+                {
+                    type = WeaponType.Ranged;
+                }
+                else if (r == 1)
+                {
+                    type = WeaponType.MeleeDelault;
+                }
+                else if (r == 2)
+                {
+                    type = WeaponType.MeleeSwing;
+                }
+                else
+                {
+                    type = WeaponType.MeleeSpear;
+                }
 
-            StartCoroutine(builder.BuildWeapon(type, (weapon) =>
-            {
-                string key = "weapon" + Guid.NewGuid().ToString();
 
+
+                StartCoroutine(builder.BuildWeapon(type, (weapon) =>
+                {
+                    string key = "weapon" + Guid.NewGuid().ToString();
+
+                    InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+                    WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                    weaponItem.weapon = weapon;
+                    weapon.transform.SetParent(weaponItem.transform);
+
+                    var data = weapon.GetData();
+                    JsonDataService service = new JsonDataService();
+                    service.SaveData("aboba", data);
+
+                }, 5));
+            }
+        }
+        else
+        {
+            JsonDataService dataService = new JsonDataService();
+
+            StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>("aboba"), (weapon) =>
+            {
                 InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
                 WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
                 weaponItem.weapon = weapon;
                 weapon.transform.SetParent(weaponItem.transform);
-
-                var data = weapon.GetData();
-                JsonDataService service = new JsonDataService();
-                service.SaveData("aboba", data);
-
-                
-                /*
-                JsonDataService json = new JsonDataService();
-                json.SaveData<Weapon>("sigma", weapon, false);
-                Weapon wpn = json.LoadData<Weapon>("sigma", false);
-                Instantiate(wpn);
-                */
             }));
-        }      
+        }
     }
 
     public void SaveSelectedWeapons()
