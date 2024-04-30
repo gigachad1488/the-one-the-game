@@ -11,17 +11,20 @@ public class PierceLimitProjectileModule : ProjectileModule
     {
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         PierceLimitProjectileModuleData data = new PierceLimitProjectileModuleData();
         data.className = className;
         data.level = level;
         data.pierceCount = pierceCount;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void ProjectileHit()
+    public override void ProjectileHit(Vector3 pos)
     {
         pierceCount--;
 
@@ -31,9 +34,9 @@ public class PierceLimitProjectileModule : ProjectileModule
         }    
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        PierceLimitProjectileModuleData pdata = data as PierceLimitProjectileModuleData;
+        PierceLimitProjectileModuleData pdata = (PierceLimitProjectileModuleData)data.data;
         basePierceCount = pdata.pierceCount;
         level = pdata.level;
     }

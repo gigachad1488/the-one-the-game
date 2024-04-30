@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 2ec7888010928094b832735ddb78debb
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: f76ae494a49ec5d7c4ce1db16ef559ac
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
     - rangedShootModules
     - meleeProjectileModules
     - rangedProjectileModules
+    - uniqueProjectiles
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 53d60cbc768440a4d9bb27f9300f8ab4, type: 2}

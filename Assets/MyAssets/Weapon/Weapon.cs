@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 
     public GameObject weaponModelPrefab;
     public string weaponModelAddressablesPath;
+    public string projectileAddressablesPath;
 
     public delegate void LeftActionDelegate();
     public event LeftActionDelegate? OnLeftAction;
@@ -193,7 +194,11 @@ public class Weapon : MonoBehaviour
 
         data.actionData = weaponAction.GetAllData();
         data.shootData = weaponShoot.GetAllData();
-        data.projectileData = weaponShoot.projectile.GetAllData();
+
+        ModuleDataType type = new ModuleDataType();
+        type = weaponShoot.projectile.GetAllData();
+
+        data.projectileData = type;
 
         return data;
     }
@@ -203,6 +208,7 @@ public class Weapon : MonoBehaviour
         WeaponBaseData data = new WeaponBaseData();
 
         data.weaponModelAddressablesPath = weaponModelAddressablesPath;
+        data.projectileAddressablesPath = projectileAddressablesPath;
 
         data.scaleFlat = scaleFlat;
         data.scaleMult = scaleMult;
@@ -219,6 +225,7 @@ public class Weapon : MonoBehaviour
     public void SetData(WeaponBaseData data)
     {
         weaponModelAddressablesPath = data.weaponModelAddressablesPath;
+        projectileAddressablesPath = data.projectileAddressablesPath;
 
         scaleFlat = data.scaleFlat;
         scaleMult = data.scaleMult;

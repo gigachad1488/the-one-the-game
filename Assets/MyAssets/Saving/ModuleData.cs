@@ -7,8 +7,9 @@ using UnityEngine;
 public class ModuleData 
 {
     public string className;
+    public string addressablesPath;
 
     public int level;
 
-    public List<ModuleData> modules = new List<ModuleData>();
+    public List<ModuleDataType> modules = new List<ModuleDataType>();
 }

@@ -19,7 +19,7 @@ public class DefaultProjectile : Projectile
     {
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         DefaultProjectileData data = new DefaultProjectileData();
         data.className = className;
@@ -27,20 +27,22 @@ public class DefaultProjectile : Projectile
         data.hitCd = baseHitCd;
         data.mult = baseMult;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
     public override void Hit()
-    {
-        InvokeAction();
+    {       
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        DefaultProjectileData pdata = data as DefaultProjectileData;
+        DefaultProjectileData pdata = (DefaultProjectileData)data.data;
         baseHitCd = pdata.hitCd;
         baseMult = pdata.mult;
-        level = data.level;
+        level = pdata.level;
     }
 
     public override void SetRandomBaseStats(float mult)
@@ -53,20 +55,26 @@ public class DefaultProjectile : Projectile
     {
         if (collision.TryGetComponent<HitBox>(out HitBox health))
         {
+            
+
             if (hitBoxes.TryGetValue(health, out bool can))
             {
                 if (can)
                 {
-                    Hit();
-                    health.Damage(weaponShoot.weaponAction.weapon.currentDamage * mult, 1, collision.ClosestPoint(transform.position));
+                    Vector3 closestPoint = collision.ClosestPoint(transform.position);
+
+                    InvokeAction(closestPoint);
+                    health.Damage(weaponShoot.weaponAction.weapon.currentDamage * mult, 1, closestPoint);
                     hitBoxes[health] = false;
                     StartCoroutine(ResetHit(health));
                 }
             }
             else
             {
-                Hit();
-                health.Damage(weaponShoot.weaponAction.weapon.currentDamage * mult, 1, collision.ClosestPoint(transform.position));
+                Vector3 closestPoint = collision.ClosestPoint(transform.position);
+
+                InvokeAction(closestPoint);
+                health.Damage(weaponShoot.weaponAction.weapon.currentDamage * mult, 1, closestPoint);
                 hitBoxes.Add(health, false);
                 StartCoroutine(ResetHit(health));
             }

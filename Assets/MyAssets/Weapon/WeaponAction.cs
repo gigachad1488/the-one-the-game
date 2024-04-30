@@ -28,9 +28,11 @@ public abstract class WeaponAction : MonoBehaviour, IModule<Weapon>
         weapon = t;
 
         ActionModule[] mods = GetComponentsInChildren<ActionModule>();
+        modules.Clear();
 
         foreach (ActionModule m in mods) 
         {
+            m.gameObject.SetActive(true);
             modules.Add(m);
             m.Set(this);
         }
@@ -45,21 +47,21 @@ public abstract class WeaponAction : MonoBehaviour, IModule<Weapon>
         OnWeaponAction?.Invoke(directionOffset);
     }
 
-    public ModuleData GetAllData()
+    public ModuleDataType GetAllData()
     {
-        ModuleData data = GetData();
+        ModuleDataType data = GetData();
 
         foreach (var module in modules) 
         {
-            data.modules.Add(module.GetData());
+            data.data.modules.Add(module.GetData());
         }
 
         return data;
     }
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }
 
 public abstract class ActionModule : MonoBehaviour, IModule<WeaponAction>
@@ -92,9 +94,9 @@ public abstract class ActionModule : MonoBehaviour, IModule<WeaponAction>
 
     public abstract void OnAction(Vector2 direction);
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }
 
 

@@ -47,7 +47,7 @@ public class JsonDataService : IDataService
 
         try
         {
-            T data = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+            T data = JsonConvert.DeserializeObject<T>(File.ReadAllText(path), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             return data;
         }
         catch (System.Exception e)

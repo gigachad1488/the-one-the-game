@@ -36,17 +36,17 @@ public class PistolAction : WeaponAction
         InvokeAction(direction);       
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
-        ModuleData data = new ModuleData();
-        data.className = className;
-        data.level = level;
+        ModuleDataType data = new ModuleDataType();
+        data.data.className = className;
+        data.data.level = level;
 
         return data;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        level = data.level; 
+        level = data.data.level; 
     }
 }

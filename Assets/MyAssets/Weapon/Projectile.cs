@@ -6,8 +6,6 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 {
     public WeaponShoot weaponShoot;
 
-    public string projectileAddressablesPath;
-
     public string className;
 
     public List<ProjectileModule> projectileModules = new List<ProjectileModule>();
@@ -17,7 +15,7 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 
     public int level { get; set; }
 
-    public delegate void ProjectileDelegate();
+    public delegate void ProjectileDelegate(Vector3 position);
     public event ProjectileDelegate OnProjectileHit;
 
     private void Start()
@@ -25,15 +23,16 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
         className = this.GetType().Name;
     }
 
-
     public void Set(WeaponShoot t)
     {
         weaponShoot = t;
 
         ProjectileModule[] mods = GetComponentsInChildren<ProjectileModule>();
+        projectileModules.Clear();
 
         foreach (ProjectileModule mod in mods) 
         {
+            mod.gameObject.SetActive(true);
             projectileModules.Add(mod);
             mod.Set(this);
         }
@@ -61,32 +60,30 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 
     public abstract void Hit();
 
-    public void InvokeAction()
+    public void InvokeAction(Vector3 position)
     {
-        OnProjectileHit.Invoke();
+        OnProjectileHit.Invoke(position);
     }
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public ProjectileData GetAllData()
+    public ModuleDataType GetAllData()
     {
-        ModuleData data = GetData();
+        ModuleDataType data = GetData();
+        data.data.className = this.GetType().Name;
 
         foreach (var module in projectileModules)
         {
-            data.modules.Add(module.GetData());
+            ModuleDataType type = module.GetData();
+            type.data.className = module.GetType().Name;
+            type.data.addressablesPath = module.addressablesPath;
+            data.data.modules.Add(type);
         }
 
-        ProjectileData pdata = new ProjectileData();
-        pdata.projectileAddressablesPath = projectileAddressablesPath;
-        pdata.level = data.level;
-        pdata.modules = data.modules;
-        pdata.className = data.className;
-
-        return pdata;
+        return data;
     }
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }
 
 public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>
@@ -95,13 +92,9 @@ public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>
     public Projectile projectile;
 
     public string className;
+    public string addressablesPath;
 
     public int level { get; set; }
-
-    private void Start()
-    {
-        className = this.GetType().Name;
-    }
 
     public void Set(Projectile t)
     {
@@ -129,9 +122,9 @@ public abstract class ProjectileModule : MonoBehaviour, IModule<Projectile>
         projectile.OnProjectileHit -= ProjectileHit;
     }
 
-    public abstract void ProjectileHit();
+    public abstract void ProjectileHit(Vector3 position);
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }

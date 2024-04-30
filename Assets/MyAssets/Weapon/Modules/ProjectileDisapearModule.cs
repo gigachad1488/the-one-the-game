@@ -16,7 +16,7 @@ public class ProjectileDisapearModule : ProjectileModule
         Destroy(projectile.gameObject);
     }
 
-    public override void ProjectileHit()
+    public override void ProjectileHit(Vector3 pos)
     {
     }
 
@@ -25,20 +25,23 @@ public class ProjectileDisapearModule : ProjectileModule
         time = baseTime * (1 + level * 0.1f);
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         ProjectileDisapearModuleData data = new ProjectileDisapearModuleData();
         data.className = className;
         data.level = level;
         data.time = baseTime;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        ProjectileDisapearModuleData pdata = data as ProjectileDisapearModuleData;
-        level = data.level;
+        ProjectileDisapearModuleData pdata = (ProjectileDisapearModuleData)data.data;
+        level = pdata.level;
         baseTime = pdata.time;
     }
 

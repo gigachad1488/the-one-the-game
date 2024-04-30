@@ -21,7 +21,7 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
         Tween.Custom(1f, 0f, time, x => projectileRb.velocity = startSpeed * x, ease);
     }
 
-    public override void ProjectileHit()
+    public override void ProjectileHit(Vector3 pos)
     {
     }
 
@@ -30,7 +30,7 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
         time = baseTime * (1 + level * 0.1f);
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         ProjectileSpeedLifetimeModuleData data = new ProjectileSpeedLifetimeModuleData();
         data.className = className;
@@ -38,12 +38,15 @@ public class ProjectileSpeedLifetimeModule : ProjectileModule
         data.time = baseTime;
         data.ease = ease;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        ProjectileSpeedLifetimeModuleData pdata = data as ProjectileSpeedLifetimeModuleData;
+        ProjectileSpeedLifetimeModuleData pdata = (ProjectileSpeedLifetimeModuleData)data.data;
         level = pdata.level;
         time = pdata.time;
         ease = pdata.ease;

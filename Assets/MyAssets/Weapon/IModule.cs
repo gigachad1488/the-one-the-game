@@ -10,9 +10,9 @@ public interface IModule<T> where T : Component
 
     public abstract void AfterSet();
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 
 }
             

@@ -50,7 +50,7 @@ public class HomingProjectileModule : ProjectileModule
         }
     }
 
-    public override void ProjectileHit()
+    public override void ProjectileHit(Vector3 pos)
     {
     }
 
@@ -66,21 +66,24 @@ public class HomingProjectileModule : ProjectileModule
         snapPower = baseSnapPower * (1 + level * 0.05f);
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
-        HomingProjecliteData data = new HomingProjecliteData();
+        HomingProjectileData data = new HomingProjectileData();
         data.className = className;
         data.level = level;
         data.radius = baseRadius;
         data.snapPower = baseSnapPower;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        HomingProjecliteData pdata = data as HomingProjecliteData;
-        level = data.level;
+        HomingProjectileData pdata = (HomingProjectileData)data.data;
+        level = pdata.level;
         baseRadius = pdata.radius;
         baseSnapPower = pdata.snapPower;
     }
@@ -92,7 +95,7 @@ public class HomingProjectileModule : ProjectileModule
     }
 }
 
-public class HomingProjecliteData : ModuleData
+public class HomingProjectileData : ModuleData
 {
     public float radius;
     public float snapPower;

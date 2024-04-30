@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class SwordProjectile : Projectile
 {
-    public float baseHitCd = 0.5f;
-    public float hitCd = 0.3f;
+    public float baseHitCd = 0.3f;
+    public float hitCd = 0.2f;
 
     private Dictionary<HitBox, bool> hitBoxes = new Dictionary<HitBox, bool>();
 
@@ -18,30 +19,33 @@ public class SwordProjectile : Projectile
     {
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         SwordProjectileData data = new SwordProjectileData();
         data.className = className;
         data.level = level;
         data.hitCd = baseHitCd;
-        
-        return data;
+
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
     public override void Hit()
-    {
+    {     
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        SwordProjectileData pdata = data as SwordProjectileData;
+        SwordProjectileData pdata = (SwordProjectileData)data.data;
         baseHitCd = pdata.hitCd;
-        level = data.level;
+        level = pdata.level;
     }
 
     public override void SetRandomBaseStats(float mult)
     {
-        baseHitCd = Random.Range(0.3f, 0.6f) * mult;
+        baseHitCd = Random.Range(0.2f, 0.8f) / mult;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -52,14 +56,20 @@ public class SwordProjectile : Projectile
             {
                 if (can)
                 {
-                    health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, collision.ClosestPoint(transform.position));
+                    Vector3 closestPoint = collision.ClosestPoint(transform.position);
+
+                    InvokeAction(closestPoint);
+                    health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, closestPoint);
                     hitBoxes[health] = false;
                     StartCoroutine(ResetHit(health));
                 }
             }
             else
             {
-                health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, collision.ClosestPoint(transform.position));
+                Vector3 closestPoint = collision.ClosestPoint(transform.position);
+
+                InvokeAction(closestPoint);
+                health.Damage(weaponShoot.weaponAction.weapon.currentDamage, 1, closestPoint);
                 hitBoxes.Add(health, false);
                 StartCoroutine(ResetHit(health));
             }

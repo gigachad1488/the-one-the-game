@@ -56,17 +56,20 @@ public class SpearShoot : WeaponShoot
         lungeLength = lungeLength * (1 + level / 0.1f);
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         ModuleData data = new ModuleData();
         data.className = className;
         data.level = level;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        level = data.level;
+        level = data.data.level;
     }
 }

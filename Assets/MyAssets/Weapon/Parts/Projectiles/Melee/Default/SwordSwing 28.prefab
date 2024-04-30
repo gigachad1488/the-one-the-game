@@ -233,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5231764700693226996}
-  - component: {fileID: 4919675798329103802}
+  - component: {fileID: 1051761996145966849}
   - component: {fileID: 1120951973306989212}
   m_Layer: 10
   m_Name: SwordSwing 28
@@ -259,7 +259,7 @@ Transform:
   - {fileID: 5583271560960278355}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4919675798329103802
+--- !u!114 &1051761996145966849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
+  projectileAddressablesPath: 
+  className: 
   projectileModules: []
+  baseMult: 1
+  mult: 1
+  baseHitCd: 0.5
   hitCd: 0.3
 --- !u!61 &1120951973306989212
 BoxCollider2D:

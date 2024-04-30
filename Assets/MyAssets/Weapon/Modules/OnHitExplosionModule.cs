@@ -20,18 +20,20 @@ public class OnHitExplosionModule : ProjectileModule
     public override void AfterSet()
     {
         canExplode = true;
+        gameObject.SetActive(true);
     }
 
-    public override void ProjectileHit()
+    public override void ProjectileHit(Vector3 pos)
     {
         if (canExplode)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, hitLayers);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(pos, radius, hitLayers);
 
             if (hits.Length > 0)
             {
                 canExplode = false;
-                ParticleSystem particles = Instantiate(explosionParticles, transform.position, Quaternion.identity);
+                ParticleSystem particles = Instantiate(explosionParticles, pos, Quaternion.identity);
+                particles.gameObject.SetActive(true);
                 particles.transform.localScale *= radius;
                 particles.Emit(20);
                 Invoke(nameof(ExplosionReload), explosionCd);
@@ -65,7 +67,7 @@ public class OnHitExplosionModule : ProjectileModule
         explosionCd = baseExplosionCd * (1 + level * 0.1f);
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
         OnHitExplosionModuleData data = new OnHitExplosionModuleData();
         data.className = className;
@@ -74,16 +76,19 @@ public class OnHitExplosionModule : ProjectileModule
         data.radius = baseRadius;
         data.mult = baseMult;
 
-        return data;
+        ModuleDataType type = new ModuleDataType();
+        type.data = data;
+
+        return type;
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
-        OnHitExplosionModuleData pdata = data as OnHitExplosionModuleData;
+        OnHitExplosionModuleData pdata = (OnHitExplosionModuleData)data.data;
         baseExplosionCd = pdata.explosionCd;
         baseMult = pdata.mult;
         baseRadius = pdata.radius;
-        level = data.level;
+        level = pdata.level;
     }
 
     public override void SetRandomBaseStats(float mult)

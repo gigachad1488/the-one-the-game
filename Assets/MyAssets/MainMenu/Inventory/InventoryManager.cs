@@ -26,6 +26,8 @@ public class InventoryManager : MonoBehaviour
 
     public WeaponBuilder builder;
 
+    public bool build = true;
+
     private void Awake()
     {
         selectedWeapons = GameObject.FindGameObjectWithTag("SelectedWeapons").GetComponent<SelectedWeapons>();
@@ -55,11 +57,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
         */
-
-
-
-
-        if (false)
+        if (build)
         {
             for (int i = 0; i < 1; i++)
             {
@@ -128,3 +126,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 }
+
+[Serializable]
+public class ModuleDataType
+{
+    [SerializeReference]
+    public ModuleData data = new ModuleData();
+}
+

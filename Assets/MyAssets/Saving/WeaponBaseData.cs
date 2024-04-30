@@ -8,6 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class WeaponBaseData
 {
     public string weaponModelAddressablesPath;
+    public string projectileAddressablesPath;
 
     public int baseDamage;
     public float baseAttackSpeed;
@@ -24,7 +25,10 @@ public class WeaponBaseData
     public float scaleMult;
     public float scaleFlat;
 
-    public ModuleData actionData;
-    public ModuleData shootData;
-    public ProjectileData projectileData;
+    [SerializeReference]
+    public ModuleDataType actionData;
+    [SerializeReference]
+    public ModuleDataType shootData;
+    [SerializeReference]
+    public ModuleDataType projectileData;
 }

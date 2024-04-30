@@ -8,6 +8,8 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
     public WeaponAction weaponAction;
     public Projectile projectile;
 
+    public string projectileAddressablesPath;
+
     public string className;
 
     public int projectileLevel = 1;
@@ -29,9 +31,11 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
         weaponAction = t;
 
         ShootModule[] mods = GetComponentsInChildren<ShootModule>();
+        modules.Clear();
 
         foreach (var module in mods) 
         {
+            module.gameObject.SetActive(true);
             modules.Add(module);
             module.Set(this);
         }
@@ -50,7 +54,7 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
         this.level = level;
 
         foreach (ShootModule module in modules)
-        {
+        {         
             module.SetLevel(level);
         }
 
@@ -68,21 +72,21 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
         OnWeaponShoot?.Invoke(directionOffset);
     }
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public ModuleData GetAllData()
+    public ModuleDataType GetAllData()
     {
-        ModuleData data = GetData();
+        ModuleDataType data = GetData();
 
         foreach (var module in modules)
         {
-            data.modules.Add(module.GetData());
+            data.data.modules.Add( module.GetData());
         }
 
         return data;
     }
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }
 
 public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
@@ -127,7 +131,7 @@ public abstract class ShootModule : MonoBehaviour, IModule<WeaponShoot>
 
     public abstract void OnShoot(Vector2 directionOffset);
 
-    public abstract ModuleData GetData();
+    public abstract ModuleDataType GetData();
 
-    public abstract void SetData(ModuleData data);
+    public abstract void SetData(ModuleDataType data);
 }

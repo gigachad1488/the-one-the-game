@@ -13,16 +13,16 @@ public class Bullet : Projectile
     {
     }
 
-    public override ModuleData GetData()
+    public override ModuleDataType GetData()
     {
-        return new ModuleData();
+        return new ModuleDataType();
     }
 
     public override void Hit()
     {
     }
 
-    public override void SetData(ModuleData data)
+    public override void SetData(ModuleDataType data)
     {
 
     }

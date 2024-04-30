@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -86,7 +87,7 @@ public class WeaponBuilder : MonoBehaviour
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
-            pr.projectileAddressablesPath = projectile.projectileAddressablesPath;
+            weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
             weapon.weaponShoot.projectile = pr;
             pr.gameObject.SetActive(false);
 
@@ -118,9 +119,10 @@ public class WeaponBuilder : MonoBehaviour
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
-            pr.projectileAddressablesPath = projectile.projectileAddressablesPath;
+
+            weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
             weapon.weaponShoot.projectile = pr;
-            weapon.weaponModelAddressablesPath = pr.projectileAddressablesPath;
+            weapon.weaponModelAddressablesPath = weapon.projectileAddressablesPath;
             weapon.weaponModelPrefab = pr.gameObject;
             pr.gameObject.SetActive(false);
         }
@@ -136,8 +138,9 @@ public class WeaponBuilder : MonoBehaviour
                     if (mod != null)
                     {
                         ShootModule module = Instantiate(mod, weapon.weaponShoot.transform);
+                        module.gameObject.SetActive(true);
                         module.SetRandomBaseStats(1);
-                        module.SetLevel(mod.level);
+                        module.SetLevel(mod.level);                   
                         weapon.weaponShoot.modules.Add(module);
                     }
                 });
@@ -156,13 +159,15 @@ public class WeaponBuilder : MonoBehaviour
         {
             if (Random.Range(0, 100) <= projectileChanceNumber)
             {
-                yield return BuildProjectileModule(type, (mod) =>
+                yield return BuildProjectileModule(type, (mod, path) =>
                 {
                     if (mod != null)
                     {
                         ProjectileModule module = Instantiate(mod, weapon.weaponShoot.projectile.transform);
+                        module.gameObject.SetActive(true);
                         module.SetRandomBaseStats(1);
                         module.SetLevel(mod.level);
+                        module.addressablesPath = path;
                         weapon.weaponShoot.projectile.projectileModules.Add(module);
                     }
                 });
@@ -232,7 +237,6 @@ public class WeaponBuilder : MonoBehaviour
 
         Object res = objs.Result[Random.Range(0, objs.Result.Count)];
         projectile = res.GetComponent<Projectile>();
-        projectile.projectileAddressablesPath = AssetDatabase.GetAssetPath(res);
         callback(projectile);
 
         yield return null;
@@ -266,7 +270,7 @@ public class WeaponBuilder : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator BuildProjectileModule(WeaponType type, System.Action<ProjectileModule> callback, int level = 1)
+    public IEnumerator BuildProjectileModule(WeaponType type, System.Action<ProjectileModule, string> callback, int level = 1)
     {
         ProjectileModule module = null;
         AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
@@ -280,15 +284,18 @@ public class WeaponBuilder : MonoBehaviour
             objs = Addressables.LoadAssetsAsync<Object>(meleeProjectileModuleLabel, null);
         }
 
+        string path = "";
+
         yield return new WaitUntil(() => objs.IsDone);
 
         if (objs.Result != null)
         {
             Object res = objs.Result[Random.Range(0, objs.Result.Count)];
             module = res.GetComponent<ProjectileModule>();
+            path = AssetDatabase.GetAssetPath(res);
         }
 
-        callback(module);
+        callback(module, path);
 
         yield return null;
     }
@@ -298,26 +305,26 @@ public class WeaponBuilder : MonoBehaviour
         Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
         weapon.SetData(data);
 
-        WeaponAction action = Instantiate(new GameObject("Weapon Action"), weapon.transform).AddComponent(System.Type.GetType(data.actionData.className)) as WeaponAction;
+        WeaponAction action = Instantiate(new GameObject("Weapon Action"), weapon.transform).AddComponent(System.Type.GetType(data.actionData.data.className)) as WeaponAction;
         action.SetData(data.actionData);
         
-        foreach (ModuleData item in data.actionData.modules)
+        foreach (ModuleDataType item in data.actionData.data.modules)
         {
-            ActionModule module = Instantiate(new GameObject(item.className), action.transform).AddComponent(System.Type.GetType(item.className)) as ActionModule;
+            ActionModule module = Instantiate(new GameObject(item.data.className), action.transform).AddComponent(System.Type.GetType(item.data.className)) as ActionModule;
             module.SetData(item);
         }
 
-        WeaponShoot shoot = Instantiate(new GameObject("Weapon Shoot"), weapon.transform).AddComponent(System.Type.GetType(data.shootData.className)) as WeaponShoot;
+        WeaponShoot shoot = Instantiate(new GameObject("Weapon Shoot"), weapon.transform).AddComponent(System.Type.GetType(data.shootData.data.className)) as WeaponShoot;
         shoot.SetData(data.shootData);
 
-        foreach (ModuleData item in data.shootData.modules)
+        foreach (ModuleDataType item in data.shootData.data.modules)
         {
-            ShootModule module = Instantiate(new GameObject(item.className), shoot.transform).AddComponent(System.Type.GetType(item.className)) as ShootModule;
+            ShootModule module = Instantiate(new GameObject(item.data.className), shoot.transform).AddComponent(System.Type.GetType(item.data.className)) as ShootModule;
             module.SetData(item);
         }
 
         Projectile projectile = null;
-        var handle = Addressables.LoadAssetAsync<GameObject>(data.projectileData.projectileAddressablesPath);
+        var handle = Addressables.LoadAssetAsync<GameObject>(data.projectileAddressablesPath);
 
         yield return handle;
 
@@ -325,9 +332,11 @@ public class WeaponBuilder : MonoBehaviour
         projectile.SetData(data.projectileData);
         projectile.gameObject.SetActive(false);
 
-        foreach (ModuleData item in data.projectileData.modules)
+        foreach (ModuleDataType item in data.projectileData.data.modules)
         {
-            ProjectileModule module = Instantiate(new GameObject(item.className), projectile.transform).AddComponent(System.Type.GetType(item.className)) as ProjectileModule;
+            var pmhandle = Addressables.LoadAssetAsync<GameObject>(item.data.addressablesPath);
+            yield return pmhandle;
+            ProjectileModule module = Instantiate(pmhandle.Result, projectile.transform).GetComponent<ProjectileModule>();
             module.SetData(item);
         }
 

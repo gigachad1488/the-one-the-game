@@ -57,7 +57,7 @@ public class MainMenuManager : MonoBehaviour
         shopBackButton.onClick.AddListener(ShowMain);
 
         settingsButton.onClick.AddListener(ShowSettings);
-        settingsBackButton.onClick.AddListener(ShowMain);
+        settingsBackButton.onClick.AddListener(delegate { ShowMain(); settingsManager.ChangeTab(0); });
 
         ShowMain();
     }
@@ -95,8 +95,6 @@ public class MainMenuManager : MonoBehaviour
     public void ShowSettings()
     {
         mainCanvas.gameObject.SetActive(false);
-        settingsCanvas.gameObject.SetActive(true);
-
-        settingsManager.ChangeTab(0);
+        settingsCanvas.gameObject.SetActive(true);     
     }
 }

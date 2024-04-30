@@ -133,7 +133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
+  projectileAddressablesPath: 
+  className: 
   projectileModules: []
+  baseMult: 1
+  mult: 1
+  baseHitCd: 0.5
   hitCd: 0.3
 --- !u!61 &5606511727262154698
 BoxCollider2D:
