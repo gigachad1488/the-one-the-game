@@ -41,6 +41,11 @@ public class HomingProjectileModule : ProjectileModule
     {
         while (true)
         {
+            if (target.gameObject == null)
+            {
+                yield return null;
+            }
+
             Vector3 dir = target.position - transform.position;
             Vector3 direction = Vector3.Lerp(rb.velocity, dir, snapPower);
             rb.velocity = direction.normalized * rb.velocity.magnitude;
@@ -90,8 +95,8 @@ public class HomingProjectileModule : ProjectileModule
 
     public override void SetRandomBaseStats(float mult)
     {
-        baseRadius = Random.Range(5, 15) * mult;
-        baseSnapPower = Random.Range(0.1f, 0.3f) * mult;
+        baseRadius = Random.Range(2, 8) * mult;
+        baseSnapPower = Random.Range(0.1f, 0.2f) * mult;
     }
 }
 

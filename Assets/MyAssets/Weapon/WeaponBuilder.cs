@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
@@ -7,7 +8,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using static UnityEditor.Recorder.OutputPath;
 
 
 public class WeaponBuilder : MonoBehaviour
@@ -67,7 +67,7 @@ public class WeaponBuilder : MonoBehaviour
 
         if (type == WeaponType.Ranged)
         {
-            int damage = Random.Range(minRangedDamage, maxRangedDamage);
+            int damage = System.Convert.ToInt32(Random.Range(minRangedDamage, maxRangedDamage) * 1 + (level * 0.5f));
             float percentDamageLuck = (float)damage / maxRangedDamage;
 
             float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.5f), maxRangedAttackSpeed);
@@ -85,28 +85,33 @@ public class WeaponBuilder : MonoBehaviour
             weapon.weaponShoot = shoot;
           
             Projectile projectile = null;
-            yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
+            yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
             weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
             weapon.weaponShoot.projectile = pr;
             pr.gameObject.SetActive(false);
 
             AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>(rangedModelsLabel, null);
-            yield return new WaitUntil(() => handle.IsDone);
+            yield return handle;
             GameObject res = handle.Result[Random.Range(0, handle.Result.Count)];
             weapon.weaponModelPrefab = res;
             weapon.weaponModelAddressablesPath = AssetDatabase.GetAssetPath(res);
         }
         else
         {
-            int damage = Random.Range(minRangedDamage, maxRangedDamage);
-            float percentDamageLuck = (float)damage / maxRangedDamage;
+            int damage = System.Convert.ToInt32(Random.Range(minMeleeDamage, maxMeleeDamage) * 1 + (level * 0.5f));
+            float percentDamageLuck = (float)damage / maxMeleeDamage;
 
-            float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.5f), maxRangedAttackSpeed);
+            float attackSpeed = Random.Range(minMeleeAttackSpeed * (1 + percentDamageLuck * 0.5f), maxMeleeAttackSpeed);
 
             weapon.baseDamage = damage;
             weapon.baseAttackSpeed = attackSpeed;
             weapon.baseScale = 1;
+
+            if (attackSpeed / maxMeleeAttackSpeed > 0.5f)
+            {
+                weapon.ScaleMult = Random.Range(0.2f, 0.8f);
+            }
 
             SwordAction action = new GameObject("Weapon Action").AddComponent<SwordAction>();
             weapon.weaponAction = action;
@@ -117,7 +122,7 @@ public class WeaponBuilder : MonoBehaviour
             weapon.weaponShoot = shoot;
 
             Projectile projectile = null;
-            yield return BuildWeaponProjectile(type, (item) => projectile = item, 1);
+            yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
 
             weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
@@ -137,11 +142,17 @@ public class WeaponBuilder : MonoBehaviour
                 {
                     if (mod != null)
                     {
-                        ShootModule module = Instantiate(mod, weapon.weaponShoot.transform);
-                        module.gameObject.SetActive(true);
-                        module.SetRandomBaseStats(1);
-                        module.SetLevel(mod.level);                   
-                        weapon.weaponShoot.modules.Add(module);
+                        if (!weapon.weaponShoot.modules.Any(x => x.GetType() == mod.GetType()))
+                        {
+                            ShootModule module = Instantiate(mod, weapon.weaponShoot.transform);
+                            module.gameObject.SetActive(true);
+                            module.SetRandomBaseStats(1);
+                            weapon.weaponShoot.modules.Add(module);
+                        }
+                        else
+                        {
+                            shootChanceNumber *= nextModuleChanceDecrease;
+                        }
                     }
                 });
             }
@@ -163,12 +174,18 @@ public class WeaponBuilder : MonoBehaviour
                 {
                     if (mod != null)
                     {
-                        ProjectileModule module = Instantiate(mod, weapon.weaponShoot.projectile.transform);
-                        module.gameObject.SetActive(true);
-                        module.SetRandomBaseStats(1);
-                        module.SetLevel(mod.level);
-                        module.addressablesPath = path;
-                        weapon.weaponShoot.projectile.projectileModules.Add(module);
+                        if (!weapon.weaponShoot.projectile.projectileModules.Any(x => x.GetType() == mod.GetType()))
+                        {
+                            ProjectileModule module = Instantiate(mod, weapon.weaponShoot.projectile.transform);
+                            module.gameObject.SetActive(true);
+                            module.SetRandomBaseStats(1);
+                            module.addressablesPath = path;
+                            weapon.weaponShoot.projectile.projectileModules.Add(module);
+                        }
+                        else
+                        {
+                            projectileChanceNumber *= nextModuleChanceDecrease; 
+                        }
                     }
                 });
             }
@@ -180,6 +197,7 @@ public class WeaponBuilder : MonoBehaviour
             projectileChanceNumber *= nextModuleChanceDecrease;
         }
 
+        weapon.level = level;
         weapon.enabled = false;
 
         callback(weapon);
@@ -214,28 +232,28 @@ public class WeaponBuilder : MonoBehaviour
 
     public IEnumerator BuildWeaponProjectile(WeaponType type, System.Action<Projectile> callback, int level = 1)
     {
-        AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
+        AsyncOperationHandle<IList<GameObject>> objs = new AsyncOperationHandle<IList<GameObject>>();
         Projectile projectile = null;
 
         switch (type)
         {
             case WeaponType.Ranged:
-                objs = Addressables.LoadAssetsAsync<Object>(rangedProjectileLabel, null);
+                objs = Addressables.LoadAssetsAsync<GameObject>(rangedProjectileLabel, null);
                 break;
             case WeaponType.MeleeSwing:
-                objs = Addressables.LoadAssetsAsync<Object>(meleeSwingProjectileLabel, null);
+                objs = Addressables.LoadAssetsAsync<GameObject>(meleeSwingProjectileLabel, null);
                 break;
             case WeaponType.MeleeDelault:
-                objs = Addressables.LoadAssetsAsync<Object>(meleeDefaultProjectileLabel, null);
+                objs = Addressables.LoadAssetsAsync<GameObject>(meleeDefaultProjectileLabel, null);
                 break;
             case WeaponType.MeleeSpear:
-                objs = Addressables.LoadAssetsAsync<Object>(meleeSpearProjectileLabel, null);
+                objs = Addressables.LoadAssetsAsync<GameObject>(meleeSpearProjectileLabel, null);
                 break;
         }
 
         yield return new WaitUntil(() => objs.IsDone);
 
-        Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+        GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
         projectile = res.GetComponent<Projectile>();
         callback(projectile);
 
@@ -245,22 +263,36 @@ public class WeaponBuilder : MonoBehaviour
     public IEnumerator BuildShootModule(WeaponType type, System.Action<ShootModule> callback, int level = 1)
     {
         ShootModule module = null;
-        AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
+        AsyncOperationHandle<IList<GameObject>> objs = new AsyncOperationHandle<IList<GameObject>>();
+        bool cancel = false;
 
-        if (type == WeaponType.Ranged)
+        try
         {
-            objs = Addressables.LoadAssetsAsync<Object>(rangedShootModuleLabel, null);
+            if (type == WeaponType.Ranged)
+            {
+                objs = Addressables.LoadAssetsAsync<GameObject>(rangedShootModuleLabel, null);
+            }
+            else
+            {
+                objs = Addressables.LoadAssetsAsync<GameObject>(meleeShootModuleLabel, null);
+            }
         }
-        else
+        catch
         {
-            objs = Addressables.LoadAssetsAsync<Object>(meleeShootModuleLabel, null);
+            cancel = true;
+        }
+
+        if (cancel)
+        {
+            callback(null);
+            yield return null;
         }
 
         yield return new WaitUntil(() => objs.IsDone);
 
         if (objs.Result != null) 
         {
-            Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+            GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
             module = res.GetComponent<ShootModule>();
             module.SetLevel(level);
         }
@@ -273,24 +305,39 @@ public class WeaponBuilder : MonoBehaviour
     public IEnumerator BuildProjectileModule(WeaponType type, System.Action<ProjectileModule, string> callback, int level = 1)
     {
         ProjectileModule module = null;
-        AsyncOperationHandle<IList<Object>> objs = new AsyncOperationHandle<IList<Object>>();
+        AsyncOperationHandle<IList<GameObject>> objs = new AsyncOperationHandle<IList<GameObject>>();
 
-        if (type == WeaponType.Ranged)
+        bool cancel = false;
+
+        try
         {
-            objs = Addressables.LoadAssetsAsync<Object>(rangeProjectileModuleLabel, null);
+            if (type == WeaponType.Ranged)
+            {
+                objs = Addressables.LoadAssetsAsync<GameObject>(rangeProjectileModuleLabel, null);
+            }
+            else
+            {
+                objs = Addressables.LoadAssetsAsync<GameObject>(meleeProjectileModuleLabel, null);
+            }
         }
-        else
+        catch
         {
-            objs = Addressables.LoadAssetsAsync<Object>(meleeProjectileModuleLabel, null);
+            cancel = true;
         }
 
         string path = "";
+
+        if (cancel)
+        {
+            callback(null, null);
+            yield return null;
+        }
 
         yield return new WaitUntil(() => objs.IsDone);
 
         if (objs.Result != null)
         {
-            Object res = objs.Result[Random.Range(0, objs.Result.Count)];
+            GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
             module = res.GetComponent<ProjectileModule>();
             path = AssetDatabase.GetAssetPath(res);
         }

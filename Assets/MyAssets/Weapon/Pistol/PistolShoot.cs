@@ -13,6 +13,7 @@ public class PistolShoot : WeaponShoot
 
     private float attackCdTickTime = 0.1f;
     private WaitForSeconds attackCdTick;
+
     public override void AfterSet()
     {     
         Rigidbody2D rb = projectile.AddComponent<Rigidbody2D>();
@@ -31,10 +32,10 @@ public class PistolShoot : WeaponShoot
             StartCoroutine(AttackCd());
             Projectile pr = Instantiate(projectile, shootPoint.position, weaponAction.weaponModel.transform.localRotation);
             pr.gameObject.SetActive(true);
-            pr.Set(this); 
             Rigidbody2D rb = pr.GetComponent<Rigidbody2D>();
             rb.isKinematic = true;
             rb.velocity = pr.transform.right * projectileSpeed;
+            pr.Set(this);        
         }
     }
 

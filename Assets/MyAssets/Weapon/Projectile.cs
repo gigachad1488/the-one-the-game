@@ -37,7 +37,9 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
             mod.Set(this);
         }
 
-        AfterSet();
+        AfterSet();     
+
+        SetLevel(t.level);
     }
 
     public abstract void AfterSet();

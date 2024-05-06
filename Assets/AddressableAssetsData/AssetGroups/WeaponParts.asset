@@ -12,49 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: WeaponParts
   m_EditorClassIdentifier: 
-  m_GroupName: WeaponParts
+  m_GroupName: c7e8e6225a47ddb46ab18fa311666f1a
   m_Data:
     m_SerializedData: []
-  m_GUID: 78aa1bce4e0a6194b8c9fba750b7e1c0
+  m_GUID: c7e8e6225a47ddb46ab18fa311666f1a
   m_SerializeEntries:
   - m_GUID: 9f68009488b529c4ca04528542b42b55
     m_Address: Assets/MyAssets/Weapon/Parts
     m_ReadOnly: 0
     m_SerializedLabels:
-    - parts
+    - meleeProjectileModules
+    - rangedProjectileModules
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 49a0fa250b244ed4f9a52f7210de5127
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee
+  - m_GUID: abc654e2f9b87eb48bcbea236d44d266
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Slash Projectile.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts
+    - uniqueProjectiles
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aaed333d7091b964bbe8a38b6ca95903
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default
+  - m_GUID: 6440651e33d7cb64c84be93e0fa81188
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Boom Projectile 1.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts
-    - meleeDefaultProjectiles
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a649e2feea7ee0146ac928b87b54d0db
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - meleeSwingProjectiles
-    - parts
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b94f33ed9fd445c41aec54fde419464f
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - parts
-    - meleeSpearProjectiles
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 597f153387eacf343b725b4463baab1c
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - parts
+    - uniqueProjectiles
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a41b0c7b500d9df41b2202fb414a7900
     m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged
@@ -70,16 +52,109 @@ MonoBehaviour:
     - parts
     - rangedModels
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: abc654e2f9b87eb48bcbea236d44d266
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Slash Projectile.prefab
+  - m_GUID: 597f153387eacf343b725b4463baab1c
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts
     - uniqueProjectiles
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49a0fa250b244ed4f9a52f7210de5127
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaed333d7091b964bbe8a38b6ca95903
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b94f33ed9fd445c41aec54fde419464f
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a649e2feea7ee0146ac928b87b54d0db
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0066cb340e5af34a9c844e1eafde2db
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Action
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2782669d6a421e944baa6e7c2872f2be
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/OnHitExplosionModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeProjectileModules
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1adb6ee9b1dc3ab4494c42f1807f5f86
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Melee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc73343039c609140a78bbbcc6ab444b
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Ranged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 311d514f3a26be643aaf20cebe9272fa
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Shoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 719c2e61e32483a43b4d8d658b6d4546
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Shoot/Melee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeShootModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29a364ec39203f147811977130fd2731
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Shoot/Ranged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedShootModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c1cd71ecc7316a41bb153d7db950fe2
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Boom Projectile 2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 194889db82deec44691873b3690e3c9d
+    m_Address: Assets/MyAssets/Weapon/Modules/ThunderModuleProjectilePrefab.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6a8fbe3be55fa34b867bab575cfe666
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/OnHitThunderModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeProjectileModules
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f4f7148319a7984d89ac1d950154d85
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/OnHitHealProjectileModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeProjectileModules
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 86ac6c33d5d16d84d9ea919b284be43a, type: 2}
-    - {fileID: 11400000, guid: 9f5c00ba661e7714d8d47a1a32bd73b9, type: 2}
+    - {fileID: 11400000, guid: 6c0b542ead9bf2e4f9123185af08195c, type: 2}

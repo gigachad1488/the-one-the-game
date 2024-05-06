@@ -27,7 +27,12 @@ public class CubeBoss : MonoBehaviour, IBossDamage
     public float thirdPhaseMult = 2.2f;
 
     public LayerMask groundLayer;
+    public int damage = 50;
+    [SerializeField]
     public int baseDamage { get; set; } = 50;
+
+    [SerializeField]
+    public float difficultyMult { get; set; } = 1.5f;
 
     [Space(5)]
     [Header("Attacks")]  
@@ -58,13 +63,18 @@ public class CubeBoss : MonoBehaviour, IBossDamage
             item.canCollisionAttack = false;
         }
 
-        yield return new WaitForSeconds(1);      
+        yield return new WaitForSeconds(2);      
         attackStates.Add(new CubeRollState(stateMachine, this));
         attackStates.Add(new CubeJumpState(stateMachine, this));
         attackStates.Add(new CubeDashState(stateMachine, this));
         stateMachine.SetState(attackStates[0]);
 
+        firstPhaseMult *= difficultyMult;
+        secondPhaseMult *= difficultyMult;
+        thirdPhaseMult *= difficultyMult;
         mult = firstPhaseMult;
+        baseDamage = System.Convert.ToInt32(baseDamage * difficultyMult);
+
     }
 
     private void Update()

@@ -19,14 +19,35 @@ public class SwordShoot : WeaponShoot
         if (canSwing)
         {
             canSwing = false;
-            currentProjectile = Instantiate(projectile, weaponAction.weapon.transform);
-            float playerRot = weaponAction.weapon.player.playerMovement.sprite.transform.localScale.x;
+
+            GameObject swingOffset = new GameObject("swingsword");
+            swingOffset.transform.SetParent(weaponAction.weapon.transform);
+            swingOffset.transform.localPosition = Vector3.zero;
+
+            currentProjectile = Instantiate(projectile, swingOffset.transform);
+            currentProjectile.transform.localPosition += new Vector3(0, 0.65f, 0);
+
+            float playerRot = 1;
+
+            if (directionOffset.x >= 0)
+            {
+                playerRot = 1;
+            }
+            else
+            {
+                playerRot = -1;
+            }
+
             currentProjectile.gameObject.SetActive(true);
             currentProjectile.Set(this);
-            Tween.LocalEulerAngles(currentProjectile.transform, Vector3.zero, new Vector3(0, 0, -360 * playerRot), new TweenSettings(weaponAction.weapon.currentAttackSpeed, Ease.Linear, useFixedUpdate: true)).OnComplete(this, x =>
+
+            weaponAction.weapon.player.armSolver.weight = 1;
+
+            Tween.LocalEulerAngles(swingOffset.transform, Vector3.zero, new Vector3(0, 0, -360 * playerRot), new TweenSettings(weaponAction.weapon.currentAttackSpeed, Ease.Linear, useFixedUpdate: true)).OnUpdate(swingOffset.transform, (x, y) => weaponAction.weapon.player.armSolverTarget.position = currentProjectile.transform.position).OnComplete(this, x =>
             {
+                weaponAction.weapon.player.armSolver.weight = 0;
                 canSwing = true;
-                Destroy(currentProjectile.gameObject);
+                Destroy(swingOffset);
                 currentProjectile = null;
             });
 

@@ -7,7 +7,7 @@ public class SpearShoot : WeaponShoot
 {
     private bool canSwing = true;
 
-    private float lungeLength = 2f;
+    private float lungeLength = 1.3f;
 
     private Projectile currentProjectile;
 
@@ -26,8 +26,12 @@ public class SpearShoot : WeaponShoot
             currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position, Quaternion.Euler(0, 0, angle), weaponAction.weapon.transform);
             currentProjectile.gameObject.SetActive(true);
             currentProjectile.Set(this);
-            Tween.LocalPosition(currentProjectile.transform, dirNorm * lungeLength, weaponAction.weapon.currentAttackSpeed * 0.5f, Ease.Linear, 2, CycleMode.Rewind).OnComplete(this, x =>
+
+            weaponAction.weapon.player.armSolver.weight = 1;
+
+            Tween.LocalPosition(currentProjectile.transform, dirNorm * lungeLength, weaponAction.weapon.currentAttackSpeed * 0.5f, Ease.Linear, 2, CycleMode.Rewind).OnUpdate(currentProjectile.transform, (x, y) => weaponAction.weapon.player.armSolverTarget.position = x.position).OnComplete(this, x =>
             {
+                weaponAction.weapon.player.armSolver.weight = 0;
                 canSwing = true;
                 Destroy(currentProjectile.gameObject);
                 currentProjectile = null;
@@ -53,7 +57,7 @@ public class SpearShoot : WeaponShoot
 
     public override void AfterLevelSet()
     {
-        lungeLength = lungeLength * (1 + level / 0.1f);
+        lungeLength = lungeLength * (1 + level * 0.1f);
     }
 
     public override ModuleDataType GetData()

@@ -16,6 +16,8 @@ public class OnHitExplosionModule : ProjectileModule
     public float baseRadius = 2f;
     public float radius = 2f;
 
+    public int baseLightingCount = 1;
+
     public LayerMask hitLayers;
     public override void AfterSet()
     {
@@ -93,7 +95,7 @@ public class OnHitExplosionModule : ProjectileModule
 
     public override void SetRandomBaseStats(float mult)
     {
-        baseMult = Random.Range(0.2f, 1) * mult;
+        baseMult = Random.Range(0.1f, 0.4f) * mult;
         baseRadius = Random.Range(2, 3) * mult;
         explosionCd = Random.Range(0.4f, 1) / mult;
     }

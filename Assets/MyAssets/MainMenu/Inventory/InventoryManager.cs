@@ -27,6 +27,7 @@ public class InventoryManager : MonoBehaviour
     public WeaponBuilder builder;
 
     public bool build = true;
+    public int count = 1;
 
     private void Awake()
     {
@@ -59,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         */
         if (build)
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 int r = UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length);
                 WeaponType type;

@@ -2222,7 +2222,8 @@ MonoBehaviour:
   weaponItemPrefab: {fileID: 1814973551099113718, guid: 41ce97e0d3fb5b14d88e60ecc6907959, type: 3}
   slotsGrid: {fileID: 1750435227}
   builder: {fileID: 1350425120}
-  build: 0
+  build: 1
+  count: 10
 --- !u!1 &267557739
 GameObject:
   m_ObjectHideFlags: 0
@@ -11575,14 +11576,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0f08c059f414046a6717529802d8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRangedDamage: 1
-  maxRangedDamage: 50
-  minRangedAttackSpeed: 0.1
-  maxRangedAttackSpeed: 1
-  minMeleeDamage: 30
-  maxMeleeDamage: 150
-  minMeleeAttackSpeed: 0.5
-  maxMeleeAttackSpeed: 2
+  minRangedDamage: 20
+  maxRangedDamage: 100
+  minRangedAttackSpeed: 0.05
+  maxRangedAttackSpeed: 0.6
+  minMeleeDamage: 60
+  maxMeleeDamage: 200
+  minMeleeAttackSpeed: 0.3
+  maxMeleeAttackSpeed: 1.2
   baseModuleChance: 0.2
   nextModuleChanceDecrease: 0.5
   rangedProjectileLabel:
@@ -11612,7 +11613,7 @@ Transform:
   m_GameObject: {fileID: 1350425119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 366.15338, y: 848.65753, z: 0.11971659}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14378,7 +14379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 24.500027}
+  m_AnchoredPosition: {x: 0, y: 24.5}
   m_SizeDelta: {x: 0, y: -191.00006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1779241896
@@ -18047,6 +18048,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 740328868}
   - {fileID: 262953889}
+  - {fileID: 1350425121}
+  - {fileID: 78695218}
   - {fileID: 243591300}
   - {fileID: 1773291156}
   - {fileID: 872270901}
@@ -18058,5 +18061,3 @@ SceneRoots:
   - {fileID: 754574611}
   - {fileID: 932446275}
   - {fileID: 944294866}
-  - {fileID: 1350425121}
-  - {fileID: 78695218}

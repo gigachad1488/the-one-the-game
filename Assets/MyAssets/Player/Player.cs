@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D.IK;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     [Space(5)]
     [Header("Sprite")]
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer[] spriteRenderers;
     private Color defaultColor;
     private Color damagedColor;
 
@@ -21,6 +22,9 @@ public class Player : MonoBehaviour
     public Health health;
     public Collider2D hitboxCollider;
     public Camera camera;
+
+    public LimbSolver2D armSolver;
+    public Transform armSolverTarget;
 
     [Space(5)]
     [Header("Base Stats")]
@@ -44,7 +48,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        defaultColor = spriteRenderer.color;
+        defaultColor = spriteRenderers[0].color;
         damagedColor = new Color(damagedColor.r, defaultColor.g, defaultColor.b, 0.5f);
 
         health = GetComponent<Health>();
@@ -52,6 +56,8 @@ public class Player : MonoBehaviour
 
         health.OnDamage += OnDamage;
         health.OnDeath += Health_OnDeath;
+
+        armSolver.weight = 0;
     }
 
     public void SetHealthLevel(int level)
@@ -93,14 +99,27 @@ public class Player : MonoBehaviour
 
     private void OnDamage(float amount, float mult, Vector3 position)
     {
-        spriteRenderer.color = defaultColor;
+        spriteRenderers[0].color = damagedColor;
+        spriteRenderers[1].color = damagedColor;
+        spriteRenderers[2].color = damagedColor;
+        spriteRenderers[3].color = damagedColor;
+        spriteRenderers[4].color = damagedColor;
+        spriteRenderers[5].color = damagedColor;
+
         hitboxCollider.enabled = false;
-        Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind).OnComplete(this, x => hitboxCollider.enabled = true);     
+        Invoke(nameof(ReturnColor), health.iFrameTime);
+        //Tween.Color(spriteRenderer, damagedColor, health.iFrameTime * 0.5f, Ease.OutExpo, 2, CycleMode.Rewind).OnComplete(this, x => hitboxCollider.enabled = true);     
     }
 
     private void ReturnColor()
     {
-        spriteRenderer.color = defaultColor;
+        spriteRenderers[0].color = defaultColor;
+        spriteRenderers[1].color = defaultColor;
+        spriteRenderers[2].color = defaultColor;
+        spriteRenderers[3].color = defaultColor;
+        spriteRenderers[4].color = defaultColor;
+        spriteRenderers[5].color = defaultColor;
+
         hitboxCollider.enabled = true;
     }   
 }

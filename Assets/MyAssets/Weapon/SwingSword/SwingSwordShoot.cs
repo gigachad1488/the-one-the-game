@@ -21,8 +21,13 @@ public class SwingSwordShoot : WeaponShoot
     public override void Shoot(Vector2 directionOffset)
     {
         if (canSwing) 
-        {           
-            currentProjectile = Instantiate(projectile, weaponAction.weapon.transform.position + (Vector3)directionOffset.normalized * 0.5f, Quaternion.identity, weaponAction.weapon.transform);
+        {
+            GameObject swingOffset = new GameObject("swingsword");
+            swingOffset.transform.SetParent(weaponAction.weapon.transform);
+            swingOffset.transform.position = weaponAction.weapon.transform.position;            
+
+            currentProjectile = Instantiate(projectile, swingOffset.transform);
+            currentProjectile.transform.position += new Vector3(0, 1.5f, 0);
             currentProjectile.gameObject.SetActive(true);
             currentProjectile.Set(this);           
             canSwing = false;
@@ -30,23 +35,27 @@ public class SwingSwordShoot : WeaponShoot
             Vector3 up = new Vector3(0, 0, angle + attackAngle);
             Vector3 down = new Vector3(0, 0, angle - attackAngle - 180);
 
+            weaponAction.weapon.player.armSolver.weight = 1;
+
             if (fromUp)
             {
-                currentProjectile.transform.localScale = new Vector3(currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
-                Tween.LocalEulerAngles(currentProjectile.transform, up, down, new TweenSettings(weaponAction.weapon.currentAttackSpeed, swingEase, useFixedUpdate: false)).OnComplete(this, x =>
+                swingOffset.transform.localScale = new Vector3(swingOffset.transform.localScale.x, swingOffset.transform.localScale.y, swingOffset.transform.localScale.z);
+                Tween.LocalEulerAngles(swingOffset.transform, up, down, new TweenSettings(weaponAction.weapon.currentAttackSpeed, swingEase, useFixedUpdate: false)).OnUpdate(swingOffset.transform, (x, y) => weaponAction.weapon.player.armSolverTarget.position = currentProjectile.transform.position).OnComplete(this, x =>
                 {
+                    weaponAction.weapon.player.armSolver.weight = 0;
                     canSwing = true;
-                    Destroy(currentProjectile.gameObject);
+                    Destroy(swingOffset);
                 });
                 fromUp = false;
             }
             else
             {
-                currentProjectile.transform.localScale = new Vector3(-currentProjectile.transform.localScale.x, currentProjectile.transform.localScale.y, currentProjectile.transform.localScale.z);
-                Tween.LocalEulerAngles(currentProjectile.transform, down, up, new TweenSettings(weaponAction.weapon.currentAttackSpeed, swingEase, useFixedUpdate: false)).OnComplete(this, x =>
+                swingOffset.transform.localScale = new Vector3(-swingOffset.transform.localScale.x, swingOffset.transform.localScale.y, swingOffset.transform.localScale.z);
+                Tween.LocalEulerAngles(swingOffset.transform, down, up, new TweenSettings(weaponAction.weapon.currentAttackSpeed, swingEase, useFixedUpdate: false)).OnUpdate(swingOffset.transform, (x, y) => weaponAction.weapon.player.armSolverTarget.position = currentProjectile.transform.position).OnComplete(this, x =>
                 {
+                    weaponAction.weapon.player.armSolver.weight = 0;
                     canSwing = true;
-                    Destroy(currentProjectile.gameObject);
+                    Destroy(swingOffset);
                 });
                 fromUp = true;
             }

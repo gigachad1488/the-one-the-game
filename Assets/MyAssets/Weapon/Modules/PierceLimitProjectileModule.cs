@@ -9,6 +9,7 @@ public class PierceLimitProjectileModule : ProjectileModule
 
     public override void AfterSet()
     {
+        level = projectile.level;
     }
 
     public override ModuleDataType GetData()

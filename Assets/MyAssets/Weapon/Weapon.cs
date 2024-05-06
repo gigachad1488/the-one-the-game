@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
 
     public float maxLevelMult = 10;
 
-    private int level = 1;
+    public int level = 1;
 
     [Space(5)]
     [Header("Parts")]
@@ -104,7 +104,6 @@ public class Weapon : MonoBehaviour
         {
             scaleMult = value;
             CalcScale();
-            transform.localScale = new Vector3(currentScale, currentScale, currentScale);
         }
     }
 
@@ -119,7 +118,6 @@ public class Weapon : MonoBehaviour
         {
             scaleFlat = value;
             CalcScale();
-            transform.localScale = new Vector3(currentScale, currentScale, currentScale);
         }
     }
 
@@ -135,22 +133,25 @@ public class Weapon : MonoBehaviour
     public void CalcScale()
     {
         currentScale = (baseScale * (1 + scaleMult)) + scaleFlat;
+
+        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        Debug.Log("CUR SCALE = " + new Vector3(currentScale, currentScale, currentScale));
     }
 
     public void Init(Player player)
-    {     
+    {
+        inputManager = player.playerMovement.inputManager;
+        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
         this.player = player;
 
         weaponAction.Set(this);
         weaponShoot.Set(weaponAction);
 
-        inputManager = player.playerMovement.inputManager;
-
         CalcDamage();
         CalcAttackSpeed();
         CalcScale();
 
-        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        SetLevel();
     }
 
     private void Update()
@@ -161,9 +162,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void SetLevel(int level)
+    public void SetLevel()
     {
-        this.level = level;
+        weaponAction.level = level;
+        weaponShoot.SetLevel(level);
+        weaponShoot.projectileLevel = level;
+        weaponShoot.projectile.SetLevel(level);
     }
 
     public void LeftAction()
@@ -219,6 +223,8 @@ public class Weapon : MonoBehaviour
         data.baseAttackSpeed = baseAttackSpeed;
         data.baseScale = baseScale;
 
+        data.level = level;
+
         return data;
     }
 
@@ -239,5 +245,7 @@ public class Weapon : MonoBehaviour
         baseAttackSpeed = data.baseAttackSpeed;
         baseScale = data.baseScale;
         baseDamage = data.baseDamage;
+
+        level = data.level;
     }
 }

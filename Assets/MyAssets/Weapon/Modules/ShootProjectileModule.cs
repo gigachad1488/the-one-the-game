@@ -23,13 +23,10 @@ public class ShootProjectileModule : ShootModule
     public override void AfterLevelSet()
     {
         projectileSpeed = baseProjectileSpeed * (1 + level * 0.1f);
-        this.level = level;
     }
 
     public override void AfterSet()
-    {
-        projectileModel.SetLevel(level);
-        projectileModel.SetData(projectileData);
+    {             
     }
 
     public void InitProjectile()
@@ -39,6 +36,10 @@ public class ShootProjectileModule : ShootModule
         Rigidbody2D rb = projectileModel.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.mass = 0;
+
+        projectileModel.SetData(projectileData);
+        projectileModel.SetLevel(level);
+
         projectileModel.gameObject.SetActive(false);
     }
 
@@ -88,20 +89,20 @@ public class ShootProjectileModule : ShootModule
     {
         reference.labelString = "uniqueProjectiles";
 
-        baseProjectileSpeed = Random.Range(5, 20) * mult;
+        baseProjectileSpeed = Random.Range(5, 60) * mult;
 
         var objs = Addressables.LoadAssetsAsync<GameObject>(reference, null);
         objs.WaitForCompletion();
 
         GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
         projectileModel = res.GetComponent<Projectile>();
-
-        InitProjectile();
-
+       
         projectileAddressablesPath = AssetDatabase.GetAssetPath(res);
 
-        projectileModel.SetRandomBaseStats(0.5f * mult);
+        projectileModel.SetRandomBaseStats(0.3f * mult);
         projectileData = projectileModel.GetAllData();
+
+        InitProjectile();
     }
 }
 

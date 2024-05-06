@@ -2,6 +2,7 @@ using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(InputManager))]
@@ -12,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     [Space(5)]
-    [Header("Player Sprite")]
+    [Header("Player Look")]
     public GameObject sprite;
+    public Animator animator;
 
     [Space(5)]
     [Header("Ground Check")]
@@ -100,6 +102,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(inputManager.move.x) > 0)
         {
+            if (!isGrounded)
+            {
+                animator.SetBool("Walk", false);
+            }
+            else
+            {
+                animator.SetBool("Walk", true);
+            }
+
             rb.AddForceX(inputManager.move.x * moveSpeed, ForceMode2D.Force);
 
             if (inputManager.move.x > 0)
@@ -110,6 +121,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 sprite.transform.localScale = new Vector3(-1, 1, 1);
             }
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
         }
     }
     private void Jump()

@@ -15,6 +15,8 @@ public class PlayerInventory : MonoBehaviour
     private int currentCellId = 2;
     private InputManager inputManager;
 
+    public Transform weaponPosition;
+
     private float changeCd = 0.5f;
     private bool canChange = true;
 
@@ -35,10 +37,10 @@ public class PlayerInventory : MonoBehaviour
             if (selectedWeapons.selectedWeapons.Count > i)
             {
                 Weapon weapon = Instantiate(selectedWeapons.selectedWeapons[i], transform);
-                weapon.transform.localPosition = Vector3.zero;  
+                weapon.transform.localPosition = weaponPosition.localPosition;  
                 weapon.SetData(selectedWeapons.selectedWeapons[i].GetWeaponStats());
-                weapons[i] = weapon;
                 weapon.Init(player);
+                weapons[i] = weapon;                
                 cells[i].SetWeapon(weapons[i]);
                 weapons[i].Unequip();
                 weapons[i].enabled = false;
