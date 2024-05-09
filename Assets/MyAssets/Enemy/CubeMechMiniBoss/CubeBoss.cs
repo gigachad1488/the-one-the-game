@@ -72,6 +72,10 @@ public class CubeBoss : MonoBehaviour, IBossDamage
         firstPhaseMult *= difficultyMult;
         secondPhaseMult *= difficultyMult;
         thirdPhaseMult *= difficultyMult;
+
+        health.maxHealth = System.Convert.ToInt32(health.maxHealth * mult);
+        health.currentHealth = health.maxHealth;
+
         mult = firstPhaseMult;
         baseDamage = System.Convert.ToInt32(baseDamage * difficultyMult);
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.ResourceLocations;
@@ -49,6 +48,7 @@ public class ShootProjectileModule : ShootModule
         data.className = className;
         data.level = level;
         data.projectileData = projectileData;
+        data.projectileSpeed = baseProjectileSpeed;
         data.projectileAddressablesPath = projectileAddressablesPath;
 
         ModuleDataType type = new ModuleDataType();
@@ -95,14 +95,14 @@ public class ShootProjectileModule : ShootModule
         objs.WaitForCompletion();
 
         GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
-        projectileModel = res.GetComponent<Projectile>();
-       
-        projectileAddressablesPath = AssetDatabase.GetAssetPath(res);
+        projectileModel = res.GetComponent<Projectile>();       
+
+        projectileAddressablesPath = res.GetComponent<AddressablePath>().path;
+
+        projectileModel = Instantiate(projectileModel, transform);
 
         projectileModel.SetRandomBaseStats(0.3f * mult);
         projectileData = projectileModel.GetAllData();
-
-        InitProjectile();
     }
 }
 

@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 5231764700693226996}
   - component: {fileID: 1008413797219039972}
   - component: {fileID: 1120951973306989212}
+  - component: {fileID: -8551662049958115846}
   m_Layer: 10
   m_Name: SwordSwing 21
   m_TagString: Untagged
@@ -272,7 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
-  projectileAddressablesPath: 
   className: 
   projectileModules: []
   baseMult: 1
@@ -325,3 +325,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4, y: 5.2}
   m_EdgeRadius: 0
+--- !u!114 &-8551662049958115846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164927745532891711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing 21.prefab

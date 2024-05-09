@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 4465838884926003314}
   - component: {fileID: 1203573815596244527}
   - component: {fileID: 2861360798983280471}
+  - component: {fileID: 7506661908794733214}
   m_Layer: 10
   m_Name: Circle Projectile 5
   m_TagString: Untagged
@@ -139,6 +140,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.7
+--- !u!114 &7506661908794733214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358831308153811848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 5.prefab
 --- !u!1 &8626080553434019157
 GameObject:
   m_ObjectHideFlags: 0

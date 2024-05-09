@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     public InventorySlot[] selectedWeaponsSlots = new InventorySlot[3];
 
-    public SelectedWeapons selectedWeapons;
+    public MultiSceneData multiSceneData;
 
     [SerializeField]
     private InventorySlot slotPrefab;
@@ -28,11 +28,6 @@ public class InventoryManager : MonoBehaviour
 
     public bool build = true;
     public int count = 1;
-
-    private void Awake()
-    {
-        selectedWeapons = GameObject.FindGameObjectWithTag("SelectedWeapons").GetComponent<SelectedWeapons>();
-    }
 
     private void Start()
     {
@@ -115,14 +110,14 @@ public class InventoryManager : MonoBehaviour
 
     public void SaveSelectedWeapons()
     {
-        selectedWeapons.selectedWeapons.Clear();
+        multiSceneData.selectedWeapons.Clear();
         foreach (var item in selectedWeaponsSlots)
         {
             if (item.transform.childCount != 0)
             {
                 WeaponItem weaponItem = item.transform.GetChild(0).GetComponent<WeaponItem>();
-                selectedWeapons.selectedWeapons.Add(weaponItem.weapon);
-                weaponItem.weapon.transform.SetParent(selectedWeapons.transform);
+                multiSceneData.selectedWeapons.Add(weaponItem.weapon);
+                weaponItem.weapon.transform.SetParent(multiSceneData.transform);
             }
         }
     }

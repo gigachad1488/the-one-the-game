@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -87,7 +86,7 @@ public class WeaponBuilder : MonoBehaviour
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
-            weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
+            weapon.projectileAddressablesPath = projectile.GetComponent<AddressablePath>().path;
             weapon.weaponShoot.projectile = pr;
             pr.gameObject.SetActive(false);
 
@@ -95,7 +94,7 @@ public class WeaponBuilder : MonoBehaviour
             yield return handle;
             GameObject res = handle.Result[Random.Range(0, handle.Result.Count)];
             weapon.weaponModelPrefab = res;
-            weapon.weaponModelAddressablesPath = AssetDatabase.GetAssetPath(res);
+            weapon.weaponModelAddressablesPath = res.GetComponent<AddressablePath>().path;
         }
         else
         {
@@ -125,7 +124,7 @@ public class WeaponBuilder : MonoBehaviour
             yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
 
-            weapon.projectileAddressablesPath = AssetDatabase.GetAssetPath(projectile);
+            weapon.projectileAddressablesPath = projectile.GetComponent<AddressablePath>().path;
             weapon.weaponShoot.projectile = pr;
             weapon.weaponModelAddressablesPath = weapon.projectileAddressablesPath;
             weapon.weaponModelPrefab = pr.gameObject;
@@ -339,7 +338,7 @@ public class WeaponBuilder : MonoBehaviour
         {
             GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
             module = res.GetComponent<ProjectileModule>();
-            path = AssetDatabase.GetAssetPath(res);
+            path = res.GetComponent<AddressablePath>().path;
         }
 
         callback(module, path);
@@ -352,7 +351,8 @@ public class WeaponBuilder : MonoBehaviour
         Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
         weapon.SetData(data);
 
-        WeaponAction action = Instantiate(new GameObject("Weapon Action"), weapon.transform).AddComponent(System.Type.GetType(data.actionData.data.className)) as WeaponAction;
+        WeaponAction action = new GameObject("Weapon Action").AddComponent(System.Type.GetType(data.actionData.data.className)) as WeaponAction;
+        action.transform.SetParent(weapon.transform);
         action.SetData(data.actionData);
         
         foreach (ModuleDataType item in data.actionData.data.modules)

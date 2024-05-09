@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777457058164220191}
   - component: {fileID: 4895605786856442489}
+  - component: {fileID: -8759510647519454646}
   m_Layer: 0
   m_Name: OnHitHealProjectileModule
   m_TagString: Untagged
@@ -51,5 +52,18 @@ MonoBehaviour:
   baseHealAmount: 10
   healCd: 0
   healAmount: 0
-  canHeal: 1
   healBublePrefab: {fileID: 6763741725013923147, guid: 94d03cfb4e1e9404f872090f82c50912, type: 3}
+  timer: {fileID: 0}
+--- !u!114 &-8759510647519454646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061413612917927902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Modules/Projectile/OnHitHealProjectileModule.prefab

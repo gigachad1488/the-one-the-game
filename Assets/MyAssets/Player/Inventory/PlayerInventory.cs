@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public SelectedWeapons selectedWeapons;
+    public GameManager gameManager;
+
+    public List<Weapon> selectedWeapons;
 
     [SerializeField]
     private PlayerInventoryCell[] cells;
@@ -20,25 +22,22 @@ public class PlayerInventory : MonoBehaviour
     private float changeCd = 0.5f;
     private bool canChange = true;
 
-    private void Awake()
-    {
-        selectedWeapons = GameObject.FindGameObjectWithTag("SelectedWeapons").GetComponent<SelectedWeapons>();
-    }
-
     private void Start()
     {
-        weapons = new Weapon[selectedWeapons.selectedWeapons.Count];       
+        selectedWeapons = gameManager.multiScenedata.selectedWeapons;
+
+        weapons = new Weapon[selectedWeapons.Count];       
         inputManager = GetComponent<InputManager>();
         inputManager.slotsAction.started += SlotsAction_started;
         Player player = inputManager.gameObject.GetComponent<Player>();
 
         for (int i = 0; i < cells.Length; i++) 
         {
-            if (selectedWeapons.selectedWeapons.Count > i)
+            if (selectedWeapons.Count > i)
             {
-                Weapon weapon = Instantiate(selectedWeapons.selectedWeapons[i], transform);
+                Weapon weapon = Instantiate(selectedWeapons[i], transform);
                 weapon.transform.localPosition = weaponPosition.localPosition;  
-                weapon.SetData(selectedWeapons.selectedWeapons[i].GetWeaponStats());
+                weapon.SetData(selectedWeapons[i].GetWeaponStats());
                 weapon.Init(player);
                 weapons[i] = weapon;                
                 cells[i].SetWeapon(weapons[i]);

@@ -60,8 +60,9 @@ GameObject:
   - component: {fileID: 4465838884926003314}
   - component: {fileID: 1203573815596244527}
   - component: {fileID: 4508214303881235112}
+  - component: {fileID: -7551749409657146244}
   m_Layer: 10
-  m_Name: SwordBeam Projectile 2
+  m_Name: SwordBeam Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +151,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.1, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &-7551749409657146244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358831308153811848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/SwordBeam Projectile.prefab
 --- !u!1 &7631611795229545495
 GameObject:
   m_ObjectHideFlags: 0

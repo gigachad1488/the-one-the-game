@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 4465838884926003314}
   - component: {fileID: 1203573815596244527}
   - component: {fileID: 9190810267601013446}
+  - component: {fileID: 6403992229589019459}
   m_Layer: 10
   m_Name: Slash Projectile
   m_TagString: Untagged
@@ -239,9 +240,9 @@ MonoBehaviour:
   weaponShoot: {fileID: 0}
   className: 
   projectileModules: []
-  baseMult: 0.5237687
+  baseMult: 0.322802
   mult: 0.5237687
-  baseHitCd: 1.0453756
+  baseHitCd: 2.1818397
   hitCd: 1.0453756
 --- !u!68 &9190810267601013446
 EdgeCollider2D:
@@ -291,6 +292,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &6403992229589019459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358831308153811848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/Slash Projectile.prefab
 --- !u!1 &8626080553434019157
 GameObject:
   m_ObjectHideFlags: 0

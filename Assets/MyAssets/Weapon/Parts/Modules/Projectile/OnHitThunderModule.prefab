@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2243549036588052960}
   - component: {fileID: 4489135532263593112}
+  - component: {fileID: 2443365194382046655}
   m_Layer: 0
   m_Name: OnHitThunderModule
   m_TagString: Untagged
@@ -48,7 +49,6 @@ MonoBehaviour:
   className: 
   addressablesPath: 
   thunderPrefab: {fileID: 0}
-  prefabAddressablesPath: 
   baseMult: 0.5
   mult: 0.5
   baseExplosionCd: 1
@@ -60,3 +60,16 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &2443365194382046655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801330458385620957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Modules/Projectile/OnHitThunderModule.prefab

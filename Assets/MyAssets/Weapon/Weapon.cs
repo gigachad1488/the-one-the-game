@@ -135,7 +135,6 @@ public class Weapon : MonoBehaviour
         currentScale = (baseScale * (1 + scaleMult)) + scaleFlat;
 
         transform.localScale = new Vector3(currentScale, currentScale, currentScale);
-        Debug.Log("CUR SCALE = " + new Vector3(currentScale, currentScale, currentScale));
     }
 
     public void Init(Player player)
@@ -145,13 +144,18 @@ public class Weapon : MonoBehaviour
         this.player = player;
 
         weaponAction.Set(this);
+        weaponAction.level = level;
+
         weaponShoot.Set(weaponAction);
+        weaponShoot.SetLevel(level);
+
+        weaponShoot.projectile.Set(weaponShoot);
 
         CalcDamage();
         CalcAttackSpeed();
         CalcScale();
 
-        SetLevel();
+        //SetLevel();
     }
 
     private void Update()

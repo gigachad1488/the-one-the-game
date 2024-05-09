@@ -9,8 +9,6 @@ public class MainMenuManager : MonoBehaviour
     [Space(5)]
     [Header("Main")]
     [SerializeField]
-    private Button playButton;
-    [SerializeField]
     private Canvas mainCanvas;
 
     [Space(5)]
@@ -45,10 +43,27 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private Button settingsBackButton;
 
+    [Space(5)]
+    [Header("Levels")]
+    [SerializeField]
+    private Button levelsButton;
+    [SerializeField]
+    private Canvas levelsCanvas;
+    [SerializeField]
+    private Button levelsBackButton;
+
+    public MultiSceneData data;
+
+    private void Awake()
+    {
+        data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
+        
+        inventoryManager.multiSceneData = data;
+    }
+
     private void Start()
     {
         Time.timeScale = 1;
-        playButton.onClick.AddListener(() => StartCoroutine(StartGame()));
 
         inventoryButton.onClick.AddListener(ShowInventory);
         inventoryBackButton.onClick.AddListener(ShowMain);
@@ -59,14 +74,10 @@ public class MainMenuManager : MonoBehaviour
         settingsButton.onClick.AddListener(ShowSettings);
         settingsBackButton.onClick.AddListener(delegate { ShowMain(); settingsManager.ChangeTab(0); });
 
-        ShowMain();
-    }
+        levelsButton.onClick.AddListener(ShowLevels);
+        levelsBackButton.onClick.AddListener(ShowMain);
 
-    public IEnumerator StartGame()
-    {
-        inventoryManager.SaveSelectedWeapons();
-        AsyncOperation scene = SceneManager.LoadSceneAsync("SampleScene");
-        yield return null;
+        ShowMain();
     }
 
     public void ShowMain()
@@ -75,6 +86,7 @@ public class MainMenuManager : MonoBehaviour
         inventoryCanvas.gameObject.SetActive(false);
         shopCanvas.gameObject.SetActive(false);
         settingsCanvas.gameObject.SetActive(false);
+        levelsCanvas.gameObject.SetActive(false);
     }
 
     public void ShowInventory()
@@ -96,5 +108,11 @@ public class MainMenuManager : MonoBehaviour
     {
         mainCanvas.gameObject.SetActive(false);
         settingsCanvas.gameObject.SetActive(true);     
+    }
+
+    public void ShowLevels()
+    {
+        mainCanvas.gameObject.SetActive(false);
+        levelsCanvas.gameObject.SetActive(true);
     }
 }

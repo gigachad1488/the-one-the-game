@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 315930141798558030}
   - component: {fileID: 1538870362618957312}
   - component: {fileID: 6634652121194921170}
+  - component: {fileID: -4550624750292572377}
   m_Layer: 10
   m_Name: Swing Sword Projectile
   m_TagString: Untagged
@@ -133,8 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
+  className: 
   projectileModules: []
+  baseMult: 1
   mult: 1
+  baseHitCd: 0.3
   hitCd: 0.3
 --- !u!61 &6634652121194921170
 BoxCollider2D:
@@ -182,3 +186,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9, y: 4.2}
   m_EdgeRadius: 0
+--- !u!114 &-4550624750292572377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8839084132413742090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing Sword Projectile.prefab

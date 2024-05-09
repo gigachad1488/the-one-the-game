@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8723477507510638500}
   - component: {fileID: 4236200881545525839}
   - component: {fileID: 5606511727262154698}
+  - component: {fileID: 9121900681674435047}
   m_Layer: 10
   m_Name: SpearProjectile 15
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShoot: {fileID: 0}
-  projectileAddressablesPath: 
   className: 
   projectileModules: []
   baseMult: 1
@@ -186,3 +186,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.95, y: 7.05}
   m_EdgeRadius: 0
+--- !u!114 &9121900681674435047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944636757675101514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile 15.prefab

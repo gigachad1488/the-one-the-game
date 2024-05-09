@@ -98,7 +98,7 @@ public class OnHitThunderModule : ProjectileModule
         baseRadius = pdata.radius;
         level = pdata.level;
 
-        var obj = Addressables.LoadAssetAsync<GameObject>(addressablesPath);
+        var obj = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Modules/ThunderModuleProjectilePrefab.prefab");
         obj.WaitForCompletion();
 
         thunderPrefab = obj.Result.GetComponent<DefaultProjectile>();

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: WeaponParts
+  m_Name: c7e8e6225a47ddb46ab18fa311666f1a
   m_EditorClassIdentifier: 
   m_GroupName: c7e8e6225a47ddb46ab18fa311666f1a
   m_Data:
@@ -128,7 +128,7 @@ MonoBehaviour:
     - rangedShootModules
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c1cd71ecc7316a41bb153d7db950fe2
-    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Boom Projectile 2.prefab
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/SwordBeam Projectile.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts
@@ -152,6 +152,753 @@ MonoBehaviour:
     m_SerializedLabels:
     - meleeProjectileModules
     - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b80ed786cb6fd94a85b03beb6e62e87
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 366e2e19dd8fb134a89b5a90f12170dd
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abb449f00413d09498e6ba27940e0ba8
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0163d8de509d12419ed3a36308b81c0
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9580b520bade7a34aa4d7e54b5654491
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e0320ca3a2a3b64093db9a0c965c50b
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dded31fed3bb2554b8237b82ed630d3b
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Circle Projectile 7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - uniqueProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9690ea82ce819b24996d78bc13fa2734
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07a17c52ead85fc4a9b0d51e574ca9d1
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 620619010a460b943b5d2db54bb1745f
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2105a46aff7dfd24a9e7110ee5170fd5
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fab59f64943f5704f97ba31bfd438e2e
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2204970a571a6b14ea8aac6a6efcb91d
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dfe3bae6122bdd4aa0068a3e6eef726
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 820962f324cdf6341ab08cf9efc0981b
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9976d0d0dda53c40adf795ba0d96be5
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59ddb8b652f498e4d9ce81a439e7f8a2
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45d6c4e863727ea4dafb416c1cf9b4ec
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4360e68fd14d66498528c1a0373d801
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 11.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22ef93590aeba074bb0a968963c0bbe8
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 12.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2516d7362371ea4180d14d8e8ac9c00
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 13.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5999d3416034d9d4bb717a6476918d7a
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 14.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc7e6dfea3cc34c43a2c51e2597f007b
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 15.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf3ba1bae2a2dcf45af06d8e4d522beb
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 16.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a29d0af0f548a428fb54cbb02a9e9c
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet 17.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3071a823e0b0e0b48983a4c836561a1b
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1cc810bd2acecc44ae1c8db1498f2aa
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f3075ba30d9a9f4e81e2136de09f7ac
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffff540de53b4674cbcf1f90a4ae8fe7
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 353350252dcbc904aa68e65496e80d5d
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7e210d370ab6604cac6480a7c811a67
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a44a57d303566ae47bb52da026d4c1b7
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcae626222c36b24389e15eb620d79db
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03c2a2152fcbc614a9b40a0c628916ab
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      11.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22986cbebf70d654cae2c26f756708bd
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      12.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48882a8c8497dde4096108a8b92b8955
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      13.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5141956d48e43d84c93e7bbfdeec0150
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      14.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19d582af3dcb9e74eada5af6626a0e50
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      15.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 976ad8eee478bd54f8197acdbdb931e6
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      16.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb9eecae3a4949243829f5f0e28ae54c
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      17.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8316dedaafd91245b0a0c799863cf4c
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      18.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42af9b79a9c04094c9953d5ad6c15b95
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      19.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41f4763ee4385244cb40a6e95e6262d9
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      20.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95bb4ade943bf764bb0511dd042d6633
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      21.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee289030364c2a2458e308a4db65b4b2
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      22.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b70b6f89dd834d44097a7040ec2d432f
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      23.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 781c13d3703f27a4d8a16bb2a5864ea8
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      24.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b75cc58555c128445b13c7a1061c8cc1
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      25.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88091f948e14ca14b8780012e9ccf82a
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      26.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d5d5c52d38102342a38c70862bf6055
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      27.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d0dc17069105a84a9c245ed160e797a
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      28.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3763dc20bd2c5414caf202c0bc049a8f
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      29.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a22749abb7fa5e4396947c6377963de
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      30.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dfe6566c506611488946a04270a1df7
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      31.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c521fb617b58f5747b772aacc65c72e5
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Default/SwordSwing
+      32.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeDefaultProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 980ddb0f24165c445937148452e0a115
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3314baa5a80e3ec499270be25306284d
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9c6203c8f7aff245969bb75a7e62b51
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8044fbdb47aca2d4fa91666f98b3aa06
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7700e68a687744a41ba1a531e3d162b8
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccedd8d8b952068478916cc3372054e7
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24df6b3c41d033749b66cb0d92691621
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9669eb368910f5448310d6383b06260
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07fac5405c3e286419a88df065b63ec1
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27d73aafabde7104c9b8e66b5ab9dfbc
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3aec29f031a4e944aaf46941daefbe6
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9c908414178c9c4c971b0e889af1d41
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      11.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b568bc3a4c9d4164b969a0121db51801
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      12.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b7b1bc917207b046bebff36ca57c6fc
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      13.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 752454bb372e6a2479ed29b95c08c8be
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      14.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffe34aed36e293c48988c42cb8503dc2
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Spear/SpearProjectile
+      15.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSpearProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37de80228312d7541a2457647d1e1353
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing Sword Projectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6abbb074c8889e84d8b545ae241ae752
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fff2caaa5e3c54940a5d6204e63cdc32
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95a1718a2b61740418c3e407c6feec0d
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b295043c2b866814c9748f44692f87df
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e7072d7565b79c41bc94aa46f3ee6d1
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 556a917c88b99bc499bd3e80df70fd44
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      11.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3fb554cfb962f24695052434aac89b7
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      12.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af23984ee09c87841a195d8a4d1ff627
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      13.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e9b8d3565ce93645bf0fb25b261c2ef
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      14.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18b668778b8f62a458c5a24f17297f67
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      15.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 293e12dcac5f88b4995e2c20807e3763
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      16.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a122405358c833e43b78348cac5e40df
+    m_Address: Assets/MyAssets/Weapon/Parts/Projectiles/Melee/Swing/Swing SwordSwing
+      17.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - meleeSwingProjectiles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec48069a3d4425c49b1791de0cdee6b6
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Ranged/HomingProjectileModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f48a8eff97c360a4b9808812d92a242b
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Ranged/PierceLimitProjectileModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af3dc74ceb3036c478dfcadb58d252fd
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Ranged/Speed Lifetime
+      Module.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f6cae8ac32bb064ca45cfe010c64fc0
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2345f62f0bda904d86774f32f313554
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 035cae18a5466134ab76eaa63f4d8819
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: deb7a56ec8ccbb64a9384c47a32d2b0e
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dfa74cbfa6946143b997b59f0760ec3
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71bf2aca2b8b72e468d884047feadffd
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aed00e1461ea346478b5a46ea31434f0
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4270b31b7f0cc1d40b49602580fa6113
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c921d585bdc4ae41a677f650602f2d8
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 236f434fb2c8013438b5d1c36eec21d0
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9f3add54a8ab874fa82ce4e837cc1a4
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 024db81f31310fb48b7302861dbd6713
+    m_Address: Assets/MyAssets/Weapon/Parts/Ranged/PistolModel 11.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts
+    - rangedModels
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - SelectedWeapons
+  - MultiScene
   layers:
   - Default
   - TransparentFX
