@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IBoss : MonoBehaviour
+public interface IBoss
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Player aggroedPlayer { get; set; }
+    public float difficultyMult { get; set; }
 }

@@ -54,8 +54,15 @@ public class MainMenuManager : MonoBehaviour
 
     public MultiSceneData data;
 
+    public static MainMenuManager instance;
+
     private void Awake()
     {
+        if (instance == null) 
+        {
+            instance = this;
+        }
+
         data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
         
         inventoryManager.multiSceneData = data;

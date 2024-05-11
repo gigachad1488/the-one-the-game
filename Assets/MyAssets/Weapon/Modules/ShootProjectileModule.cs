@@ -25,7 +25,8 @@ public class ShootProjectileModule : ShootModule
     }
 
     public override void AfterSet()
-    {             
+    {
+        InitProjectile();
     }
 
     public void InitProjectile()
@@ -34,7 +35,7 @@ public class ShootProjectileModule : ShootModule
 
         Rigidbody2D rb = projectileModel.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        rb.mass = 0;
+        rb.mass = 1;
 
         projectileModel.SetData(projectileData);
         projectileModel.SetLevel(level);
@@ -80,6 +81,7 @@ public class ShootProjectileModule : ShootModule
         obj.WaitForCompletion();
 
         projectileModel = obj.Result.GetComponent<Projectile>();
+
         InitProjectile();
 
         projectileModel.SetData(projectileData);
@@ -103,6 +105,8 @@ public class ShootProjectileModule : ShootModule
 
         projectileModel.SetRandomBaseStats(0.3f * mult);
         projectileData = projectileModel.GetAllData();
+
+        projectileModel.gameObject.SetActive(false);
     }
 }
 

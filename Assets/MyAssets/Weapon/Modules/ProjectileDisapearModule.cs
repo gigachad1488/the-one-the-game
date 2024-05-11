@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileDisapearModule : ProjectileModule
 {
-    public float baseTime = 0.5f;
+    private float baseTime = 0.8f;
     public float time = 1f;
     public override void AfterSet()
     {

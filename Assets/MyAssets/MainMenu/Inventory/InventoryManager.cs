@@ -111,6 +111,7 @@ public class InventoryManager : MonoBehaviour
     public void SaveSelectedWeapons()
     {
         multiSceneData.selectedWeapons.Clear();
+
         foreach (var item in selectedWeaponsSlots)
         {
             if (item.transform.childCount != 0)

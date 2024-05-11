@@ -30,6 +30,8 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void StartGame()
     {
+        MainMenuManager.instance.inventoryManager.SaveSelectedWeapons();
+
         data.mult = mult;
         SceneManager.LoadSceneAsync("SampleScene");
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeBoss : MonoBehaviour, IBossDamage
+public class CubeBoss : MonoBehaviour, IBoss, IBossDamage
 {
     public StateMachine stateMachine;
 
@@ -13,9 +13,9 @@ public class CubeBoss : MonoBehaviour, IBossDamage
 
     public Rigidbody2D rb;
 
-    public Player aggroedPlayer;
+    public Player aggroedPlayer {get; set;}
 
-    public float mult = 1.2f;
+    public float mult = 1;
 
     public CubeBordersFallAttack[] borderColliders;
     public Thruster[] thrusters;
@@ -63,6 +63,11 @@ public class CubeBoss : MonoBehaviour, IBossDamage
             item.canCollisionAttack = false;
         }
 
+        health.maxHealth = System.Convert.ToInt32(health.maxHealth * difficultyMult);
+        health.currentHealth = health.maxHealth;
+
+        GetComponent<HealthBar>().UpdateHealthBar();
+
         yield return new WaitForSeconds(2);      
         attackStates.Add(new CubeRollState(stateMachine, this));
         attackStates.Add(new CubeJumpState(stateMachine, this));
@@ -71,10 +76,7 @@ public class CubeBoss : MonoBehaviour, IBossDamage
 
         firstPhaseMult *= difficultyMult;
         secondPhaseMult *= difficultyMult;
-        thirdPhaseMult *= difficultyMult;
-
-        health.maxHealth = System.Convert.ToInt32(health.maxHealth * mult);
-        health.currentHealth = health.maxHealth;
+        thirdPhaseMult *= difficultyMult;       
 
         mult = firstPhaseMult;
         baseDamage = System.Convert.ToInt32(baseDamage * difficultyMult);

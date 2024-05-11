@@ -12278,8 +12278,8 @@ MonoBehaviour:
   maxMeleeDamage: 200
   minMeleeAttackSpeed: 0.3
   maxMeleeAttackSpeed: 1.2
-  baseModuleChance: 0.2
-  nextModuleChanceDecrease: 0.5
+  baseModuleChance: 0.1
+  nextModuleChanceDecrease: 0.7
   rangedProjectileLabel:
     m_LabelString: rangedProjectiles
   rangedModelsLabel:

@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         float hpPercent = (float)health.currentHealth / health.maxHealth;
         healthBarFilling.fillAmount = hpPercent;

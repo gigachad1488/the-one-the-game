@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour
         weaponShoot.Set(weaponAction);
         weaponShoot.SetLevel(level);
 
-        weaponShoot.projectile.Set(weaponShoot);
+        weaponShoot.projectile.SetLevel(level);
 
         CalcDamage();
         CalcAttackSpeed();
@@ -181,13 +181,14 @@ public class Weapon : MonoBehaviour
 
     public void Equip()
     {
-        weaponAction.enabled = false;
-        weaponShoot.enabled = false;
+        weaponAction.enabled = true;
+        weaponShoot.enabled = true;
     }
 
     public void Unequip()
     {
         OnUnequip?.Invoke();
+
         if (weaponAction.weaponModel != null)
         {          
             weaponAction.weaponModel.SetActive(false);
