@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour
     public Image healthBarFilling;
     public TextMeshProUGUI healthText;
 
-    private void Start()
+    private void Awake()
     {
         health = GetComponent<Health>();
         health.OnDamage += OnDamage;

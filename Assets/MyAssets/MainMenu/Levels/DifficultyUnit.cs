@@ -16,6 +16,7 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public float mult = 1;
     public float minDropCount = 1;
     public float maxDropCount = 2;
+    public int level = 1;
 
     public MultiSceneData data;
 
@@ -33,6 +34,9 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         MainMenuManager.instance.inventoryManager.SaveSelectedWeapons();
 
         data.mult = mult;
+        data.level = level;
+
+
         SceneManager.LoadSceneAsync("SampleScene");
     }
 

@@ -90,6 +90,7 @@ MonoBehaviour:
   level: 1
   bossName: "\u041A\u0432\u0430\u0434\u0440\u0430\u0442 \u0441\u0435\u0440\u044B\u0439"
   bossSprite: {fileID: 21300000, guid: 53f2591dfb7f6da45b5078bb561e5baf, type: 3}
+  mainMenuManager: {fileID: 0}
   difficulties:
   - title: "\u041B\u0435\u0433\u043A\u0430\u044F"
     mult: 1
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 89d1fef0765f0fa4d8baa95030bbe7d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -856,7 +857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 89d1fef0765f0fa4d8baa95030bbe7d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

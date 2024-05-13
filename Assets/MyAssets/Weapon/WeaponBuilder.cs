@@ -82,7 +82,7 @@ public class WeaponBuilder : MonoBehaviour
             WeaponShoot shoot = BuildWeaponShoot(type, level);
             shoot.transform.SetParent(weapon.transform);
             weapon.weaponShoot = shoot;
-          
+
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
             Projectile pr = Instantiate(projectile, weapon.weaponShoot.transform);
@@ -183,7 +183,7 @@ public class WeaponBuilder : MonoBehaviour
                         }
                         else
                         {
-                            projectileChanceNumber *= nextModuleChanceDecrease; 
+                            projectileChanceNumber *= nextModuleChanceDecrease;
                         }
                     }
                 });
@@ -195,6 +195,8 @@ public class WeaponBuilder : MonoBehaviour
 
             projectileChanceNumber *= nextModuleChanceDecrease;
         }
+
+        weapon.guid = System.Guid.NewGuid();
 
         weapon.level = level;
         weapon.enabled = false;
@@ -289,7 +291,7 @@ public class WeaponBuilder : MonoBehaviour
 
         yield return new WaitUntil(() => objs.IsDone);
 
-        if (objs.Result != null) 
+        if (objs.Result != null)
         {
             GameObject res = objs.Result[Random.Range(0, objs.Result.Count)];
             module = res.GetComponent<ShootModule>();
@@ -346,28 +348,34 @@ public class WeaponBuilder : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator BuildWeaponFromJson(WeaponBaseData data, System.Action<Weapon> callback) 
+    public IEnumerator BuildWeaponFromJson(WeaponBaseData data, string name, System.Action<Weapon> callback)
     {
         Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
         weapon.SetData(data);
+        weapon.guid = System.Guid.Parse(name.Remove(0, 1));
 
         WeaponAction action = new GameObject("Weapon Action").AddComponent(System.Type.GetType(data.actionData.data.className)) as WeaponAction;
         action.transform.SetParent(weapon.transform);
         action.SetData(data.actionData);
-        
+
         foreach (ModuleDataType item in data.actionData.data.modules)
         {
-            ActionModule module = Instantiate(new GameObject(item.data.className), action.transform).AddComponent(System.Type.GetType(item.data.className)) as ActionModule;
+            ActionModule module = new GameObject(item.data.className).AddComponent(System.Type.GetType(item.data.className)) as ActionModule;
+            module.transform.SetParent(weapon.transform);
             module.SetData(item);
         }
 
-        WeaponShoot shoot = Instantiate(new GameObject("Weapon Shoot"), weapon.transform).AddComponent(System.Type.GetType(data.shootData.data.className)) as WeaponShoot;
+        WeaponShoot shoot = new GameObject("Weapon Shoot").AddComponent(System.Type.GetType(data.shootData.data.className)) as WeaponShoot;
+        shoot.transform.SetParent(weapon.transform);
         shoot.SetData(data.shootData);
 
         foreach (ModuleDataType item in data.shootData.data.modules)
         {
-            ShootModule module = Instantiate(new GameObject(item.data.className), shoot.transform).AddComponent(System.Type.GetType(item.data.className)) as ShootModule;
-            module.SetData(item);
+            ShootModule shootModule = null;
+            var obj = Addressables.LoadAssetAsync<GameObject>(item.data.addressablesPath);
+            yield return obj;
+            shootModule = Instantiate(obj.Result, shoot.transform).GetComponent<ShootModule>();
+            shootModule.SetData(item);
         }
 
         Projectile projectile = null;
@@ -393,7 +401,7 @@ public class WeaponBuilder : MonoBehaviour
 
         var modelHandle = Addressables.LoadAssetAsync<GameObject>(data.weaponModelAddressablesPath);
 
-        yield return handle;
+        yield return modelHandle;
 
         weapon.weaponModelPrefab = modelHandle.Result;
 

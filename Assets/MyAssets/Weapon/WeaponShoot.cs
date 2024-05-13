@@ -78,7 +78,9 @@ public abstract class WeaponShoot : MonoBehaviour, IModule<WeaponAction>
 
         foreach (var module in modules)
         {
-            data.data.modules.Add( module.GetData());
+            var mdata = module.GetData();
+            mdata.data.addressablesPath = module.gameObject.GetComponent<AddressablePath>().path;
+            data.data.modules.Add(mdata);
         }
 
         return data;

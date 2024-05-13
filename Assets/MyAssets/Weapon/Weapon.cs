@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
+    public Guid guid;
+
     public Player player;
     private InputManager inputManager;
 
@@ -216,6 +218,8 @@ public class Weapon : MonoBehaviour
     {
         WeaponBaseData data = new WeaponBaseData();
 
+        //data.guid = guid;
+
         data.weaponModelAddressablesPath = weaponModelAddressablesPath;
         data.projectileAddressablesPath = projectileAddressablesPath;
 
@@ -235,6 +239,8 @@ public class Weapon : MonoBehaviour
 
     public void SetData(WeaponBaseData data)
     {
+        //guid = data.guid;
+
         weaponModelAddressablesPath = data.weaponModelAddressablesPath;
         projectileAddressablesPath = data.projectileAddressablesPath;
 

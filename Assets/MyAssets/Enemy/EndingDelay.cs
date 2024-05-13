@@ -12,6 +12,7 @@ public class EndingDelay : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        Instantiate(endCanvas);
+        Time.timeScale = 0;
+        GameManager.instance.ShowEndMenu();
     }
 }

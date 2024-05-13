@@ -28,6 +28,7 @@ public class MusicPlayer : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private Canvas musicPlayerCanvas;
+    private CanvasGroup musicPlayerCanvasGroup;
     [SerializeField]
     private Button hidePanelButton;
     [SerializeField]
@@ -70,6 +71,8 @@ public class MusicPlayer : MonoBehaviour
 
     private void Awake()
     {
+        musicPlayerCanvasGroup = musicPlayerCanvas.GetComponent<CanvasGroup>();
+
         shuffleButtonImage = shuffleButton.GetComponent<Image>();
         repeatButtonImage = repeatButton.GetComponent<Image>();
         playButtonImage = playButton.GetComponent<Image>();
@@ -128,12 +131,23 @@ public class MusicPlayer : MonoBehaviour
 
     public void PanelVisibility()
     {
-        musicPlayerCanvas.enabled = !musicPlayerCanvas.enabled;
+        PanelVisibility(!musicPlayerCanvasGroup.interactable);
     }
 
     public void PanelVisibility(bool value)
     {
-        musicPlayerCanvas.enabled = value;
+        if (value)
+        {
+            musicPlayerCanvasGroup.alpha = 1;
+            musicPlayerCanvasGroup.interactable = true;
+            musicPlayerCanvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            musicPlayerCanvasGroup.alpha = 0;
+            musicPlayerCanvasGroup.interactable = false;
+            musicPlayerCanvasGroup.blocksRaycasts = false;
+        }
     }
 
     public void NextSound()

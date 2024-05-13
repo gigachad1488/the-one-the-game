@@ -7,6 +7,8 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 [Serializable]
 public class WeaponBaseData
 {
+    //public Guid guid;
+
     public string weaponModelAddressablesPath;
     public string projectileAddressablesPath;
 

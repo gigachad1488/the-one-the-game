@@ -216,7 +216,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
-    Android: 1
+    Android: 2
     GameCoreScarlett: 2
     GameCoreXboxOne: 2
     Lumin: 2
@@ -224,9 +224,9 @@ QualitySettings:
     PS4: 2
     PS5: 2
     Stadia: 2
-    Standalone: 2
-    WebGL: 2
-    Windows Store Apps: 2
+    Standalone: 3
+    WebGL: 1
+    Windows Store Apps: 3
     XboxOne: 2
     iPhone: 1
     tvOS: 1

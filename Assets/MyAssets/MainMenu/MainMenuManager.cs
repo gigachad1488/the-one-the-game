@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     [Header("Main")]
     [SerializeField]
     private Canvas mainCanvas;
+    private CanvasGroup mainCanvasGroup;
 
     [Space(5)]
     [Header("Inventory")]
@@ -18,19 +19,21 @@ public class MainMenuManager : MonoBehaviour
     private Button inventoryButton;
     [SerializeField]
     private Canvas inventoryCanvas;
+    private CanvasGroup inventoryCanvasGroup;
     [SerializeField]
     private Button inventoryBackButton;
     [SerializeField]
     private ScrollRect slotsScrollRect;
 
     [Space(5)]
-    [Header("Shop")]
+    [Header("Player")]
     [SerializeField]
-    private Button shopButton;
+    private Button playerButton;
     [SerializeField]
-    private Canvas shopCanvas;
+    private Canvas playerCanvas;
+    private CanvasGroup playerCanvasGroup;
     [SerializeField]
-    private Button shopBackButton;
+    private Button playerBackButton;
 
     [Space(5)]
     [Header("Settings")]
@@ -40,6 +43,7 @@ public class MainMenuManager : MonoBehaviour
     private Button settingsButton;
     [SerializeField]
     private Canvas settingsCanvas;
+    private CanvasGroup settingsCanvasGroup;
     [SerializeField]
     private Button settingsBackButton;
 
@@ -49,6 +53,7 @@ public class MainMenuManager : MonoBehaviour
     private Button levelsButton;
     [SerializeField]
     private Canvas levelsCanvas;
+    private CanvasGroup levelsCanvasGroup;
     [SerializeField]
     private Button levelsBackButton;
 
@@ -66,17 +71,29 @@ public class MainMenuManager : MonoBehaviour
         data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
         
         inventoryManager.multiSceneData = data;
+
+        inventoryCanvasGroup = inventoryCanvas.GetComponent<CanvasGroup>();
+        mainCanvasGroup = mainCanvas.GetComponent<CanvasGroup>();
+        settingsCanvasGroup = settingsCanvas.GetComponent<CanvasGroup>();
+        playerCanvasGroup = playerCanvas.GetComponent<CanvasGroup>();
+        levelsCanvasGroup = levelsCanvas.GetComponent<CanvasGroup>();
     }
 
     private void Start()
     {
         Time.timeScale = 1;
 
+        mainCanvas.gameObject.SetActive(true);
+        inventoryCanvas.gameObject.SetActive(true);
+        playerCanvas.gameObject.SetActive(true);
+        settingsCanvas.gameObject.SetActive(true);
+        levelsCanvas.gameObject.SetActive(true);
+
         inventoryButton.onClick.AddListener(ShowInventory);
         inventoryBackButton.onClick.AddListener(ShowMain);
 
-        shopButton.onClick.AddListener(ShowShop);  
-        shopBackButton.onClick.AddListener(ShowMain);
+        playerButton.onClick.AddListener(ShowShop);  
+        playerBackButton.onClick.AddListener(ShowMain);
 
         settingsButton.onClick.AddListener(ShowSettings);
         settingsBackButton.onClick.AddListener(delegate { ShowMain(); settingsManager.ChangeTab(0); });
@@ -89,17 +106,36 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowMain()
     {
-        mainCanvas.gameObject.SetActive(true);
-        inventoryCanvas.gameObject.SetActive(false);
-        shopCanvas.gameObject.SetActive(false);
-        settingsCanvas.gameObject.SetActive(false);
-        levelsCanvas.gameObject.SetActive(false);
+        mainCanvasGroup.alpha = 1;
+        mainCanvasGroup.interactable = true;
+        mainCanvasGroup.blocksRaycasts = true;
+
+        inventoryCanvasGroup.alpha = 0;
+        inventoryCanvasGroup.interactable = false;
+        inventoryCanvasGroup.blocksRaycasts = false;
+
+        playerCanvasGroup.alpha = 0;
+        playerCanvasGroup.interactable = false;
+        playerCanvasGroup.blocksRaycasts = false;
+
+        settingsCanvasGroup.alpha = 0;
+        settingsCanvasGroup.interactable = false;
+        settingsCanvasGroup.blocksRaycasts = false;
+
+        levelsCanvasGroup.alpha = 0;
+        levelsCanvasGroup.interactable = false;
+        levelsCanvasGroup.blocksRaycasts = false;
     }
 
     public void ShowInventory()
     {
-        mainCanvas.gameObject.SetActive(false);
-        inventoryCanvas.gameObject.SetActive(true);
+        mainCanvasGroup.alpha = 0;
+        mainCanvasGroup.interactable = false;
+        mainCanvasGroup.blocksRaycasts = false;
+
+        inventoryCanvasGroup.alpha = 1;
+        inventoryCanvasGroup.interactable = true;
+        inventoryCanvasGroup.blocksRaycasts = true;
 
         slotsScrollRect.horizontalNormalizedPosition = 0;
         slotsScrollRect.verticalNormalizedPosition = 0;
@@ -107,19 +143,34 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowShop()
     {
-        mainCanvas.gameObject.SetActive(false);
-        shopCanvas.gameObject.SetActive(true);
+        mainCanvasGroup.alpha = 0;
+        mainCanvasGroup.interactable = false;
+        mainCanvasGroup.blocksRaycasts = false;
+
+        playerCanvasGroup.alpha = 1;
+        playerCanvasGroup.interactable = true;
+        playerCanvasGroup.blocksRaycasts = true;
     }
 
     public void ShowSettings()
     {
-        mainCanvas.gameObject.SetActive(false);
-        settingsCanvas.gameObject.SetActive(true);     
+        mainCanvasGroup.alpha = 0;
+        mainCanvasGroup.interactable = false;
+        mainCanvasGroup.blocksRaycasts = false;
+
+        settingsCanvasGroup.alpha = 1;
+        settingsCanvasGroup.interactable = true;
+        settingsCanvasGroup.blocksRaycasts = true;
     }
 
     public void ShowLevels()
     {
-        mainCanvas.gameObject.SetActive(false);
-        levelsCanvas.gameObject.SetActive(true);
+        mainCanvasGroup.alpha = 0;
+        mainCanvasGroup.interactable = false;
+        mainCanvasGroup.blocksRaycasts = false;
+
+        levelsCanvasGroup.alpha = 1;
+        levelsCanvasGroup.interactable = true;
+        levelsCanvasGroup.blocksRaycasts = true;
     }
 }

@@ -900,6 +900,12 @@ MonoBehaviour:
     - parts
     - rangedModels
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da735fd18567907419726c3253d27110
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Shoot/Melee/Projectile On Shoot.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - meleeShootModules
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}
   m_SchemaSet:

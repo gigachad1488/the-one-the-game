@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2852797681742510448}
   - component: {fileID: 1477534539463824391}
+  - component: {fileID: 5332485711324884914}
   m_Layer: 0
   m_Name: Projectile On Shoot
   m_TagString: Untagged
@@ -44,5 +45,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cd5e6cd0f8b744695d80b4da0b6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  className: 
   projectileModel: {fileID: 1203573815596244527, guid: abc654e2f9b87eb48bcbea236d44d266, type: 3}
-  projectileSpeed: 55
+  baseProjectileSpeed: 10
+  projectileSpeed: 11
+  projectileData:
+    data:
+      rid: 1000
+  projectileAddressablesPath: 
+  reference:
+    m_LabelString: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 1000
+      type: {class: ModuleData, ns: , asm: Assembly-CSharp}
+      data:
+        className: 
+        addressablesPath: 
+        level: 0
+        modules: []
+--- !u!114 &5332485711324884914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692515580576245444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101df30bf059ab4498a84191d2377a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets/MyAssets/Weapon/Parts/Modules/Shoot/Melee/Projectile On Shoot.prefab

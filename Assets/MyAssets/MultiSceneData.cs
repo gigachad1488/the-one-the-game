@@ -8,6 +8,11 @@ public class MultiSceneData : MonoBehaviour
     
     public int bossId = 0;
 
+    public int level = 1;
+
+    public int minDrop = 1;
+    public int maxDrop = 1;
+
     public List<Weapon> selectedWeapons = new List<Weapon>();
 
     private void Awake()

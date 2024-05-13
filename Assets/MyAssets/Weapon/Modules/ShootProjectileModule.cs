@@ -26,7 +26,10 @@ public class ShootProjectileModule : ShootModule
 
     public override void AfterSet()
     {
-        InitProjectile();
+        if (!projectileModel.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            InitProjectile();
+        }
     }
 
     public void InitProjectile()

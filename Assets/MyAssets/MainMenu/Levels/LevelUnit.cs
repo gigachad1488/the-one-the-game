@@ -72,6 +72,7 @@ public class LevelUnit : MonoBehaviour
             unit.mult = difficulty.mult;
             unit.minDropCount = difficulty.minDrop;
             unit.maxDropCount = difficulty.maxDrop;
+            unit.level = level;
             unit.data = mainMenuManager.data;
         }
     }

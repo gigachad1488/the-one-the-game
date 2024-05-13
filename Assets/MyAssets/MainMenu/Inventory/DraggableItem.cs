@@ -12,20 +12,27 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
-        image.raycastTarget = false;
+        if (eventData.button == 0)
+        {
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+            transform.SetAsLastSibling();
+            image.raycastTarget = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (eventData.button == 0)
+            transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.SetParent(parentAfterDrag);
-        image.raycastTarget = true;
+        if (eventData.button == 0)
+        {
+            transform.SetParent(parentAfterDrag);
+            image.raycastTarget = true;
+        }
     }
 }

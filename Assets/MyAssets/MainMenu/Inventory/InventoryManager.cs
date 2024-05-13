@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -80,8 +82,6 @@ public class InventoryManager : MonoBehaviour
 
                 StartCoroutine(builder.BuildWeapon(type, (weapon) =>
                 {
-                    string key = "weapon" + Guid.NewGuid().ToString();
-
                     InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
                     WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
                     weaponItem.weapon = weapon;
@@ -89,8 +89,7 @@ public class InventoryManager : MonoBehaviour
 
                     var data = weapon.GetData();
                     JsonDataService service = new JsonDataService();
-                    service.SaveData("aboba", data);
-
+                    service.SaveData("w" + weapon.guid.ToString(), data);
                 }, 5));
             }
         }
@@ -98,19 +97,51 @@ public class InventoryManager : MonoBehaviour
         {
             JsonDataService dataService = new JsonDataService();
 
-            StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>("aboba"), (weapon) =>
+            string[] weapons = Directory.GetFiles(Application.persistentDataPath);
+
+            Guid[] selectedGuids = new Guid[3];
+
+            for (int i = 0; i < selectedGuids.Length; i++) 
             {
-                InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
-                WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
-                weaponItem.weapon = weapon;
-                weapon.transform.SetParent(weaponItem.transform);
-            }));
+                string id = "selectedWeapon" + (i + 1);
+                if (Guid.TryParse(PlayerPrefs.GetString(id, string.Empty), out Guid result))
+                {
+                    selectedGuids[i] = result;
+                }
+            }
+
+            foreach (string wpn in weapons)
+            {
+                string fl = Path.GetFileName(wpn);
+                if (fl.StartsWith('w'))
+                {
+                    StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>(fl), fl, (weapon) =>
+                    {
+                        InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+
+                        for (int i = 0; i < selectedGuids.Length; i++)
+                        {
+                            if (weapon.guid.Equals(selectedGuids[i])) 
+                            {
+                                slot = selectedWeaponsSlots[i];
+                                break;
+                            }
+                        }
+                        
+                        WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                        weaponItem.weapon = weapon;
+                        weapon.transform.SetParent(weaponItem.transform);
+                    }));
+                }
+            }
         }
     }
 
     public void SaveSelectedWeapons()
     {
         multiSceneData.selectedWeapons.Clear();
+
+        int slot = 1;
 
         foreach (var item in selectedWeaponsSlots)
         {
@@ -119,7 +150,16 @@ public class InventoryManager : MonoBehaviour
                 WeaponItem weaponItem = item.transform.GetChild(0).GetComponent<WeaponItem>();
                 multiSceneData.selectedWeapons.Add(weaponItem.weapon);
                 weaponItem.weapon.transform.SetParent(multiSceneData.transform);
+
+                string id = "selectedWeapon" + slot;
+                PlayerPrefs.SetString("selectedWeapon" + slot, weaponItem.weapon.guid.ToString());
             }
+            else
+            {
+                PlayerPrefs.SetString("selectedWeapon" + slot, string.Empty);
+            }
+
+            slot++;
         }
     }
 }
