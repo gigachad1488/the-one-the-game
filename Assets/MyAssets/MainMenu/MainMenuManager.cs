@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private Canvas mainCanvas;
     private CanvasGroup mainCanvasGroup;
+    [SerializeField]
+    private Button quitButton;
 
     [Space(5)]
     [Header("Inventory")]
@@ -100,6 +102,8 @@ public class MainMenuManager : MonoBehaviour
 
         levelsButton.onClick.AddListener(ShowLevels);
         levelsBackButton.onClick.AddListener(ShowMain);
+
+        quitButton.onClick.AddListener(() => Application.Quit());
 
         ShowMain();
     }

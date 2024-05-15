@@ -16,7 +16,7 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
     public int level { get; set; }
 
     public delegate void ProjectileDelegate(Vector3 position);
-    public event ProjectileDelegate OnProjectileHit;
+    public event ProjectileDelegate? OnProjectileHit;
 
     private void Start()
     {
@@ -64,7 +64,7 @@ public abstract class Projectile : MonoBehaviour, IModule<WeaponShoot>
 
     public void InvokeAction(Vector3 position)
     {
-        OnProjectileHit.Invoke(position);
+        OnProjectileHit?.Invoke(position);
     }
 
     public abstract ModuleDataType GetData();

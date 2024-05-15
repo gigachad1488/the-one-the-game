@@ -28,7 +28,7 @@ public class ButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         image = GetComponent<Image>();
         defaultColor = image.color;
 
-        GetComponent<Button>().onClick.AddListener(delegate { image.color = defaultColor; source.PlayOneShot(clickClip); });
+        GetComponent<Button>().onClick.AddListener(delegate { source.PlayOneShot(clickClip); });
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -42,4 +42,5 @@ public class ButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         image.color = defaultColor;
     }
+
 }

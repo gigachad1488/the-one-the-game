@@ -104,38 +104,27 @@ public class SettingsManager : MonoBehaviour
         tabButtonsImage[0] = mainTabButtonImage;
         mainTabButton.onClick.AddListener(delegate { ChangeTab(0); });
 
-        if (mixer.GetFloat("Main", out float mainVolume))
-        {
-            mainVolumeSlider.value = mainVolume;
-        }
-
-        if (mixer.GetFloat("Music", out float musicVolume))
-        {
-            musicVolumeSlider.value = musicVolume;
-        }
-
-        if (mixer.GetFloat("Main", out float sfxVolume))
-        {
-            sfxVolumeSlider.value = sfxVolume;
-        }
-
         mainVolumeSlider.onValueChanged.AddListener(ChangeMainVolume);
         musicVolumeSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(ChangeSfxVolume);
+
+        mainVolumeSlider.value = PlayerPrefs.GetFloat("mainVolume", 1);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1);
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 
     public void ChangeMainVolume(float value)
     {
-        mixer.SetFloat("Main", value);
+        mixer.SetFloat("Main", Mathf.Log10(value) * 20);
     }
     public void ChangeMusicVolume(float value)
     {
-        mixer.SetFloat("Music", value);
+        mixer.SetFloat("Music", Mathf.Log10(value) * 20u);
     }
 
     public void ChangeSfxVolume(float value)
     {
-        mixer.SetFloat("Sfx", value);
+        mixer.SetFloat("Sfx", Mathf.Log10(value) * 20);
     }
 
     #endregion

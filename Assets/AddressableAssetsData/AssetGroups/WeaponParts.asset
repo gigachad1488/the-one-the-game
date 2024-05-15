@@ -906,6 +906,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - meleeShootModules
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1f7a4ecc8030fd478accb5759048008
+    m_Address: Assets/MyAssets/Weapon/Modules/OnHitLaser.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05543682c97eee546bdcb613023d51ea
+    m_Address: Assets/MyAssets/Weapon/Parts/Modules/Projectile/Ranged/OnHitLaserModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - rangedProjectileModules
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}
   m_SchemaSet:
