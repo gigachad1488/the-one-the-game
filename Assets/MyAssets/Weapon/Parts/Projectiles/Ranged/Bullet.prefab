@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2444635691529092454}
   - component: {fileID: 7481428697818578977}
   - component: {fileID: 1323888883810191022}
+  - component: {fileID: -3752270002531076745}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -53,9 +54,9 @@ MonoBehaviour:
   className: 
   projectileModules: []
   baseMult: 1
-  mult: 1
+  mult: 1.1
   baseHitCd: 0.3
-  hitCd: 0.5
+  hitCd: 0.285
 --- !u!212 &2444635691529092454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -169,6 +170,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet.prefab
+--- !u!50 &-3752270002531076745
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139934248646725956}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2884553645002904872
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,5 +293,4 @@ MonoBehaviour:
   projectile: {fileID: 0}
   className: 
   addressablesPath: 
-  baseTime: 0.5
   time: 1

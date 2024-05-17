@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bosses:
   - {fileID: 7365885605588865807, guid: 1dbd64eb9a2485743aa87d5023a66d29, type: 3}
+  - {fileID: 3343584696034028765, guid: af261b29b6ed1914b97d57184c8c7b24, type: 3}
   player: {fileID: 1547157990}
   multiScenedata: {fileID: 0}
   bossSpawnPoint: {fileID: 303303405}
@@ -7006,6 +7007,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1072461587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072461589}
+  - component: {fileID: 1072461588}
+  m_Layer: 0
+  m_Name: ms
+  m_TagString: MultiScene
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1072461588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072461587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd59ffe687d89ce47aa4141ad9f3a66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mult: 1
+  bossId: 1
+  level: 2
+  minDrop: 1
+  maxDrop: 2
+  selectedWeapons:
+  - {fileID: 4231918308664006169, guid: bb8a55080dc5cdc4db7b514bceaa56f0, type: 3}
+--- !u!4 &1072461589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072461587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.247894, y: 3.6995995, z: -0.06749989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1136371084
 GameObject:
   m_ObjectHideFlags: 0
@@ -7833,7 +7885,7 @@ GameObject:
   - component: {fileID: 1547157993}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: aboba
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15608,3 +15660,4 @@ SceneRoots:
   - {fileID: 1607404863}
   - {fileID: 303303405}
   - {fileID: 1712883673}
+  - {fileID: 1072461589}
