@@ -8054,7 +8054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7a1cadfd0417846bcd82efa1a4bd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 5000
   currenthealth: 0
   iFrameTime: 1
   iFrameTimer: 0
@@ -8131,7 +8131,7 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   armSolver: {fileID: 2024552965}
   armSolverTarget: {fileID: 1578734954}
-  maxHealth: 100
+  maxHealth: 5000
   healthLevelScale: 20
   regenAmount: 10
   regenAmountLevelScale: 2

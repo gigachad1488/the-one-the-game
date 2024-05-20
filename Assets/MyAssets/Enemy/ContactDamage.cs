@@ -36,7 +36,7 @@ public class ContactDamage : MonoBehaviour
                 side = 1;
             }
 
-            player.DamageWithForce(Convert.ToInt32(bossDamage.baseDamage * mult), side * force);
+            player.DamageWithForce(Convert.ToInt32(bossDamage.damage * mult), side * force);
             Invoke(nameof(DamageCd), damageCd);
         }
     }

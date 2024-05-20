@@ -36,6 +36,10 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
     public EyeBossLaser laserProjectilePrefab;
     public Transform shootPoint;
 
+    public ParticleSystem beamParticles;
+
+    public GameObject beamPrefab;
+
     [Space(5)]
     [Header("Death")]
     public GameObject deathParticles;
@@ -65,6 +69,7 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
 
         yield return new WaitForSeconds(0.5f);
 
+        attackStates.Add(new EyeBossLaserState(stateMachine, this));
         attackStates.Add(new EyeFlightState(stateMachine, this));
         attackStates.Add(new EyeDashState(stateMachine, this));
         stateMachine.SetState(attackStates[0]);

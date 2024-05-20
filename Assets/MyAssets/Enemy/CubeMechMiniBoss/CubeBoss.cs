@@ -38,7 +38,7 @@ public class CubeBoss : MonoBehaviour, IBoss, IBossDamage
 
     [Space(5)]
     [Header("Attacks")]  
-    public ShockWaveAttack shockWaveAttackPrefab;
+    public ShockWaveAttack shockWaveAttackPrefab;   
 
     [Space(5)]
     [Header("Death")]
