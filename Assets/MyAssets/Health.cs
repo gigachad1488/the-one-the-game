@@ -88,6 +88,22 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Damage(int damage, float mult)
+    {
+        if (iFrameTimer <= 0)
+        {
+            ResetIFrame();
+            currentHealth -= Mathf.RoundToInt(damage * mult);
+
+            if (currentHealth <= 0)
+            {
+                OnDeath?.Invoke();
+            }
+
+            OnDamage?.Invoke(damage, mult, Vector3.zero);
+        }
+    }
+
     public void Heal(int heal)
     {
         if (heal > 0 && currentHealth < maxHealth && currentHealth > 0)

@@ -24,13 +24,17 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
     public float thirdPhaseMult = 2.2f;
 
     public LayerMask groundLayer;
-    public int damage = 50;
+    public int damage { get; set; } = 50;
 
     [SerializeField]
     public int baseDamage { get; set; } = 50;
 
     [SerializeField]
     public float difficultyMult { get; set; } = 1.5f;
+
+    [Header("Attacks")]
+    public EyeBossLaser laserProjectilePrefab;
+    public Transform shootPoint;
 
     [Space(5)]
     [Header("Death")]
@@ -61,6 +65,7 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
 
         yield return new WaitForSeconds(0.5f);
 
+        attackStates.Add(new EyeFlightState(stateMachine, this));
         attackStates.Add(new EyeDashState(stateMachine, this));
         stateMachine.SetState(attackStates[0]);
 

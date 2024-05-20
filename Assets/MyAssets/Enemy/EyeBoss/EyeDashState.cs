@@ -23,6 +23,7 @@ public class EyeDashState : BaseState
 
     private Vector2 dashDestination;
     private Vector2 startPosition;
+    private float rotationAngle;
 
     private float rotateTime;
 
@@ -66,11 +67,17 @@ public class EyeDashState : BaseState
                 Vector3 fixedDirection = direction * dashDistance;
 
                 dashDestination = (eyeBoss.transform.position + (Vector3)eyeBoss.aggroedPlayer.playerMovement.rb.velocity.normalized * 4f) + fixedDirection;
-                startPosition = eyeBoss.rb.position;              
+                startPosition = eyeBoss.rb.position;
 
-                dashTimeTimer = 0;
+                rotationAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                dashTimeTimer = 0;            
             }
-            
+
+            float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, rotationAngle, Time.deltaTime * 8);
+
+            eyeBoss.rb.MoveRotation(nextAngle);
+
             float ratio = dashTimeTimer / dashTime;
 
             Vector3 nextPosition = Vector3.Lerp(startPosition, dashDestination, ratio);
@@ -89,12 +96,12 @@ public class EyeDashState : BaseState
         else
         {
             dashCdTimer -= Time.deltaTime;
-            rotateTime += Time.deltaTime;
+            //rotateTime += Time.deltaTime;
 
-            float ratio = rotateTime / dashCd;
+            //float ratio = rotateTime / dashCd;
 
             float angle = Mathf.Atan2(eyeBoss.aggroedPlayer.transform.position.y - eyeBoss.transform.position.y, eyeBoss.aggroedPlayer.transform.position.x - eyeBoss.transform.position.x) * Mathf.Rad2Deg;
-            float nextAngle = Mathf.Lerp(currentAngle, angle, ratio);
+            float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, angle, Time.deltaTime * 5);
 
             eyeBoss.rb.MoveRotation(nextAngle);
         }

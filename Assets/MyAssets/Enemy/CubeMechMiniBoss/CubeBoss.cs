@@ -28,7 +28,8 @@ public class CubeBoss : MonoBehaviour, IBoss, IBossDamage
     public float thirdPhaseMult = 2.2f;
 
     public LayerMask groundLayer;
-    public int damage = 50;
+    public int damage { get; set; } = 50;
+
     [SerializeField]
     public int baseDamage { get; set; } = 50;
 

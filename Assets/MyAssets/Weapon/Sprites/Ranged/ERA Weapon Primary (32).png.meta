@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ERA Weapon Primary (32)_0: -8304356010056646958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
