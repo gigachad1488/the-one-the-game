@@ -11,6 +11,11 @@ public class HitBox : MonoBehaviour
 
     public AudioSource hitSource;
 
+    private void OnValidate()
+    {
+        hitSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         hitSource = GetComponent<AudioSource>();

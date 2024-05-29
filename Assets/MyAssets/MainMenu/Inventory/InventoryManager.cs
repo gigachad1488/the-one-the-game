@@ -90,7 +90,7 @@ public class InventoryManager : MonoBehaviour
                     var data = weapon.GetData();
                     JsonDataService service = new JsonDataService();
                     service.SaveData("w" + weapon.guid.ToString(), data);
-                }, 5));
+                }, 1));
             }
         }
         else

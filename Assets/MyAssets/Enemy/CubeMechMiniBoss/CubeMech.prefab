@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 102172845140390169}
   resistance: 0.8
-  hitSource: {fileID: 0}
+  hitSource: {fileID: 209855836305563757}
 --- !u!82 &209855836305563757
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 102172845140390169}
   resistance: 0.8
-  hitSource: {fileID: 0}
+  hitSource: {fileID: 7257683156029459543}
 --- !u!82 &7257683156029459543
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11291,7 +11291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 102172845140390169}
   resistance: 0
-  hitSource: {fileID: 0}
+  hitSource: {fileID: 9024714554464907506}
 --- !u!82 &9024714554464907506
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16880,7 +16880,6 @@ MonoBehaviour:
   health: {fileID: 0}
   attackStates: []
   rb: {fileID: 5899645871739162234}
-  aggroedPlayer: {fileID: 0}
   mult: 1
   borderColliders:
   - {fileID: 2854669832454459065}
@@ -16899,7 +16898,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  damage: 30
   shockWaveAttackPrefab: {fileID: 318913075758069640, guid: ea03097cb2742ef4eae7e8634da37938, type: 3}
   deathParticles: {fileID: 2798718505968690815, guid: e26ae19cdbbb8cf408fe3d3fb1abfc65, type: 3}
 --- !u!114 &102172845140390169

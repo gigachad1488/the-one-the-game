@@ -15,8 +15,18 @@ public class PistolShoot : WeaponShoot
     private WaitForSeconds attackCdTick;
 
     public override void AfterSet()
-    {     
-        Rigidbody2D rb = projectile.AddComponent<Rigidbody2D>();
+    {
+        Rigidbody2D rb;
+
+        if (projectile.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody))
+        {
+            rb = rigidbody;
+        }
+        else
+        {
+            rb = projectile.AddComponent<Rigidbody2D>();
+        }
+
         rb.gravityScale = 0;
         rb.mass = 0;
         attackTimer = 0;

@@ -69,8 +69,8 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
 
         yield return new WaitForSeconds(0.5f);
 
-        attackStates.Add(new EyeBossLaserState(stateMachine, this));
         attackStates.Add(new EyeFlightState(stateMachine, this));
+        attackStates.Add(new EyeBossLaserState(stateMachine, this));       
         attackStates.Add(new EyeDashState(stateMachine, this));
         stateMachine.SetState(attackStates[0]);
 
@@ -88,18 +88,14 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
         stateMachine.currentState?.OnUpdate();
     }
 
+    public void ChangeToFlight()
+    {
+        stateMachine.SetState(attackStates[0]);
+    }
+
     public void ChangeRandomAttackState()
     {
-        float distance = (transform.position - aggroedPlayer.transform.position).magnitude;
-
-        if (distance >= 55f)
-        {
-            stateMachine.SetState(attackStates[1]);
-        }
-        else
-        {
-            stateMachine.SetState(attackStates[Random.Range(0, attackStates.Count)]);
-        }
+        stateMachine.SetState(attackStates[Random.Range(1, attackStates.Count)]);
     }
 
     private void Phases(float amount, float mult, Vector3 position)

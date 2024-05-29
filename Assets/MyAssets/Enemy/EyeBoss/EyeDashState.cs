@@ -10,11 +10,11 @@ public class EyeDashState : BaseState
     private float baseDashDistance = 45f;
     private float dashDistance;
 
-    private float baseDashTime = 1.2f;
+    private float baseDashTime = 2f;
     private float dashTime;
     private float dashTimeTimer;
 
-    private float baseDashCd = 2f;
+    private float baseDashCd = 1.6f;
     private float dashCd;
     private float dashCdTimer;
 
@@ -29,6 +29,8 @@ public class EyeDashState : BaseState
 
     private float currentAngle;
 
+    private int dashCount;
+
     public EyeDashState(StateMachine stateMachine, EyeBoss eyeBoss) : base(stateMachine)
     {
         this.eyeBoss = eyeBoss;
@@ -39,6 +41,8 @@ public class EyeDashState : BaseState
         dashDistance = baseDashDistance * eyeBoss.mult * 0.5f;
         dashTime = baseDashTime / eyeBoss.mult * 0.5f;
         dashCd = baseDashCd / eyeBoss.mult * 0.5f;
+
+        dashCount = Random.Range(4, 10);
 
         rotateTime = 0;
 
@@ -71,27 +75,47 @@ public class EyeDashState : BaseState
 
                 rotationAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-                dashTimeTimer = 0;            
+                dashTimeTimer = 0;
+
+                Tween.Custom(0, 1, dashTime, x =>
+                {
+                    float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, rotationAngle, Time.deltaTime * 15);
+                    eyeBoss.rb.MoveRotation(nextAngle);
+
+                    eyeBoss.rb.MovePosition(Vector3.Lerp(startPosition, dashDestination, x));
+                }, Ease.InSine).OnComplete(eyeBoss, x =>
+                {
+                    dashStarted = false;
+                    dashCdTimer = dashCd;
+                    currentAngle = eyeBoss.rb.rotation;
+                    rotateTime = 0;
+
+                    dashCount--;
+                });
             }
 
-            float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, rotationAngle, Time.deltaTime * 8);
+            //float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, rotationAngle, Time.deltaTime * 8);
 
-            eyeBoss.rb.MoveRotation(nextAngle);
+            //eyeBoss.rb.MoveRotation(nextAngle);
 
-            float ratio = dashTimeTimer / dashTime;
+            //float ratio = dashTimeTimer / dashTime;
 
-            Vector3 nextPosition = Vector3.Lerp(startPosition, dashDestination, ratio);
-            eyeBoss.rb.MovePosition(nextPosition);
+            //Vector3 nextPosition = Vector3.Lerp(startPosition, dashDestination, ratio);
+            //eyeBoss.rb.MovePosition(nextPosition);
 
-            dashTimeTimer += Time.deltaTime;
+            //dashTimeTimer += Time.deltaTime;
 
+            /*
             if (ratio >= 0.99f)
             {
                 dashStarted = false;
                 dashCdTimer = dashCd;
                 currentAngle = eyeBoss.rb.rotation;
                 rotateTime = 0;
+
+                dashCount--;
             }
+            */
         }
         else
         {
@@ -104,6 +128,11 @@ public class EyeDashState : BaseState
             float nextAngle = Mathf.LerpAngle(eyeBoss.rb.rotation, angle, Time.deltaTime * 5);
 
             eyeBoss.rb.MoveRotation(nextAngle);
+        }
+
+        if (dashCount <= 0)
+        {
+            eyeBoss.ChangeToFlight();
         }
     }
 

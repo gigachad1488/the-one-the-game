@@ -10,11 +10,11 @@ public class EyeFlightState : BaseState
     private float baseMoveSpeed = 20f;
     private float moveSpeed;
 
-    private float baseShootRate = 1f;
+    private float baseShootRate = 0.7f;
     public float shootRate;
     private float shootTimer;
 
-    private float basePredictionPower = 0.6f;
+    private float basePredictionPower = 0.2f;
     public float predictionPower;
 
     private float baseProjectileSpeed = 30f;
@@ -30,6 +30,8 @@ public class EyeFlightState : BaseState
     private float currentYOffset;
     private float currentXOffset;
 
+    private float flightTime;
+
     public EyeFlightState(StateMachine stateMachine, EyeBoss eyeBoss) : base(stateMachine)
     {
         this.stateMachine = stateMachine;
@@ -44,6 +46,8 @@ public class EyeFlightState : BaseState
         moveSpeed = baseMoveSpeed * boss.mult;
         shootTimer = shootRate;
 
+        flightTime = Random.Range(4f, 10f);
+
         xOffsetCdTimer = 0;
 
         currentYOffset = yOffset;
@@ -56,6 +60,8 @@ public class EyeFlightState : BaseState
 
     public override void OnUpdate()
     {
+        flightTime -= Time.deltaTime;
+
         shootTimer -= Time.deltaTime;
         xOffsetCdTimer -= Time.deltaTime;
 
@@ -84,5 +90,10 @@ public class EyeFlightState : BaseState
         }
 
         boss.rb.MovePosition(Vector2.MoveTowards(boss.rb.position, new Vector2(predictPosition.x + currentXOffset, predictPosition.y + currentYOffset), moveSpeed * Time.deltaTime * moveSpeedMult));
+
+        if (flightTime <= 0)
+        {
+            boss.ChangeRandomAttackState();
+        }
     }
 }

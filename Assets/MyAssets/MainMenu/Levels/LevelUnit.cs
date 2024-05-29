@@ -10,6 +10,7 @@ public class LevelUnit : MonoBehaviour
 {
     [Space(5)]
     [Header("Main")]
+    public int bossId = 0;
     public int level = 1;
     public string bossName;
     public Sprite bossSprite;  
@@ -73,6 +74,7 @@ public class LevelUnit : MonoBehaviour
             unit.minDropCount = difficulty.minDrop;
             unit.maxDropCount = difficulty.maxDrop;
             unit.level = level;
+            unit.bossId = bossId;
             unit.data = mainMenuManager.data;
         }
     }

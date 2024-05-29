@@ -20,6 +20,9 @@ public class EyeBossLaserState : BaseState
     private float finishRotation;
     private float initRotation;
 
+    private float baseRotation = 120f;
+    private float rotation;
+
     private float yOffset;
     private float xOffset;
 
@@ -38,11 +41,14 @@ public class EyeBossLaserState : BaseState
 
     public override void OnEnter()
     {
-        yOffset = Random.Range(-25f, 25f);
+        yOffset = Random.Range(8f, 25f);
+
         xOffset = Random.Range(-35f, 35f);
 
         laserPrepCd = baseLaserPrepCd / boss.mult * 0.8f;
         laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.8f;
+
+        rotation = baseRotation * boss.mult;
 
         laserPrepCdTimer = 0;
         laserCycleDurationTimer = 0;
@@ -95,29 +101,29 @@ public class EyeBossLaserState : BaseState
 
                 float omg = (boss.shootPoint.position - boss.aggroedPlayer.transform.position).sqrMagnitude;
 
-                Debug.Log("OMG = " + wtf);
+                //Debug.Log("OMG = " + wtf);
 
                 if (wtf.x > 0 || wtf.y <= 0)
                 {
-                    Debug.Log("ROTATING LEFT");
-                    finishRotation = -120f;
+                    //Debug.Log("ROTATING LEFT");
+                    finishRotation = -rotation;
                 }
                 else
                 {
-                    Debug.Log("ROTATING RIGHT");
-                    finishRotation = 120f;
+                    //Debug.Log("ROTATING RIGHT");
+                    finishRotation = rotation;
                 }
 
                 if (wtf.x > 0 && wtf.y > 0)
                 {
-                    Debug.Log("ROTATING RIGHT");
-                    finishRotation = 120f;
+                    //Debug.Log("ROTATING RIGHT");
+                    finishRotation = rotation;
                 }
 
                 Tween.EulerAngles(boss.transform, new Vector3(0, 0, boss.rb.rotation), new Vector3(0, 0, boss.rb.rotation + finishRotation), laserCycleDuration).OnComplete(boss, x => 
                 {
                     Destroy(beamGameObject);
-                    OnEnter();
+                    boss.ChangeToFlight();
                 });
                 
                 beamGameObject.SetActive(true);
@@ -138,7 +144,7 @@ public class EyeBossLaserState : BaseState
         {
             float ratio = laserPrepCdTimer / laserPrepCd;
 
-            boss.rb.MovePosition(Vector2.MoveTowards(boss.rb.position, new Vector2(boss.aggroedPlayer.transform.position.x + xOffset, boss.aggroedPlayer.transform.position.y + yOffset), 50f * Time.deltaTime * (0.8f - ratio)));
+            boss.rb.MovePosition(Vector2.MoveTowards(boss.rb.position, new Vector2(boss.aggroedPlayer.transform.position.x + xOffset, boss.aggroedPlayer.transform.position.y + yOffset), 60f * Time.deltaTime * (0.8f - ratio)));
 
             boss.beamParticles.Emit(4);
 
