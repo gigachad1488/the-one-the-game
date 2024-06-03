@@ -19,9 +19,9 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
 
     public float mult = 1;
 
-    public float firstPhaseMult = 1.2f;
-    public float secondPhaseMult = 1.8f;
-    public float thirdPhaseMult = 2.2f;
+    public float firstPhaseMult = 0.8f;
+    public float secondPhaseMult = 0.9f;
+    public float thirdPhaseMult = 1f;
 
     public LayerMask groundLayer;
     public int damage { get; set; } = 50;

@@ -21,9 +21,16 @@ public class BossMusic : MonoBehaviour
         introSource.loop = false;
         mainSource.loop = true;
 
-        double duration = (double)introSource.clip.samples / introSource.clip.frequency;
+        if (introSource.clip != null)
+        {
+            double duration = (double)introSource.clip.samples / introSource.clip.frequency;
 
-        mainSource.PlayScheduled(duration + AudioSettings.dspTime);
+            mainSource.PlayScheduled(duration + AudioSettings.dspTime);
+        }
+        else
+        {
+            mainSource.Play();
+        }
 
         yield return null;
     }

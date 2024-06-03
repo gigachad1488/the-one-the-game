@@ -409,6 +409,41 @@ public class WeaponBuilder : MonoBehaviour
 
         yield return null;
     }
+
+    public IEnumerator BuildStartWeapon(System.Action<Weapon> callback)
+    {
+        Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
+        weapon.baseDamage = 30;
+        weapon.baseAttackSpeed = 0.3f;
+        weapon.baseScale = 1;
+
+        WeaponAction action = new GameObject("Weapon Action").AddComponent<PistolAction>();
+        action.transform.SetParent(weapon.transform);
+        weapon.weaponAction = action;
+
+        var weaponModel = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Parts/Ranged/PistolModel.prefab");
+        yield return weaponModel;
+        weapon.weaponModelPrefab = weaponModel.Result;
+
+        WeaponShoot shoot = new GameObject("Weapon Shoot").AddComponent<PistolShoot>();
+        shoot.transform.SetParent(weapon.transform);
+        weapon.weaponShoot = shoot;
+
+        var proj = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet.prefab");
+        yield return proj;
+        weapon.weaponShoot.projectile = proj.Result.GetComponent<Projectile>();
+
+        weapon.weaponModelAddressablesPath = weaponModel.Result.GetComponent<AddressablePath>().path;
+        weapon.projectileAddressablesPath = proj.Result.GetComponent<AddressablePath>().path;
+
+        weapon.level = 1;
+
+        weapon.guid = System.Guid.NewGuid();
+
+        callback(weapon);
+
+        yield return null;
+    }
 }
 
 public enum WeaponType

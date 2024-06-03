@@ -2818,7 +2818,7 @@ MonoBehaviour:
   weaponItemPrefab: {fileID: 1814973551099113718, guid: 41ce97e0d3fb5b14d88e60ecc6907959, type: 3}
   slotsGrid: {fileID: 1750435227}
   builder: {fileID: 1350425120}
-  build: 1
+  build: 0
   count: 20
 --- !u!1 &267557739
 GameObject:

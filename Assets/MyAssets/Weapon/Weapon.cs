@@ -240,8 +240,11 @@ public class Weapon : MonoBehaviour
     public void SetData(WeaponBaseData data)
     {
         //guid = data.guid;
+        if (data.weaponModelAddressablesPath != null)
+        {
+            weaponModelAddressablesPath = data.weaponModelAddressablesPath;
+        }
 
-        weaponModelAddressablesPath = data.weaponModelAddressablesPath;
         projectileAddressablesPath = data.projectileAddressablesPath;
 
         scaleFlat = data.scaleFlat;

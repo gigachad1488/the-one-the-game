@@ -97,7 +97,7 @@ public class InventoryManager : MonoBehaviour
         {
             JsonDataService dataService = new JsonDataService();
 
-            string[] weapons = Directory.GetFiles(Application.persistentDataPath);
+            string[] weapons = Directory.GetFiles(Application.persistentDataPath).Where(x => x.StartsWith('w')).ToArray();
 
             Guid[] selectedGuids = new Guid[3];
 
@@ -110,28 +110,55 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            foreach (string wpn in weapons)
+            if (weapons.Length <= 0)
             {
-                string fl = Path.GetFileName(wpn);
-                if (fl.StartsWith('w'))
+                StartCoroutine(builder.BuildStartWeapon((weapon) =>
                 {
-                    StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>(fl), fl, (weapon) =>
-                    {
-                        InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+                    InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
 
-                        for (int i = 0; i < selectedGuids.Length; i++)
+                    for (int i = 0; i < selectedGuids.Length; i++)
+                    {
+                        if (weapon.guid.Equals(selectedGuids[i]))
                         {
-                            if (weapon.guid.Equals(selectedGuids[i])) 
-                            {
-                                slot = selectedWeaponsSlots[i];
-                                break;
-                            }
+                            slot = selectedWeaponsSlots[i];
+                            break;
                         }
-                        
-                        WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
-                        weaponItem.weapon = weapon;
-                        weapon.transform.SetParent(weaponItem.transform);
-                    }));
+                    }
+
+                    WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                    weaponItem.weapon = weapon;
+                    weapon.transform.SetParent(weaponItem.transform);
+
+                    var data = weapon.GetData();
+                    JsonDataService service = new JsonDataService();
+                    service.SaveData("w" + weapon.guid.ToString(), data);
+                }));
+            }
+            else
+            {
+                foreach (string wpn in weapons)
+                {
+                    string fl = Path.GetFileName(wpn);
+                    if (fl.StartsWith('w'))
+                    {
+                        StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>(fl), fl, (weapon) =>
+                        {
+                            InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+
+                            for (int i = 0; i < selectedGuids.Length; i++)
+                            {
+                                if (weapon.guid.Equals(selectedGuids[i]))
+                                {
+                                    slot = selectedWeaponsSlots[i];
+                                    break;
+                                }
+                            }
+
+                            WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                            weaponItem.weapon = weapon;
+                            weapon.transform.SetParent(weaponItem.transform);
+                        }));
+                    }
                 }
             }
         }

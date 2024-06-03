@@ -32,8 +32,6 @@ public class KeySettingsItem : MonoBehaviour
     {
         titleText.text = title;
 
-        Debug.Log("BINDIN COUNT = " + actionReference.action.bindings.Count);
-
         if (firstBindingCount > 0)
         {
             firstKeyButtonText.text = actionReference.action.GetBindingDisplayString(0);
