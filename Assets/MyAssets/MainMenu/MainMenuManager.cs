@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -30,7 +31,9 @@ public class MainMenuManager : MonoBehaviour
     [Space(5)]
     [Header("Player")]
     [SerializeField]
-    private Button playerButton;
+    private PlayerUpgradeManager playerUpgradeManager;
+    [SerializeField]
+    private Button playerButton;   
     [SerializeField]
     private Canvas playerCanvas;
     private CanvasGroup playerCanvasGroup;
@@ -63,8 +66,26 @@ public class MainMenuManager : MonoBehaviour
 
     public static MainMenuManager instance;
 
+    public TextMeshProUGUI moneyText;
+
+    [SerializeField]
+    private int mny;
+    public int money
+    {
+        get
+        {
+            return mny;
+        }
+        set
+        {
+            mny = value;
+            moneyText.text = mny.ToString();
+        }
+    }
+
     private void Awake()
     {
+        money = 555555;
         if (instance == null) 
         {
             instance = this;
@@ -73,6 +94,8 @@ public class MainMenuManager : MonoBehaviour
         data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
         
         inventoryManager.multiSceneData = data;
+
+        playerUpgradeManager.Init(data);
 
         inventoryCanvasGroup = inventoryCanvas.GetComponent<CanvasGroup>();
         mainCanvasGroup = mainCanvas.GetComponent<CanvasGroup>();

@@ -14,8 +14,8 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI dropText;
 
     public float mult = 1;
-    public float minDropCount = 1;
-    public float maxDropCount = 2;
+    public int minDropCount = 1;
+    public int maxDropCount = 2;
     public int level = 1;
     public int bossId = 0;
 
@@ -37,6 +37,8 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         data.mult = mult;
         data.level = level;
         data.bossId = bossId;
+        data.minDrop = minDropCount;
+        data.maxDrop = maxDropCount;
 
         SceneManager.LoadSceneAsync("SampleScene");
     }

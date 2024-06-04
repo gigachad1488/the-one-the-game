@@ -413,7 +413,7 @@ public class WeaponBuilder : MonoBehaviour
     public IEnumerator BuildStartWeapon(System.Action<Weapon> callback)
     {
         Weapon weapon = new GameObject("Weapon").AddComponent<Weapon>();
-        weapon.baseDamage = 30;
+        weapon.baseDamage = 40;
         weapon.baseAttackSpeed = 0.3f;
         weapon.baseScale = 1;
 

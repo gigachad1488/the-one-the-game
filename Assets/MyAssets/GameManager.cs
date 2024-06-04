@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
         endMenuButton.onClick.AddListener(() => SceneManager.LoadSceneAsync("MainMenu"));
         endCanvas.gameObject.SetActive(false);
 
+        player.playerData = multiScenedata.playerData;
+
         if (instance == null)
         {
             instance = this;

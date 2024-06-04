@@ -7041,6 +7041,13 @@ MonoBehaviour:
   level: 2
   minDrop: 1
   maxDrop: 2
+  playerData:
+    hpLevel: 1
+    moveSpeedLevel: 1
+    flyForceLevel: 1
+    flyTimeLevel: 1
+    dashCdLevel: 1
+    dashForceLevel: 1
   selectedWeapons:
   - {fileID: 4231918308664006169, guid: bb8a55080dc5cdc4db7b514bceaa56f0, type: 3}
 --- !u!4 &1072461589
@@ -8131,7 +8138,7 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   armSolver: {fileID: 2024552965}
   armSolverTarget: {fileID: 1578734954}
-  maxHealth: 5000
+  maxHealth: 200
   healthLevelScale: 20
   regenAmount: 10
   regenAmountLevelScale: 2

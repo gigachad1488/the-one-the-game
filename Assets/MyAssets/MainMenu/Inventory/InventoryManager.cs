@@ -97,11 +97,11 @@ public class InventoryManager : MonoBehaviour
         {
             JsonDataService dataService = new JsonDataService();
 
-            string[] weapons = Directory.GetFiles(Application.persistentDataPath).Where(x => x.StartsWith('w')).ToArray();
+            string[] weapons = Directory.GetFiles(Application.persistentDataPath).Where(x => Path.GetFileName(x).StartsWith('w')).ToArray();
 
             Guid[] selectedGuids = new Guid[3];
 
-            for (int i = 0; i < selectedGuids.Length; i++) 
+            for (int i = 0; i < selectedGuids.Length; i++)
             {
                 string id = "selectedWeapon" + (i + 1);
                 if (Guid.TryParse(PlayerPrefs.GetString(id, string.Empty), out Guid result))
@@ -130,35 +130,31 @@ public class InventoryManager : MonoBehaviour
                     weapon.transform.SetParent(weaponItem.transform);
 
                     var data = weapon.GetData();
-                    JsonDataService service = new JsonDataService();
-                    service.SaveData("w" + weapon.guid.ToString(), data);
+                    dataService.SaveData("w" + weapon.guid.ToString(), data);
                 }));
             }
             else
             {
                 foreach (string wpn in weapons)
                 {
-                    string fl = Path.GetFileName(wpn);
-                    if (fl.StartsWith('w'))
+                    string fileName = Path.GetFileName(wpn);
+                    StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>(fileName), fileName, (weapon) =>
                     {
-                        StartCoroutine(builder.BuildWeaponFromJson(dataService.LoadData<WeaponBaseData>(fl), fl, (weapon) =>
+                        InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
+
+                        for (int i = 0; i < selectedGuids.Length; i++)
                         {
-                            InventorySlot slot = Instantiate(slotPrefab, slotsGrid.transform);
-
-                            for (int i = 0; i < selectedGuids.Length; i++)
+                            if (weapon.guid.Equals(selectedGuids[i]))
                             {
-                                if (weapon.guid.Equals(selectedGuids[i]))
-                                {
-                                    slot = selectedWeaponsSlots[i];
-                                    break;
-                                }
+                                slot = selectedWeaponsSlots[i];
+                                break;
                             }
+                        }
 
-                            WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
-                            weaponItem.weapon = weapon;
-                            weapon.transform.SetParent(weaponItem.transform);
-                        }));
-                    }
+                        WeaponItem weaponItem = Instantiate(weaponItemPrefab, slot.transform);
+                        weaponItem.weapon = weapon;
+                        weapon.transform.SetParent(weaponItem.transform);
+                    }));
                 }
             }
         }

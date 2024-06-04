@@ -28,23 +28,7 @@ public class Player : MonoBehaviour
 
     [Space(5)]
     [Header("Base Stats")]
-    public int maxHealth = 100;
-    public int healthLevelScale = 20;
-    [Space(3)]
-    public int regenAmount = 10;
-    public int regenAmountLevelScale = 2;
-    [Space(3)]
-    public float moveSpeed = 25f;
-    public float moveSpeedLevelScale = 2f;
-    [Space(3)]
-    public float flyingForce = 15f;
-    public float flyingForceLevelScale = 1f;
-    [Space(3)]
-    public float flightTime = 1f;
-    public float flightTimeLevelScale = 0.2f;
-    [Space(3)]
-    public float dashForce = 30f;
-    public float dashForceLevelScale = 2f;
+    public PlayerUpgradesData playerData;
 
     private void Awake()
     {
@@ -58,38 +42,52 @@ public class Player : MonoBehaviour
         health.OnDeath += Health_OnDeath;
 
         armSolver.weight = 0;
+
+        SetHealthLevel();
+        SetMoveSpeedLevel();
+        SetFlightForceLevel();
+        SetFlightTimeLevel();
+        SetDashCdLevel();
+        SetDashForceLevel();
     }
 
-    public void SetHealthLevel(int level)
+    private void SetHealthLevel()
     {
-        health.maxHealth = maxHealth + (healthLevelScale * level);
-        health.currentHealth = maxHealth;
+        health.maxHealth = playerData.baseHp + (playerData.hpLevel * playerData.baseHpScale);
+        health.currentHealth = health.maxHealth;
     }
 
+    /*
     public void SetRegenAmountLevel(int level)
     {
         health.regenAmount = regenAmount + (regenAmountLevelScale * level);
     }    
+    */
 
-    public void SetMoveSpeedLevel(int level)
+    private void SetMoveSpeedLevel()
     {
-        playerMovement.moveSpeed = moveSpeed + (moveSpeedLevelScale * level);
+        playerMovement.moveSpeed = playerData.baseMoveSpeed + (playerData.moveSpeedLevel * playerData.baseMoveSpeedScale);
         playerMovement.maxXSpeed = playerMovement.moveSpeed / 5;
     }
 
-    public void SetFlightTimeLevel(int level)
+    private void SetFlightTimeLevel()
     {
-        playerMovement.flyingTime = flightTime + (flightTimeLevelScale * level);
+        playerMovement.flyingTime = playerData.baseFlyTime + (playerData.flyTimeLevel * playerData.baseFlyTimeScale);
     }
 
-    public void SetFlightForceLevel(int level)
+    private void SetFlightForceLevel()
     {
-        playerMovement.flyingForce = flyingForce + (flyingForceLevelScale * level);
+        playerMovement.flyingForce = playerData.baseFlyForce + (playerData.flyForceLevel * playerData.baseFlyForceScale);
     }
 
-    public void SetDashForceLevel(int level)
+    private void SetDashForceLevel()
     {
-        playerMovement.dashForce = dashForce + (dashForceLevelScale * level);
+        playerMovement.dashForce = playerData.baseDashForce + (playerData.dashForceLevel * playerData.baseDashForceScale);
+    }
+
+    private void SetDashCdLevel()
+    {
+        playerMovement.dashCD = playerData.baseDashCd - (playerData.dashCdLevel * playerData.baseDashCdScale);
     }
 
     private void Health_OnDeath()
