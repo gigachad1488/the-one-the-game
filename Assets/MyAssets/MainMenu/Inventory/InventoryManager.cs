@@ -30,6 +30,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool build = true;
     public int count = 1;
+    public int level = 1;
 
     private void Start()
     {
@@ -90,7 +91,7 @@ public class InventoryManager : MonoBehaviour
                     var data = weapon.GetData();
                     JsonDataService service = new JsonDataService();
                     service.SaveData("w" + weapon.guid.ToString(), data);
-                }, 1));
+                }, level));
             }
         }
         else

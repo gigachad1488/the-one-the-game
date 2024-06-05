@@ -156,8 +156,6 @@ public class Weapon : MonoBehaviour
         CalcDamage();
         CalcAttackSpeed();
         CalcScale();
-
-        //SetLevel();
     }
 
     private void Update()
@@ -218,8 +216,6 @@ public class Weapon : MonoBehaviour
     {
         WeaponBaseData data = new WeaponBaseData();
 
-        //data.guid = guid;
-
         data.weaponModelAddressablesPath = weaponModelAddressablesPath;
         data.projectileAddressablesPath = projectileAddressablesPath;
 
@@ -239,7 +235,6 @@ public class Weapon : MonoBehaviour
 
     public void SetData(WeaponBaseData data)
     {
-        //guid = data.guid;
         if (data.weaponModelAddressablesPath != null)
         {
             weaponModelAddressablesPath = data.weaponModelAddressablesPath;

@@ -52,11 +52,15 @@ public class EyeDashState : BaseState
         beginRotate = true;
 
         currentAngle = eyeBoss.rb.rotation;
+
+        eyeBoss.ramParticles[0].Play();
+        eyeBoss.ramParticles[1].Play();
     }
 
     public override void OnExit()
     {
-
+        eyeBoss.ramParticles[0].Stop();
+        eyeBoss.ramParticles[1].Stop();
     }
 
     public override void OnUpdate()

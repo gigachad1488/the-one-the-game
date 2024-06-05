@@ -899,6 +899,7 @@ MonoBehaviour:
   level: 1
   minDrop: 1
   maxDrop: 1
+  moneyReward: 1
   playerData:
     hpLevel: 1
     moveSpeedLevel: 1
@@ -2466,8 +2467,9 @@ MonoBehaviour:
   weaponItemPrefab: {fileID: 1814973551099113718, guid: 41ce97e0d3fb5b14d88e60ecc6907959, type: 3}
   slotsGrid: {fileID: 1750435227}
   builder: {fileID: 1350425120}
-  build: 0
-  count: 20
+  build: 1
+  count: 10
+  level: 10
 --- !u!1 &267557739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,6 +3305,18 @@ PrefabInstance:
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: difficulties.Array.data[2].mult
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[0].moneyReward
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[1].moneyReward
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[2].moneyReward
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2590926927978831932, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: m_Pivot.x
@@ -8007,7 +8021,6 @@ MonoBehaviour:
   levelsBackButton: {fileID: 2036396691}
   data: {fileID: 0}
   moneyText: {fileID: 754636515}
-  mny: 0
 --- !u!4 &740328868
 Transform:
   m_ObjectHideFlags: 0
@@ -8393,7 +8406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -25}
+  m_AnchoredPosition: {x: 110, y: -35}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &761063464
@@ -10095,6 +10108,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2008520464}
   - {fileID: 2023111114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11685,6 +11699,18 @@ PrefabInstance:
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: difficulties.Array.data[2].mult
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[0].moneyReward
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[1].moneyReward
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
+      propertyPath: difficulties.Array.data[2].moneyReward
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2590926927978831932, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: m_Pivot.x
@@ -13958,8 +13984,8 @@ MonoBehaviour:
   maxMeleeDamage: 200
   minMeleeAttackSpeed: 0.3
   maxMeleeAttackSpeed: 1.2
-  baseModuleChance: 0.1
-  nextModuleChanceDecrease: 0.7
+  baseModuleChance: 0.3
+  nextModuleChanceDecrease: 0.5
   rangedProjectileLabel:
     m_LabelString: rangedProjectiles
   rangedModelsLabel:
@@ -19317,10 +19343,10 @@ RectTransform:
   m_GameObject: {fileID: 2008520463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2023111114}
+  m_Father: {fileID: 932446275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19557,7 +19583,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2008520464}
   - {fileID: 1423861889}
   - {fileID: 1879137121}
   - {fileID: 125906466}

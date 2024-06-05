@@ -24,6 +24,7 @@ public class LevelUnit : MonoBehaviour
         public float mult;
         public int minDrop;
         public int maxDrop;
+        public int moneyReward;
     }
 
     [Space(5)]
@@ -76,6 +77,7 @@ public class LevelUnit : MonoBehaviour
             unit.level = level;
             unit.bossId = bossId;
             unit.data = mainMenuManager.data;
+            unit.money = difficulty.moneyReward;
         }
     }
 

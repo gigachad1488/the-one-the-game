@@ -13,6 +13,8 @@ public class MultiSceneData : MonoBehaviour
     public int minDrop = 1;
     public int maxDrop = 1;
 
+    public int moneyReward = 1;
+
     public PlayerUpgradesData playerData;
 
     public List<Weapon> selectedWeapons = new List<Weapon>();

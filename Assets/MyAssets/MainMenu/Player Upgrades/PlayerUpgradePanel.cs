@@ -49,7 +49,7 @@ public class PlayerUpgradePanel : MonoBehaviour
 
     private IEnumerator ColorChange(Color color)
     {
-        buttonImage.color = color;
+        buttonImage.color = color;      
 
         yield return new WaitForSeconds(0.2f);
 

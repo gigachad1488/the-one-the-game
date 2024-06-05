@@ -116,15 +116,18 @@ public class SettingsManager : MonoBehaviour
     public void ChangeMainVolume(float value)
     {
         mixer.SetFloat("Main", Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("mainVolume", value);
     }
     public void ChangeMusicVolume(float value)
     {
         mixer.SetFloat("Music", Mathf.Log10(value) * 20u);
+        PlayerPrefs.SetFloat("musicVolume", value);
     }
 
     public void ChangeSfxVolume(float value)
     {
         mixer.SetFloat("Sfx", Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", value);
     }
 
     #endregion

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public WeaponBuilder weaponBuilder;
     public Canvas endCanvas;
     public Button endMenuButton;
+    public TextMeshProUGUI rewardText;
     public Transform weaponsLayout;
     public InventorySlot slotPrefab;
     public WeaponItem weaponItemPrefab;
@@ -81,6 +83,9 @@ public class GameManager : MonoBehaviour
             service.SaveData("w" + weapon.guid.ToString(), weapon.GetData());
         }
 
+        int reward = Mathf.RoundToInt(multiScenedata.moneyReward * UnityEngine.Random.Range(0.8f, 1.2f));
+        rewardText.text = reward.ToString();
+        PlayerPrefs.SetInt("money", StaticData.money + reward);
         endCanvas.gameObject.SetActive(true);
     }
 }

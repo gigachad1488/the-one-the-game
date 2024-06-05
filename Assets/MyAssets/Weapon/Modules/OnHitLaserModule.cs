@@ -88,7 +88,7 @@ public class OnHitLaserModule : ProjectileModule
         color = pdata.color;
         level = pdata.level;
 
-        var obj = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Modules/OnHitLaser.prefabb");
+        var obj = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Modules/OnHitLaser.prefab");
         obj.WaitForCompletion();
 
         laserPrefab = obj.Result.GetComponent<DefaultProjectile>();

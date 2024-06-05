@@ -18,6 +18,7 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public int maxDropCount = 2;
     public int level = 1;
     public int bossId = 0;
+    public int money = 5;
 
     public MultiSceneData data;
 
@@ -39,6 +40,7 @@ public class DifficultyUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         data.bossId = bossId;
         data.minDrop = minDropCount;
         data.maxDrop = maxDropCount;
+        data.moneyReward = money;
 
         SceneManager.LoadSceneAsync("SampleScene");
     }

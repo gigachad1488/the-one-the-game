@@ -68,28 +68,27 @@ public class MainMenuManager : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
 
-    [SerializeField]
-    private int mny;
     public int money
     {
         get
         {
-            return mny;
+            return StaticData.money;
         }
         set
         {
-            mny = value;
-            moneyText.text = mny.ToString();
+            StaticData.money = value;
+            moneyText.text = StaticData.money.ToString();
         }
     }
 
     private void Awake()
     {
-        money = 555555;
         if (instance == null) 
         {
             instance = this;
         }
+
+        money = PlayerPrefs.GetInt("money", 0);
 
         data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
         

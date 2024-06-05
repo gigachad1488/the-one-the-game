@@ -33,6 +33,8 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
     public float difficultyMult { get; set; } = 1.5f;
 
     [Header("Attacks")]
+    public ParticleSystem[] ramParticles = new ParticleSystem[2];
+
     public EyeBossLaser laserProjectilePrefab;
     public Transform shootPoint;
 
