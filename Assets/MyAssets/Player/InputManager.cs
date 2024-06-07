@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     private InputAction downAction;
     private InputAction leftAction;
     public InputAction slotsAction;
+    public InputAction settingsAction;
 
     #endregion
 
@@ -45,6 +46,7 @@ public class InputManager : MonoBehaviour
         downAction = defaultMap.FindAction("Down");
         leftAction = defaultMap.FindAction("LeftAction");
         slotsAction = defaultMap.FindAction("Slots");
+        settingsAction = defaultMap.FindAction("Settings");
 
         moveAction.performed += MoveAction_performed;
         jumpAction.performed += JumpAction_performed;

@@ -46,9 +46,9 @@ public class EyeBossLaserState : BaseState
         xOffset = Random.Range(-35f, 35f);
 
         laserPrepCd = baseLaserPrepCd / boss.mult * 0.8f;
-        laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.8f;
+        laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.4f;
 
-        rotation = baseRotation * boss.mult;
+        rotation = baseRotation * boss.mult * 0.8f;
 
         laserPrepCdTimer = 0;
         laserCycleDurationTimer = 0;
@@ -116,8 +116,26 @@ public class EyeBossLaserState : BaseState
 
                 if (wtf.x > 0 && wtf.y > 0)
                 {
+                    //Debug.Log("ROTATING LEFT");
+                    finishRotation = -rotation;
+                }
+
+                if (wtf.x > 0 && wtf.y < 0)
+                {
                     //Debug.Log("ROTATING RIGHT");
                     finishRotation = rotation;
+                }
+
+                if (wtf.x < 0 && wtf.y < 0)
+                {
+                    //Debug.Log("ROTATING RIGHT");
+                    finishRotation = rotation;
+                }
+
+                if (wtf.x <= 0 && wtf.y >= 0)
+                {
+                    //Debug.Log("ROTATING RIGHT");
+                    finishRotation = -rotation;
                 }
 
                 Tween.EulerAngles(boss.transform, new Vector3(0, 0, boss.rb.rotation), new Vector3(0, 0, boss.rb.rotation + finishRotation), laserCycleDuration).OnComplete(boss, x => 

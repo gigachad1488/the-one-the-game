@@ -63,6 +63,7 @@ public class SettingsManager : MonoBehaviour
         controlsTabButtonImage = controlsTabButton.GetComponent<Image>();
 
         string actionsJson = PlayerPrefs.GetString("actions", "");
+
         if (!string.IsNullOrEmpty(actionsJson))
         {
             actions.LoadBindingOverridesFromJson(actionsJson);
@@ -122,6 +123,10 @@ public class SettingsManager : MonoBehaviour
     {
         mixer.SetFloat("Music", Mathf.Log10(value) * 20u);
         PlayerPrefs.SetFloat("musicVolume", value);
+
+        //bool can = mixer.GetFloat("Music", out float val);
+
+        //Debug.Log("SHANGING VOLUME TO " + val.ToString() + "(CAN = " + can + ")" + "|||||PLAYER PREFS VAL = " + PlayerPrefs.GetFloat("musicVolume", -228));
     }
 
     public void ChangeSfxVolume(float value)

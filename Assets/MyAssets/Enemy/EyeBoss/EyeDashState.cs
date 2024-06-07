@@ -7,14 +7,14 @@ public class EyeDashState : BaseState
 {
     public EyeBoss eyeBoss;
 
-    private float baseDashDistance = 45f;
+    private float baseDashDistance = 50f;
     private float dashDistance;
 
-    private float baseDashTime = 2f;
+    private float baseDashTime = 1.5f;
     private float dashTime;
     private float dashTimeTimer;
 
-    private float baseDashCd = 1.6f;
+    private float baseDashCd = 1.3f;
     private float dashCd;
     private float dashCdTimer;
 
@@ -31,16 +31,25 @@ public class EyeDashState : BaseState
 
     private int dashCount;
 
+    private ParticleSystem.MainModule[] ramParticlesMains;
+
     public EyeDashState(StateMachine stateMachine, EyeBoss eyeBoss) : base(stateMachine)
     {
         this.eyeBoss = eyeBoss;
+
+        ramParticlesMains = new ParticleSystem.MainModule[2];
+
+        for (int i = 0; i < ramParticlesMains.Length; i++) 
+        {
+            ramParticlesMains[i] = eyeBoss.ramParticles[i].main;
+        }
     }
 
     public override void OnEnter()
     {
         dashDistance = baseDashDistance * eyeBoss.mult * 0.5f;
-        dashTime = baseDashTime / eyeBoss.mult * 0.5f;
-        dashCd = baseDashCd / eyeBoss.mult * 0.5f;
+        dashTime = baseDashTime / eyeBoss.mult * 0.8f;
+        dashCd = baseDashCd / eyeBoss.mult * 0.8f;
 
         dashCount = Random.Range(4, 10);
 
@@ -52,6 +61,9 @@ public class EyeDashState : BaseState
         beginRotate = true;
 
         currentAngle = eyeBoss.rb.rotation;
+
+        ramParticlesMains[0].simulationSpeed = eyeBoss.mult;
+        ramParticlesMains[1].simulationSpeed = eyeBoss.mult;
 
         eyeBoss.ramParticles[0].Play();
         eyeBoss.ramParticles[1].Play();

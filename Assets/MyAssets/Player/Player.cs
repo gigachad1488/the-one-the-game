@@ -1,8 +1,10 @@
 using PrimeTween;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.IK;
 using UnityEngine.UI;
@@ -11,6 +13,15 @@ using UnityEngine.UI;
 [RequireComponent (typeof(Health))]
 public class Player : MonoBehaviour
 {
+    [Header("Settings Menu")]
+    [SerializeField]
+    private Canvas settingsCanvas;
+    private CanvasGroup settingCanvasGroup;
+    [SerializeField]
+    private Button closeButton;
+    [SerializeField]
+    private Button toMenuButton;
+
     [Space(5)]
     [Header("Sprite")]
     [SerializeField]
@@ -49,6 +60,35 @@ public class Player : MonoBehaviour
         SetFlightTimeLevel();
         SetDashCdLevel();
         SetDashForceLevel();
+
+        playerMovement.inputManager.settingsAction.performed += SettingsSwitch;
+        closeButton.onClick.AddListener(() => SettingsSwitch(false));
+        toMenuButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
+
+        settingCanvasGroup = settingsCanvas.GetComponent<CanvasGroup>();
+        settingsCanvas.gameObject.SetActive(true);
+        SettingsSwitch(false);
+    }
+
+    private void SettingsSwitch(InputAction.CallbackContext context)
+    {
+        SettingsSwitch(!settingCanvasGroup.blocksRaycasts);
+    }
+
+    private void SettingsSwitch(bool open)
+    {
+        if (open)
+        {
+            Time.timeScale = 0;
+            settingCanvasGroup.alpha = 1;
+            settingCanvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            settingCanvasGroup.alpha = 0;
+            settingCanvasGroup.blocksRaycasts = false;
+        }
     }
 
     private void SetHealthLevel()
@@ -78,6 +118,8 @@ public class Player : MonoBehaviour
     private void SetFlightForceLevel()
     {
         playerMovement.flyingForce = playerData.baseFlyForce + (playerData.flyForceLevel * playerData.baseFlyForceScale);
+        playerMovement.maxYSpeed = playerMovement.flyingForce;
+        playerMovement.downForce = -playerMovement.flyingForce * 0.3f;
     }
 
     private void SetDashForceLevel()

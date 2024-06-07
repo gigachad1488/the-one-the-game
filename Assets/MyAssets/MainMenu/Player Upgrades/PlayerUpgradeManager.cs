@@ -15,8 +15,8 @@ public class PlayerUpgradeManager : MonoBehaviour
     public PlayerUpgradePanel dashCdPanel;
     public PlayerUpgradePanel dashForcePanel;
 
-    private float baseLevelCost = 20f;
-    private float levelCostMult = 2f;
+    private float baseLevelCost = 10f;
+    private float levelCostMult = 1.8f;
 
     private JsonDataService dataService;
     private PlayerUpgradesData playerData;
@@ -117,5 +117,6 @@ public class PlayerUpgradeManager : MonoBehaviour
     {
         dataService.SaveData("gg/pum", playerData);
         data.playerData = this.playerData;
+        PlayerPrefs.SetFloat("money", StaticData.money);
     }
 }

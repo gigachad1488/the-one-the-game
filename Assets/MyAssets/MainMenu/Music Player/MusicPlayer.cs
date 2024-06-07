@@ -97,7 +97,8 @@ public class MusicPlayer : MonoBehaviour
         repeatButton.onClick.AddListener(RepeatSwitch);
 
         volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChange);
-        volumeSlider.value = 0.6f;
+
+        volumeSlider.value = PlayerPrefs.GetFloat("musicPlayerVolume", 0.6f);
 
         hidePanelButton.onClick.AddListener(delegate { PanelVisibility(false); });
         outsideHideButton.onClick.AddListener(delegate { PanelVisibility(false); });
@@ -356,6 +357,7 @@ public class MusicPlayer : MonoBehaviour
     public void OnVolumeSliderValueChange(float value)
     {
         musicSource.volume = value;
+        PlayerPrefs.SetFloat("musicPlayerVolume", value);
 
         if (value <= 0)
         {

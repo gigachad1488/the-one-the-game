@@ -15,6 +15,9 @@ public class WeaponBuilder : MonoBehaviour
     [Header("Ranged")]
     public int minRangedDamage = 1;
     public int maxRangedDamage = 50;
+
+    public int minProjectileSpeed = 20;
+    public int maxProjectileSpeed = 100;
     [Space(3)]
     public float minRangedAttackSpeed = 0.1f;
     public float maxRangedAttackSpeed = 1f;
@@ -82,6 +85,7 @@ public class WeaponBuilder : MonoBehaviour
             WeaponShoot shoot = BuildWeaponShoot(type, level);
             shoot.transform.SetParent(weapon.transform);
             weapon.weaponShoot = shoot;
+            (shoot as PistolShoot).projectileSpeed = Random.Range(minProjectileSpeed, maxProjectileSpeed);
 
             Projectile projectile = null;
             yield return BuildWeaponProjectile(type, (item) => projectile = item, level);
@@ -425,9 +429,10 @@ public class WeaponBuilder : MonoBehaviour
         yield return weaponModel;
         weapon.weaponModelPrefab = weaponModel.Result;
 
-        WeaponShoot shoot = new GameObject("Weapon Shoot").AddComponent<PistolShoot>();
+        PistolShoot shoot = new GameObject("Weapon Shoot").AddComponent<PistolShoot>();
         shoot.transform.SetParent(weapon.transform);
         weapon.weaponShoot = shoot;
+        shoot.projectileSpeed = 60;
 
         var proj = Addressables.LoadAssetAsync<GameObject>("Assets/MyAssets/Weapon/Parts/Projectiles/Ranged/Bullet.prefab");
         yield return proj;

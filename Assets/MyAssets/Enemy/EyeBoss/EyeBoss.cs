@@ -71,11 +71,6 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
 
         yield return new WaitForSeconds(0.5f);
 
-        attackStates.Add(new EyeFlightState(stateMachine, this));
-        attackStates.Add(new EyeBossLaserState(stateMachine, this));       
-        attackStates.Add(new EyeDashState(stateMachine, this));
-        stateMachine.SetState(attackStates[0]);
-
         firstPhaseMult *= difficultyMult;
         secondPhaseMult *= difficultyMult;
         thirdPhaseMult *= difficultyMult;
@@ -83,6 +78,10 @@ public class EyeBoss : MonoBehaviour, IBoss, IBossDamage
         mult = firstPhaseMult;
         baseDamage = System.Convert.ToInt32(baseDamage * difficultyMult);
 
+        attackStates.Add(new EyeFlightState(stateMachine, this));
+        attackStates.Add(new EyeBossLaserState(stateMachine, this));
+        attackStates.Add(new EyeDashState(stateMachine, this));
+        stateMachine.SetState(attackStates[0]);
     }
 
     private void Update()

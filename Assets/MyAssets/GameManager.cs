@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.HDROutputUtils;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] bosses;
+    public string[] bossesLabel;
+    public GameObject[] bossesPrefabs;
 
     public Player player;
 
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     private List<Weapon> weapons = new List<Weapon>();
 
+    private AsyncOperationHandle<GameObject> bossHandle;
+
     private void Awake()
     {
         multiScenedata = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
@@ -44,7 +50,7 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator Start()
-    {       
+    {      
         Array enums = Enum.GetValues(typeof(WeaponType));
 
         int dropCount = UnityEngine.Random.Range(multiScenedata.minDrop, multiScenedata.maxDrop + 1);
@@ -62,14 +68,22 @@ public class GameManager : MonoBehaviour
             }, multiScenedata.level);
         }       
 
-        SpawnBoss();
-
-        yield return null;
+        yield return bossHandle;
     }
 
     public void SpawnBoss()
     {
-        IBoss boss = Instantiate(bosses[multiScenedata.bossId], bossSpawnPoint.position, Quaternion.identity).GetComponent<IBoss>();
+        
+        StartCoroutine(Spawning());
+    }
+
+    private IEnumerator Spawning()
+    {
+        var operation = Addressables.InstantiateAsync(bossesLabel[multiScenedata.bossId], bossSpawnPoint.position, Quaternion.identity);
+
+        yield return operation;
+
+        IBoss boss = operation.Result.GetComponent<IBoss>();
         boss.difficultyMult = multiScenedata.mult;
         boss.aggroedPlayer = player;
     }

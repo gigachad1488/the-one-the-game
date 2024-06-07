@@ -8,7 +8,7 @@ public class PistolShoot : WeaponShoot
 {
     private Transform shootPoint;
 
-    public float projectileSpeed = 50f;
+    public int projectileSpeed = 50;
     private float attackTimer;
 
     private float attackCdTickTime = 0.1f;
@@ -65,9 +65,10 @@ public class PistolShoot : WeaponShoot
 
     public override ModuleDataType GetData()
     {
-        ModuleData data = new ModuleData();
+        PistolShootData data = new();
         data.className = className;
         data.level = level;
+        data.projectileSpeed = projectileSpeed;
 
         ModuleDataType type = new ModuleDataType();
         type.data = data;
@@ -77,6 +78,13 @@ public class PistolShoot : WeaponShoot
 
     public override void SetData(ModuleDataType data)
     {
-        level = data.data.level;
+        PistolShootData pdata = data.data as PistolShootData;
+        level = pdata.level;
+        projectileSpeed = pdata.projectileSpeed;
     }
+}
+
+public class PistolShootData : ModuleData
+{
+    public int projectileSpeed;
 }

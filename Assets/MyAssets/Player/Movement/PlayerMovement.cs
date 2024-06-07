@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     public float flyingTime = 3f;
     private float flyingTimer;
 
+    public float downForce = 1;
+
     [SerializeField]
     private ParticleSystem flyingParticles;
     private ParticleSystem.MainModule flyingParticlesMainModule;
@@ -179,18 +181,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Down()
     {
-        if (inputManager.down)
+        if (inputManager.down && !isGrounded)
         {
-            Collider2D[] hits = Physics2D.OverlapBoxAll(groundCollider.transform.position, groundColliderSize, 0);
-
-            for (int i = 0; i < hits.Length; i++)
-            {
-                if (hits[i].transform.CompareTag("Platform"))
-                {
-                    hits[i].enabled = false;
-                    StartCoroutine(EnablePlatform(hits[i]));
-                }
-            }
+            rb.AddForceY(downForce, ForceMode2D.Force);
         }
     }
 
