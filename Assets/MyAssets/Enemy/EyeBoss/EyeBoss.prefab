@@ -14729,7 +14729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7a1cadfd0417846bcd82efa1a4bd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 16000
+  maxHealth: 20000
   currenthealth: 0
   iFrameTime: 0
   iFrameTimer: 0

@@ -72,7 +72,7 @@ public class WeaponBuilder : MonoBehaviour
             int damage = System.Convert.ToInt32(Random.Range(minRangedDamage, maxRangedDamage) * 1 + (level * 0.5f));
             float percentDamageLuck = (float)damage / maxRangedDamage;
 
-            float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.5f), maxRangedAttackSpeed);
+            float attackSpeed = Random.Range(minRangedAttackSpeed * (1 + percentDamageLuck * 0.7f), maxRangedAttackSpeed);
 
             weapon.baseDamage = damage;
             weapon.baseAttackSpeed = attackSpeed;
@@ -105,7 +105,7 @@ public class WeaponBuilder : MonoBehaviour
             int damage = System.Convert.ToInt32(Random.Range(minMeleeDamage, maxMeleeDamage) * 1 + (level * 0.5f));
             float percentDamageLuck = (float)damage / maxMeleeDamage;
 
-            float attackSpeed = Random.Range(minMeleeAttackSpeed * (1 + percentDamageLuck * 0.5f), maxMeleeAttackSpeed);
+            float attackSpeed = Random.Range(minMeleeAttackSpeed * (1 + percentDamageLuck * 0.7f), maxMeleeAttackSpeed);
 
             weapon.baseDamage = damage;
             weapon.baseAttackSpeed = attackSpeed;

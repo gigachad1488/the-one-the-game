@@ -917,21 +917,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - rangedProjectileModules
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af261b29b6ed1914b97d57184c8c7b24
-    m_Address: Assets/MyAssets/Enemy/EyeBoss/EyeBoss.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b7a47600dfb7dd945bf2b4c2fb8275af
-    m_Address: Assets/MyAssets/AudioMixer.mixer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1dbd64eb9a2485743aa87d5023a66d29
-    m_Address: Assets/MyAssets/Enemy/CubeMechMiniBoss/CubeMech.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 603f0075bdc90774998090d34dc7c323, type: 2}
   m_SchemaSet:

@@ -105,13 +105,21 @@ public class SettingsManager : MonoBehaviour
         tabButtonsImage[0] = mainTabButtonImage;
         mainTabButton.onClick.AddListener(delegate { ChangeTab(0); });
 
+        float mainVolume = PlayerPrefs.GetFloat("mainVolume", 1);
+        ChangeMainVolume(mainVolume);
+        mainVolumeSlider.value = mainVolume;
+
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
+        ChangeMusicVolume(musicVolume);
+        musicVolumeSlider.value = musicVolume;
+
+        float sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
+        ChangeSfxVolume(sfxVolume);
+        sfxVolumeSlider.value = sfxVolume;
+
         mainVolumeSlider.onValueChanged.AddListener(ChangeMainVolume);
         musicVolumeSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(ChangeSfxVolume);
-
-        mainVolumeSlider.value = PlayerPrefs.GetFloat("mainVolume", 1);
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1);
-        sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 
     public void ChangeMainVolume(float value)

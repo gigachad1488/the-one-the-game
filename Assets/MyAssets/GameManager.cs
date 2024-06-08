@@ -73,8 +73,11 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBoss()
     {
-        
-        StartCoroutine(Spawning());
+        IBoss boss = Instantiate(bossesPrefabs[multiScenedata.bossId], bossSpawnPoint.position, Quaternion.identity).GetComponent<IBoss>();
+        boss.difficultyMult = multiScenedata.mult;
+        boss.aggroedPlayer = player;
+
+        //StartCoroutine(Spawning());
     }
 
     private IEnumerator Spawning()

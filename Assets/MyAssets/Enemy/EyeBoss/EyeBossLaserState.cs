@@ -11,7 +11,7 @@ public class EyeBossLaserState : BaseState
     private float laserPrepCd;
     private float laserPrepCdTimer;
 
-    private float baseLaserCycleDuration = 4f;
+    private float baseLaserCycleDuration = 12f;
     private float laserCycleDuration;
     private float laserCycleDurationTimer;
 
@@ -20,7 +20,7 @@ public class EyeBossLaserState : BaseState
     private float finishRotation;
     private float initRotation;
 
-    private float baseRotation = 120f;
+    private float baseRotation = 360f;
     private float rotation;
 
     private float yOffset;
@@ -48,7 +48,7 @@ public class EyeBossLaserState : BaseState
         laserPrepCd = baseLaserPrepCd / boss.mult * 0.8f;
         laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.4f;
 
-        rotation = baseRotation * boss.mult * 0.8f;
+        rotation = baseRotation * boss.mult;
 
         laserPrepCdTimer = 0;
         laserCycleDurationTimer = 0;

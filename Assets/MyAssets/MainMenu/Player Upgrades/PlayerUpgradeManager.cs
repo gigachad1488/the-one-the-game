@@ -43,9 +43,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (hpPanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= hpPanel.cost;
                 playerData.hpLevel++;
                 hpPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.hpLevel)), playerData.baseHp + (playerData.hpLevel * playerData.baseHpScale));
-                MainMenuManager.instance.money -= hpPanel.cost;
                 SaveData();
             }
         });
@@ -55,9 +55,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (moveSpeedPanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= moveSpeedPanel.cost;
                 playerData.moveSpeedLevel++;
                 moveSpeedPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.moveSpeedLevel)), playerData.baseMoveSpeed + (playerData.moveSpeedLevel * playerData.baseMoveSpeedScale));
-                MainMenuManager.instance.money -= moveSpeedPanel.cost;
                 SaveData();
             }
         });
@@ -67,9 +67,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (flyTimePanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= flyTimePanel.cost;
                 playerData.flyTimeLevel++;
                 flyTimePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.flyTimeLevel)), playerData.baseFlyTime + (playerData.flyTimeLevel * playerData.baseFlyTimeScale));
-                MainMenuManager.instance.money -= flyTimePanel.cost;
                 SaveData();
             }
         });
@@ -79,9 +79,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (flyForcePanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= flyForcePanel.cost;
                 playerData.flyForceLevel++;
                 flyForcePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.flyForceLevel)), playerData.baseFlyForce + (playerData.flyForceLevel * playerData.baseFlyForceScale));
-                MainMenuManager.instance.money -= flyForcePanel.cost;
                 SaveData();
             }
         });
@@ -91,9 +91,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (dashCdPanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= dashCdPanel.cost;
                 playerData.dashCdLevel++;
                 dashCdPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.dashCdLevel)), playerData.baseDashCd - (playerData.dashCdLevel * playerData.baseDashCdScale));
-                MainMenuManager.instance.money -= dashCdPanel.cost;
                 SaveData();
             }
         });
@@ -103,9 +103,9 @@ public class PlayerUpgradeManager : MonoBehaviour
         {
             if (dashForcePanel.CanBuy(MainMenuManager.instance.money))
             {
+                MainMenuManager.instance.money -= dashForcePanel.cost;
                 playerData.dashForceLevel++;
                 dashForcePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.dashForceLevel)), playerData.baseDashForce + (playerData.dashForceLevel * playerData.baseDashForceScale));
-                MainMenuManager.instance.money -= dashForcePanel.cost;
                 SaveData();
             }
         });

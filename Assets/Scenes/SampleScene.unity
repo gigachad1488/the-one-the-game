@@ -376,6 +376,7 @@ MonoBehaviour:
   - Assets/MyAssets/Enemy/EyeBoss/EyeBoss.prefab
   bossesPrefabs:
   - {fileID: 7365885605588865807, guid: 1dbd64eb9a2485743aa87d5023a66d29, type: 3}
+  - {fileID: 3343584696034028765, guid: af261b29b6ed1914b97d57184c8c7b24, type: 3}
   player: {fileID: 1547157990}
   multiScenedata: {fileID: 0}
   bossSpawnPoint: {fileID: 303303405}
@@ -7048,7 +7049,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 3115337950546464494, guid: 7dfac83dc27a68b4485bf942ddff076e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8024,7 +8025,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!1 &1334012582
 GameObject:

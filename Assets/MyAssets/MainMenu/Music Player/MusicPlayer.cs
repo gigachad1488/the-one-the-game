@@ -96,9 +96,10 @@ public class MusicPlayer : MonoBehaviour
         shuffleButton.onClick.AddListener(ShuffleSwitch);
         repeatButton.onClick.AddListener(RepeatSwitch);
 
-        volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChange);
-
-        volumeSlider.value = PlayerPrefs.GetFloat("musicPlayerVolume", 0.6f);
+        float volume = PlayerPrefs.GetFloat("musicPlayerVolume", 0.6f);
+        OnVolumeSliderValueChange(volume);
+        volumeSlider.value = volume;
+        volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChange);       
 
         hidePanelButton.onClick.AddListener(delegate { PanelVisibility(false); });
         outsideHideButton.onClick.AddListener(delegate { PanelVisibility(false); });

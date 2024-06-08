@@ -20,6 +20,7 @@ public class OnHitLaserModule : ProjectileModule
     public Color color;
 
     public LayerMask hitLayers;
+
     public override void AfterSet()
     {
         canStrike = true;
@@ -36,6 +37,7 @@ public class OnHitLaserModule : ProjectileModule
         {
             canStrike = false;
             Vector3 weaponPos = projectile.weaponShoot.transform.position;
+            Vector3 direction = pos - weaponPos;
             float randX = Random.Range(weaponPos.x - 2, weaponPos.x + 2);
             float randY = Random.Range(weaponPos.y - 4, weaponPos.y + 4);
             DefaultProjectile proj = Instantiate(laserPrefab, new Vector3(randX, randY, 0), Quaternion.identity);
@@ -45,7 +47,7 @@ public class OnHitLaserModule : ProjectileModule
             proj.SetLevel(level);
             proj.hitCd = 2f;
             OnHitLaserProjectile pr = proj.GetComponent<OnHitLaserProjectile>();
-            pr.destination = pos;
+            pr.destination = pos + (direction.normalized * Random.Range(-1f, 3f));
             pr.trailRenderer.widthMultiplier *= radius;
             pr.trailRenderer.colorGradient = gradient;
             pr.transform.localScale = new Vector3(radius, radius, radius);
