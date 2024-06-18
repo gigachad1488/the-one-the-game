@@ -21,16 +21,28 @@ public class BossMusic : MonoBehaviour
         introSource.loop = false;
         mainSource.loop = true;
 
+        AudioSource firstSource;
+        float targetVolume = 0f;
+
         if (introSource.clip != null)
         {
             double duration = (double)introSource.clip.samples / introSource.clip.frequency;
 
             mainSource.PlayScheduled(duration + AudioSettings.dspTime);
+
+            firstSource = introSource;
+            targetVolume = introSource.volume;
+            introSource.volume = 0f;
         }
         else
         {
+            firstSource = mainSource;
+            targetVolume = mainSource.volume;
+            mainSource.volume = 0f;
             mainSource.Play();
         }
+
+        Tween.AudioVolume(firstSource, targetVolume, 1);
 
         yield return null;
     }

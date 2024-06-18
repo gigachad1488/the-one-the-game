@@ -7,11 +7,11 @@ public class EyeBossLaserState : BaseState
 {
     private EyeBoss boss;
 
-    private float baseLaserPrepCd = 6f;
+    private float baseLaserPrepCd = 5f;
     private float laserPrepCd;
     private float laserPrepCdTimer;
 
-    private float baseLaserCycleDuration = 12f;
+    private float baseLaserCycleDuration = 7f;
     private float laserCycleDuration;
     private float laserCycleDurationTimer;
 
@@ -41,14 +41,14 @@ public class EyeBossLaserState : BaseState
 
     public override void OnEnter()
     {
-        yOffset = Random.Range(8f, 25f);
+        yOffset = Random.Range(10f, 20 * boss.mult * 0.6f);
 
         xOffset = Random.Range(-35f, 35f);
 
         laserPrepCd = baseLaserPrepCd / boss.mult * 0.8f;
-        laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.4f;
+        laserCycleDuration = baseLaserCycleDuration / boss.mult * 0.6f;
 
-        rotation = baseRotation * boss.mult;
+        rotation = baseRotation * boss.mult * 1.2f;
 
         laserPrepCdTimer = 0;
         laserCycleDurationTimer = 0;
@@ -129,7 +129,7 @@ public class EyeBossLaserState : BaseState
                 if (wtf.x < 0 && wtf.y < 0)
                 {
                     //Debug.Log("ROTATING RIGHT");
-                    finishRotation = rotation;
+                    finishRotation = -rotation;
                 }
 
                 if (wtf.x <= 0 && wtf.y >= 0)
@@ -138,7 +138,7 @@ public class EyeBossLaserState : BaseState
                     finishRotation = -rotation;
                 }
 
-                Tween.EulerAngles(boss.transform, new Vector3(0, 0, boss.rb.rotation), new Vector3(0, 0, boss.rb.rotation + finishRotation), laserCycleDuration).OnComplete(boss, x => 
+                Tween.EulerAngles(boss.transform, new Vector3(0, 0, boss.rb.rotation), new Vector3(0, 0, boss.rb.rotation + finishRotation), laserCycleDuration, Ease.Linear).OnComplete(boss, x => 
                 {
                     Destroy(beamGameObject);
                     boss.ChangeToFlight();

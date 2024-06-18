@@ -40,9 +40,9 @@ public class EyeFlightState : BaseState
 
     public override void OnEnter()
     {
-        shootRate = baseShootRate / (boss.mult * 0.8f);
-        predictionPower = basePredictionPower * (boss.mult * 0.8f);
-        projectileSpeed = baseProjectileSpeed * boss.mult;
+        shootRate = baseShootRate / (boss.mult * 0.6f);
+        predictionPower = basePredictionPower * (boss.mult * 0.7f);
+        projectileSpeed = baseProjectileSpeed * boss.mult * 0.8f;
         moveSpeed = baseMoveSpeed * boss.mult;
         shootTimer = shootRate;
 

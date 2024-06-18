@@ -55,8 +55,6 @@ public class DefaultProjectile : Projectile
     {
         if (collision.TryGetComponent<HitBox>(out HitBox health))
         {
-            
-
             if (hitBoxes.TryGetValue(health, out bool can))
             {
                 if (can)

@@ -14690,9 +14690,9 @@ MonoBehaviour:
   attackStates: []
   rb: {fileID: 3011985757523093387}
   mult: 1
-  firstPhaseMult: 1.2
-  secondPhaseMult: 1.5
-  thirdPhaseMult: 1.7
+  firstPhaseMult: 1
+  secondPhaseMult: 1.15
+  thirdPhaseMult: 1.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1

@@ -7,10 +7,10 @@ public class EyeDashState : BaseState
 {
     public EyeBoss eyeBoss;
 
-    private float baseDashDistance = 50f;
+    private float baseDashDistance = 80f;
     private float dashDistance;
 
-    private float baseDashTime = 1.5f;
+    private float baseDashTime = 1.2f;
     private float dashTime;
     private float dashTimeTimer;
 
@@ -47,11 +47,11 @@ public class EyeDashState : BaseState
 
     public override void OnEnter()
     {
-        dashDistance = baseDashDistance * eyeBoss.mult * 0.5f;
-        dashTime = baseDashTime / eyeBoss.mult * 0.8f;
-        dashCd = baseDashCd / eyeBoss.mult * 0.8f;
+        dashDistance = baseDashDistance * eyeBoss.mult * 0.1f;
+        dashTime = baseDashTime / eyeBoss.mult * 0.9f;
+        dashCd = baseDashCd / eyeBoss.mult * 0.9f;
 
-        dashCount = Random.Range(4, 10);
+        dashCount = Random.Range(3, 6);
 
         rotateTime = 0;
 

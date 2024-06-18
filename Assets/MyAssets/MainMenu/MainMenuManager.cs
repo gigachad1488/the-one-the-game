@@ -88,7 +88,7 @@ public class MainMenuManager : MonoBehaviour
             instance = this;
         }
 
-        money = PlayerPrefs.GetInt("money", 0);
+        money = PlayerPrefs.GetInt("money", 100);
 
         data = GameObject.FindGameObjectWithTag("MultiScene").GetComponent<MultiSceneData>();
         

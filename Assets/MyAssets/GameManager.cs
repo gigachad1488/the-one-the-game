@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public InventorySlot slotPrefab;
     public WeaponItem weaponItemPrefab;
 
+    public PreGameMusic preGameMusic;
+
     public static GameManager instance;
 
     private List<Weapon> weapons = new List<Weapon>();
@@ -76,6 +78,8 @@ public class GameManager : MonoBehaviour
         IBoss boss = Instantiate(bossesPrefabs[multiScenedata.bossId], bossSpawnPoint.position, Quaternion.identity).GetComponent<IBoss>();
         boss.difficultyMult = multiScenedata.mult;
         boss.aggroedPlayer = player;
+
+        preGameMusic.Stop();
 
         //StartCoroutine(Spawning());
     }

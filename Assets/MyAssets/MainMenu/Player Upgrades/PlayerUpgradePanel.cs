@@ -33,18 +33,23 @@ public class PlayerUpgradePanel : MonoBehaviour
 
     public bool CanBuy(int money)
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
 
         if (money >= cost)
         {
-            StartCoroutine(ColorChange(Color.green));
+            //StartCoroutine(ColorChange(Color.green));
             return true;
         }
         else
         {
-            StartCoroutine(ColorChange(Color.red));
+            //StartCoroutine(ColorChange(Color.red));
             return false;
         }
+    }
+
+    public void UpdateAvaibility()
+    {
+        upgradeButton.interactable = CanBuy(MainMenuManager.instance.money);
     }
 
     private IEnumerator ColorChange(Color color)

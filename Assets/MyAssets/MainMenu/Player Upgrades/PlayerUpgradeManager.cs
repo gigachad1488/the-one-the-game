@@ -47,6 +47,7 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.hpLevel++;
                 hpPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.hpLevel)), playerData.baseHp + (playerData.hpLevel * playerData.baseHpScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
@@ -59,6 +60,7 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.moveSpeedLevel++;
                 moveSpeedPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.moveSpeedLevel)), playerData.baseMoveSpeed + (playerData.moveSpeedLevel * playerData.baseMoveSpeedScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
@@ -71,6 +73,7 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.flyTimeLevel++;
                 flyTimePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.flyTimeLevel)), playerData.baseFlyTime + (playerData.flyTimeLevel * playerData.baseFlyTimeScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
@@ -83,6 +86,7 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.flyForceLevel++;
                 flyForcePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.flyForceLevel)), playerData.baseFlyForce + (playerData.flyForceLevel * playerData.baseFlyForceScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
@@ -95,6 +99,7 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.dashCdLevel++;
                 dashCdPanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.dashCdLevel)), playerData.baseDashCd - (playerData.dashCdLevel * playerData.baseDashCdScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
@@ -107,16 +112,29 @@ public class PlayerUpgradeManager : MonoBehaviour
                 playerData.dashForceLevel++;
                 dashForcePanel.SetValues(Mathf.RoundToInt(baseLevelCost * (levelCostMult * playerData.dashForceLevel)), playerData.baseDashForce + (playerData.dashForceLevel * playerData.baseDashForceScale));
                 SaveData();
+                UpdateAllAvaibility();
             }
         });
 
         data.playerData = this.playerData;
+
+        UpdateAllAvaibility();
+    }
+
+    private void UpdateAllAvaibility()
+    {
+        hpPanel.UpdateAvaibility();
+        moveSpeedPanel.UpdateAvaibility();
+        flyTimePanel.UpdateAvaibility();
+        flyForcePanel.UpdateAvaibility();
+        dashCdPanel.UpdateAvaibility();
+        dashForcePanel.UpdateAvaibility();
     }
 
     private void SaveData()
     {
         dataService.SaveData("gg/pum", playerData);
         data.playerData = this.playerData;
-        PlayerPrefs.SetFloat("money", StaticData.money);
+        PlayerPrefs.SetInt("money", StaticData.money);
     }
 }

@@ -6343,18 +6343,18 @@ PrefabInstance:
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: bossSprite
       value: 
-      objectReference: {fileID: 606738759363374354, guid: c4b418c60eac40c46adf58f5f01db646, type: 3}
+      objectReference: {fileID: 21300000, guid: 451d2b62a3618ff4f95d0189c421ff2d, type: 3}
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: mainMenuManager
       value: 
       objectReference: {fileID: 740328867}
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: difficulties.Array.data[1].mult
-      value: 1.15
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: difficulties.Array.data[2].mult
-      value: 1.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2076945534595142854, guid: 370241d1cc5a3c74a88a9126ffca8655, type: 3}
       propertyPath: difficulties.Array.data[1].maxDrop
@@ -11666,6 +11666,14 @@ PrefabInstance:
     - target: {fileID: 1290298989980813081, guid: 1af2a5dc88ff74141b1bc7639863930f, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247930778536853022, guid: 1af2a5dc88ff74141b1bc7639863930f, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247930778536853022, guid: 1af2a5dc88ff74141b1bc7639863930f, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.69411767
       objectReference: {fileID: 0}
     - target: {fileID: 7747787700922378821, guid: 1af2a5dc88ff74141b1bc7639863930f, type: 3}
       propertyPath: m_Pivot.x
